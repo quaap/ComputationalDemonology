@@ -54,18 +54,28 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
        // mBgColor.setAntiAlias(true);
         mBgColor.setARGB(255, 0, 23, 12);
 
-        Drawgorythm d1 = new PentaStar();
-        d1.setPaints(mLinePaint, mBgColor);
-        //drawers.add(d1);
 
-        Drawgorythm d2 = new BarbedRing();
-        d2.setPaints(mLinePaint, mBgColor);
-        drawers.add(d2);
 
 //        Synth synth = new Synth();
 //        synth.genSaw(64);
        // blackCanvas(holder);
 
+    }
+
+
+    public void startDraw(int which) {
+        Drawgorythm d = null;
+
+        switch (which) {
+            case 1: d = new BarbedRing(); break;
+            case 2: d = new FuzzyRing(); break;
+            case 3: d = new PentaRing(); break;
+            case 4: d = new PentaStar(); break;
+            default:
+                throw new IllegalArgumentException("No such drawgorithm " + which);
+        }
+        d.setPaints(mLinePaint, mBgColor);
+        drawers.add(d);
     }
 
 

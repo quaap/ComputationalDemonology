@@ -190,6 +190,7 @@ class PentaRing extends Ring {
 
     int trails = 7;
 
+    double dmove = 1;
 
     public void doDraw(final Canvas canvas, final long ticks) {
 
@@ -202,6 +203,11 @@ class PentaRing extends Ring {
 
         }
 
+        if (Math.abs(mMoveZ)>.1) {
+            dmove += (mMoveZ+mMoveY)/5;
+            if (dmove>5) dmove = 5;
+            if (dmove<-5) dmove = -5;
+        }
 
         for (long j = 0; j < 5; j++) {
             lastX = (float) (r * Math.sin(rad)) + mCenterX;
@@ -228,8 +234,8 @@ class PentaRing extends Ring {
                 rad2 = Math.atan((y - mCenterY) / (x - mCenterX));
 
                 for (int p = 1; p < trails; p++) {
-                    int sizex = (int) (r / 5 / p * Math.cos((Math.PI * p - rad2) * 10 * p)) + 1;
-                    int sizey = (int) (r / 5 / p * Math.sin((Math.PI * p - rad2) * 10 * p)) + 1;
+                    int sizex = (int) (dmove * r / 5 / p * Math.cos((Math.PI * p - rad2) * 10 * p)) + 1;
+                    int sizey = (int) (dmove * r / 5 / p * Math.sin((Math.PI * p - rad2) * 10 * p)) + 1;
                     canvas.drawPoint((float) xp + sizex, (float) yp + sizey, mForeground);
                     //canvas.drawRect((float) xp + sizex, (float) yp + sizey, (float) xp + sizex+p, (float) yp + sizey+p, mForeground);
                 }
