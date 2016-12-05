@@ -68,29 +68,47 @@ abstract class Ring extends Drawgorythm {
 
 
 class FuzzyRing extends Ring {
+    double size = 1;
+    double speed = 40;
+    double modsize = size;
+    double dsize = .1;
 
     @Override
     public void doDraw(final Canvas canvas, final long ticks) {
 
-        for (long j=0; j<ticks; j++) {
 
-            for (int i = 0; i < 2; i++) {
-                double rad1 = rad;
-                if (i == 1) rad1 = i * 2 * Math.PI - rad;
+        if (mTouchDY!=0) {
+            size+= Math.signum(mTouchDY)/5;
+            if (size>15) size=15;
+            if (size<1) size=1;
+            modsize = size;
+            dsize = .1;
+        }
 
-                double rnd = Math.random();
-                int sizex = (int) (rnd * r / 10 * Math.cos(rad1 * 150)) + 1;
-                int sizey = (int) (rnd * r / 10 * Math.sin(rad1 * 150)) + 1;
-                float x = (float) (r * Math.sin(rad1)) + mCenterX + sizex;
-                float y = (float) (r * Math.cos(rad1)) + mCenterY + sizey;
+        modsize += dsize;
+        dsize += (size - modsize)/size/10;
 
 
-                canvas.drawLine(x, y, x + 8, y + 8, mForeground);
-            }
+        if (mTouchDX!=0) {
+            speed+= Math.signum(mTouchDX)/5;
+            if (speed>60) speed=60;
+            if (speed<4) speed=4;
+        }
+        rad = 0;
+        do {
+
+            double rnd = Math.random()/2 + .5;
+            int sizex = (int) (size * rnd * r / 20 * Math.cos(rad * 20 * speed)) + 1;
+            int sizey = (int) (size * rnd * r / 20 * Math.sin(rad * 20 * speed)) + 1;
+            float x = (float) (r * Math.sin(rad)) + mCenterX + sizex;
+            float y = (float) (r * Math.cos(rad)) + mCenterY + sizey;
+
+
+            canvas.drawLine(x, y, x + 1, y + 1, mForeground);
 
             rad += .001;
 
-        }
+        } while (rad<Math.PI*2);
 
 
     }

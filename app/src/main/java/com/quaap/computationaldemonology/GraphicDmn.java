@@ -56,11 +56,11 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
 
         Drawgorythm d1 = new FuzzyRing();
         d1.setPaints(mLinePaint, mBgColor);
-        //drawers.add(d1);
+        drawers.add(d1);
 
         Drawgorythm d2 = new BarbedRing();
         d2.setPaints(mLinePaint, mBgColor);
-        drawers.add(d2);
+       // drawers.add(d2);
 
 //        Synth synth = new Synth();
 //        synth.genSaw(64);
