@@ -99,22 +99,46 @@ class FuzzyRing extends Ring {
 
 class BarbedRing extends Ring {
 
+    double size = 2;
+    double speed = 40;
+    double modsize = size;
+    double dsize = .1;
+
     public void doDraw(final Canvas canvas, final long ticks) {
 
-        for (long j=0; j<ticks; j++) {
-            for (int i = 0; i < 2; i++) {
-                double rad1 = rad;
-                if (i == 1) rad1 = i * Math.PI - rad;
-                float x = (float) (r * Math.sin(rad1));
-                float y = (float) (r * Math.cos(rad1));
-                double rnd = Math.random();
-                int sizex = (int) (rnd * r / 10 * Math.cos(rad1 * 50)) + 1;
-                int sizey = (int) (rnd * r / 10 * Math.sin(rad1 * 50)) + 1;
-                canvas.drawLine(mCenterX + x, mCenterY + y, mCenterX + x + sizex, mCenterY + y + sizey, mForeground);
-            }
-
-            rad += .001;
+        if (mTouchDY!=0) {
+            size+= Math.signum(mTouchDY)/5;
+            if (size>15) size=15;
+            if (size<1) size=1;
+            modsize = size;
+            dsize = .1;
         }
+
+        modsize += dsize;
+        dsize += (size - modsize)/size/10;
+
+
+        if (mTouchDX!=0) {
+            speed+= Math.signum(mTouchDX)/5;
+            if (speed>60) speed=60;
+            if (speed<4) speed=4;
+        }
+
+
+        rad = 0;
+        do {
+
+
+            float x = (float) (r * Math.sin(rad));
+            float y = (float) (r * Math.cos(rad));
+            double rnd = Math.random();
+            int sizex = (int) (modsize*rnd * r / 10 * Math.cos(rad * speed)) + 1;
+            int sizey = (int) (modsize*rnd * r / 10 * Math.sin(rad * speed)) + 1;
+            canvas.drawLine(mCenterX + x, mCenterY + y, mCenterX + x + sizex, mCenterY + y + sizey, mForeground);
+
+
+            rad += .005;
+        } while (rad<Math.PI*2);
 
     }
 

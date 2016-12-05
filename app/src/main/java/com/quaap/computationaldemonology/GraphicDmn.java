@@ -58,7 +58,7 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
         d1.setPaints(mLinePaint, mBgColor);
         //drawers.add(d1);
 
-        Drawgorythm d2 = new PentaRing();
+        Drawgorythm d2 = new BarbedRing();
         d2.setPaints(mLinePaint, mBgColor);
         drawers.add(d2);
 
