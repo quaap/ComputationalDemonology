@@ -54,7 +54,7 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
        // mBgColor.setAntiAlias(true);
         mBgColor.setARGB(255, 0, 23, 12);
 
-        Drawgorythm d1 = new FuzzyRing();
+        Drawgorythm d1 = new PentaStar();
         d1.setPaints(mLinePaint, mBgColor);
         drawers.add(d1);
 
