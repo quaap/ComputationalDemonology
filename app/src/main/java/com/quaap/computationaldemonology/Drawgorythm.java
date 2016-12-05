@@ -24,6 +24,10 @@ public abstract class Drawgorythm {
     protected float mTouchDX;
     protected float mTouchDY;
 
+    protected float mMoveX;
+    protected float mMoveY;
+    protected float mMoveZ;
+
     protected boolean done=false;
 
     public void setPaints(Paint foreground, Paint background) {
@@ -47,6 +51,13 @@ public abstract class Drawgorythm {
         mTouchY = touchY;
         mTouchDX = touchDX;
         mTouchDY = touchDY;
+    }
+
+    public void deviceMoved(float x, float y, float z) {
+        mMoveX = x;
+        mMoveY = y;
+        mMoveZ = z;
+        //System.out.println(String.format("%f %f %f", x, y, z));
     }
 }
 
@@ -132,7 +143,7 @@ class BarbedRing extends Ring {
             dsize = .1;
         }
 
-        modsize += dsize;
+        modsize += dsize + (mMoveX + mMoveY)/40;
         dsize += (size - modsize)/size/10;
 
 
@@ -142,6 +153,7 @@ class BarbedRing extends Ring {
             if (speed<4) speed=4;
         }
 
+        speed += mMoveZ/10;
 
         rad = 0;
         do {
@@ -274,8 +286,8 @@ class PentaStar extends Ring {
             modspeed = speed;
             dspeed = .005;
         }
-        modspeed += dspeed;
-        dspeed += (speed - modspeed)/speed;
+        modspeed += (mMoveX + mMoveY + mMoveZ)/20;
+
         rad = 0;
 
         for (long j = 0; j < 5; j++) {

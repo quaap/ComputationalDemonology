@@ -56,11 +56,11 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
 
         Drawgorythm d1 = new PentaStar();
         d1.setPaints(mLinePaint, mBgColor);
-        drawers.add(d1);
+        //drawers.add(d1);
 
         Drawgorythm d2 = new BarbedRing();
         d2.setPaints(mLinePaint, mBgColor);
-       // drawers.add(d2);
+        drawers.add(d2);
 
 //        Synth synth = new Synth();
 //        synth.genSaw(64);
@@ -134,6 +134,12 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
         if (mThread!=null) mThread.unpauseRunning();
     }
 
+
+    public void deviceMoved(float x, float y, float z) {
+        for (Drawgorythm d: drawers) {
+            d.deviceMoved(x, y, z);
+        }
+    }
 
     private final float TOUCH_SCALE_FACTOR = 180.0f / 320;
     private float mPreviousX;
