@@ -9,8 +9,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,8 @@ import java.util.List;
  */
 
 public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
+
+    private long step = 33;
 
     private GraphicDmnThread mThread;
 
@@ -38,6 +42,8 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
         Log.d("GraphicDmn", "Constructor");
         final SurfaceHolder holder = getHolder();
         holder.addCallback(this);
+
+
 
         // Initialize paints for speedometer
         mLinePaint = new Paint();
@@ -129,6 +135,51 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
     }
 
 
+    private final float TOUCH_SCALE_FACTOR = 180.0f / 320;
+    private float mPreviousX;
+    private float mPreviousY;
+
+    @Override
+    public boolean onTouchEvent(MotionEvent e) {
+        float x = e.getX();
+        float y = e.getY();
+
+        switch (e.getAction()) {
+            case MotionEvent.ACTION_MOVE:
+                //System.out.println(e.getAction());
+
+                float dx = x - mPreviousX;
+                float dy = y - mPreviousY;
+
+//                // reverse direction of rotation above the mid-line
+//                if (y > getHeight() / 2) {
+//                    dx = dx * -1 ;
+//                }
+//
+//                // reverse direction of rotation to left of the mid-line
+//                if (x < getWidth() / 2) {
+//                    dy = dy * -1 ;
+//                }
+                for (Drawgorythm d: drawers) {
+                    d.touched(e.getAction(), x, y, dx, dy);
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                for (Drawgorythm d: drawers) {
+                    d.touched(e.getAction(), x, y, 0, 0);
+                }
+                break;
+
+            case MotionEvent.ACTION_DOWN:
+
+        }
+
+        mPreviousX = x;
+        mPreviousY = y;
+        return true;
+    }
+
+
     class GraphicDmnThread extends Thread {
 
         /** Message handler used by thread to interact with TextView */
@@ -154,6 +205,7 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
         public void run() {
             Log.d("GraphicDmnThread", "run");
             mRun = true;
+            long lasttime = System.currentTimeMillis();
             while (mRun) {
                 if (mPaused) {
                     try {
@@ -162,17 +214,28 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
                         e.printStackTrace();
                     }
                 } else {
-                    Canvas c = null;
-                    try {
-                        c = mSurfaceHolder.lockCanvas(null);
-                        synchronized (mSurfaceHolder) {
+                    final long now = System.currentTimeMillis();
 
-                            doDraw(c);
+                    if (now - lasttime > step) {
+                        Canvas c = null;
+                        try {
+                            c = mSurfaceHolder.lockCanvas();
+                            synchronized (mSurfaceHolder) {
+
+                                doDraw(c, System.currentTimeMillis() - lasttime);
+                            }
+                        } finally {
+                            if (c != null) {
+                                mSurfaceHolder.unlockCanvasAndPost(c);
+                            }
                         }
-                    } finally {
-                        if (c != null) {
-                            mSurfaceHolder.unlockCanvasAndPost(c);
-                        }
+                        lasttime = System.currentTimeMillis();
+                    } else {
+//                        try {
+//                            sleep(step);
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
                     }
                 }
             }
@@ -200,23 +263,17 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
     }
 
 
-
-    long step = 33;
-    long lasttime = System.currentTimeMillis();
-
-    private void doDraw(final Canvas canvas) {
+    private void doDraw(final Canvas canvas, long ticks) {
         // Log.d("GraphicDmn", "doDraw");
 
-        final long now = System.currentTimeMillis();
-
-        if (now - lasttime > step) {
+            canvas.drawPaint(mBgColor);
             //Log.d("GraphicDmn", "doDraw" + lasttime + " " + now);
             for (Drawgorythm d : drawers) {
-                d.doDraw(passCanvas, System.currentTimeMillis() - lasttime);
+                d.doDraw(canvas, ticks);
             }
-            lasttime = System.currentTimeMillis();
-        }
-        canvas.drawBitmap(viewdata, 0, 0, null);
+
+
+       // canvas.drawBitmap(viewdata, 0, 0, null);
 
     }
 

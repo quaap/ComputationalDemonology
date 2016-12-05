@@ -19,6 +19,11 @@ public abstract class Drawgorythm {
     protected int mWidth;
     protected int mHeight;
 
+    protected float mTouchX;
+    protected float mTouchY;
+    protected float mTouchDX;
+    protected float mTouchDY;
+
     protected boolean done=false;
 
     public void setPaints(Paint foreground, Paint background) {
@@ -35,6 +40,14 @@ public abstract class Drawgorythm {
     }
 
     public abstract void doDraw(final Canvas canvas, final long ticks);
+
+
+    public void touched(int action, float touchX, float touchY, float touchDX, float touchDY) {
+        mTouchX = touchX;
+        mTouchY = touchY;
+        mTouchDX = touchDX;
+        mTouchDY = touchDY;
+    }
 }
 
 
@@ -120,19 +133,26 @@ class PentaRing extends Ring {
     private double dY;
 
     private double rad2 = rad;
-    private boolean donext = true;
+
+    int trails = 7;
 
 
     public void doDraw(final Canvas canvas, final long ticks) {
 
-        if (done) return;
-        if (donext) {
-            if (rad>Math.PI*3) {
-                done=true;
-                return;
-            }
+       // rad = Math.atan((mTouchY - mCenterY) / (mTouchX - mCenterX));
+       // rad2 = rad;
+        if (mTouchDY!=0) {
+            trails+= Math.signum(mTouchDY);
+            if (trails>15) trails=15;
+            if (trails<2) trails=2;
+
+        }
+
+
+        for (long j = 0; j < 5; j++) {
             lastX = (float) (r * Math.sin(rad)) + mCenterX;
-            lastY = (float) (r * Math.cos(rad)) + mCenterY;;
+            lastY = (float) (r * Math.cos(rad)) + mCenterY;
+
             rad += Math.PI * 2.0 / 5.0;
             nextX = (float) (r * Math.sin(rad)) + mCenterX;
             nextY = (float) (r * Math.cos(rad)) + mCenterY;
@@ -142,35 +162,31 @@ class PentaRing extends Ring {
 
             dX = nextX - lastX;
             dY = nextY - lastY;
-            donext = false;
-        } else {
 
-            for (long j = 0; j < ticks; j++) {
-                double fac = Math.abs(dY/dX) + 1;
-                double xp = x + Math.signum(dX)/( fac * 15 );
+            do {
+
+                double fac = (dX==0?0:Math.abs(dY / dX))+1;
+                double xp = x + Math.signum(dX) / fac;
                 double yp = lastY + dY * (x - lastX) / dX;
 
                 //canvas.drawLine((float)x, (float)y, (float)xp, (float)yp, mForeground);
 
-                rad2 = Math.atan((y-mCenterY)/(x-mCenterX));
+                rad2 = Math.atan((y - mCenterY) / (x - mCenterX));
 
-                for (int p=1; p<7; p++) {
-                    int sizex = (int) (r / 10/p * Math.cos((Math.PI*p - rad2) * 10 * p)) + 1;
-                    int sizey = (int) (r / 10/p * Math.sin((Math.PI*p - rad2) * 10 * p)) + 1;
+                for (int p = 1; p < trails; p++) {
+                    int sizex = (int) (r / 5 / p * Math.cos((Math.PI * p - rad2) * 10 * p)) + 1;
+                    int sizey = (int) (r / 5 / p * Math.sin((Math.PI * p - rad2) * 10 * p)) + 1;
                     canvas.drawPoint((float) xp + sizex, (float) yp + sizey, mForeground);
+                    //canvas.drawRect((float) xp + sizex, (float) yp + sizey, (float) xp + sizex+p, (float) yp + sizey+p, mForeground);
                 }
 
                 x = xp;
                 y = yp;
 
-                if (Math.round(x)==Math.round(nextX)) {
-                    donext = true;
-                }
 
-            }
+            } while (Math.round(x) != Math.round(nextX));
+
         }
-        //rad += Math.PI * 2.0 / 5.0;
-
     }
 
 }
