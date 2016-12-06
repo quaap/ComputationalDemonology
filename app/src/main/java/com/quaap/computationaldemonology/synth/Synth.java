@@ -5,7 +5,9 @@ import android.media.AudioManager;
 import android.media.AudioTrack;
 import android.os.Build;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by tom on 12/2/16.
@@ -13,6 +15,8 @@ import java.util.Arrays;
 
 public abstract class Synth extends Thread {
 
+
+    protected List<Filter> filters = new ArrayList<>();
     protected int sampleRate = 16000;
     protected int mSnipsPerSample = 5;
     private AudioTrack mAudioTrack;
@@ -54,19 +58,19 @@ public abstract class Synth extends Thread {
 
     public void setVol(float vol) {
         mVol = vol;
+        if (Build.VERSION.SDK_INT >= 21) {
+            mAudioTrack.setVolume(mVol);
+        } else {
+            mAudioTrack.setStereoVolume(mVol,mVol);
+        }
     }
 
     public void stopSynth() {
         mRun = false;
     }
 
-    private void write(short[] buffer) {
-        if (Build.VERSION.SDK_INT >= 21) {
-            mAudioTrack.setVolume(mVol);
-        } else {
-            mAudioTrack.setStereoVolume(mVol,mVol);
-        }
-        mAudioTrack.write(buffer, 0, buffer.length);
+    public void addFilter(Filter filter) {
+        filters.add(filter);
     }
 
     public void close() {
@@ -85,6 +89,15 @@ public abstract class Synth extends Thread {
 
     protected abstract int getData(short[] data);
 
+
+    private void write(short[] buffer) {
+
+        for(Filter filter: filters) {
+            filter.filter(buffer, buffer.length);
+        }
+
+        mAudioTrack.write(buffer, 0, buffer.length);
+    }
 }
 
 

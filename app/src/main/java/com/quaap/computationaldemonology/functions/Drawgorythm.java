@@ -4,6 +4,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import com.quaap.computationaldemonology.synth.Synth;
+
 /**
  * Created by tom on 12/4/16.
  */
@@ -12,6 +14,8 @@ public abstract class Drawgorythm {
     protected Paint [] mForeground;
 
     protected Paint mBackground;
+
+    protected Synth[] synths;
 
     protected int mCenterX;
     protected int mCenterY;
@@ -29,6 +33,10 @@ public abstract class Drawgorythm {
     protected float mMoveZ;
 
     protected boolean done=false;
+
+    public Drawgorythm() {
+        synths = new Synth[2];
+    }
 
     public void setPaints(Paint foreground, Paint background) {
         mForeground = new Paint[16];

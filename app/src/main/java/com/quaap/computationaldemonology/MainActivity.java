@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.quaap.computationaldemonology.synth.MultiToneSynth;
+import com.quaap.computationaldemonology.synth.StaticFilter;
+import com.quaap.computationaldemonology.synth.Synth;
+
 public class MainActivity extends AppCompatActivity implements Button.OnClickListener {
 
     Synth s;
@@ -31,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
             public void onClick(View view) {
                 if (s==null) {
                     s = new MultiToneSynth(512);
+                    s.addFilter(new StaticFilter());
                     System.out.println(s.getMaxVol());
                     s.start();
                 } else {

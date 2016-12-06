@@ -7,7 +7,7 @@ public class StaticSynth extends Synth {
     protected int getData(short[] data) {
 
         for (int i = 0; i < data.length; i++) {
-            data[i] = (short) ((Math.random() - .5) * Short.MAX_VALUE * 2 * i / (float) data.length);
+            data[i] = (short) ((Math.random() - .5) * Short.MAX_VALUE * 2);
         }
         return data.length;
     }
