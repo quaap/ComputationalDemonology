@@ -1,6 +1,7 @@
 package com.quaap.computationaldemonology;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 
 /**
@@ -8,7 +9,7 @@ import android.graphics.Paint;
  */
 
 public abstract class Drawgorythm {
-    protected Paint mForeground;
+    protected Paint [] mForeground;
 
     protected Paint mBackground;
 
@@ -30,9 +31,37 @@ public abstract class Drawgorythm {
     protected boolean done=false;
 
     public void setPaints(Paint foreground, Paint background) {
-        mForeground = foreground;
+        mForeground = new Paint[16];
+        int color = foreground.getColor();
+        int alpha = foreground.getAlpha();
+        int red = Color.red(color);
+        int green = Color.green(color);
+        int blue = Color.blue(color);
+
+        for (int i=0; i<mForeground.length; i++) {
+            mForeground[i] = new Paint();
+            mForeground[i].setARGB(getRVal(alpha), getRVal(red), getRVal(green), getRVal(blue));
+        }
+
         mBackground = background;
+
     }
+
+    protected Paint getRandomForeground() {
+        return mForeground[(int)(Math.random()*mForeground.length)];
+    }
+
+    private static int getRVal(int base) {
+        return getVal(base, (int)((Math.random()-.5)*96));
+    }
+
+    private static int getVal(int base, int diff) {
+        int value=base+diff;
+        if (value>255) value=255;
+        if (value<0) value=0;
+        return value;
+    }
+
 
     public void canvasChanged(final Canvas canvas) {
         mWidth = canvas.getWidth();
@@ -64,7 +93,7 @@ public abstract class Drawgorythm {
 class TouchLightning extends Drawgorythm {
 
     Paint fcircle;
-    Paint fsparks;
+    //Paint fsparks;
     float radius = 50;
     double r = 0;
     double rstart = Math.PI/2;
@@ -75,10 +104,10 @@ class TouchLightning extends Drawgorythm {
         //fcircle.setStrokeWidth(15);
         fcircle.setARGB(127,100,100,164);
 
-        fsparks = new Paint();
-        fsparks.setStyle(Paint.Style.STROKE);
-        fsparks.setStrokeWidth(2);
-        fsparks.setARGB(127,100,100,164);
+//        fsparks = new Paint();
+//        fsparks.setStyle(Paint.Style.STROKE);
+//        fsparks.setStrokeWidth(2);
+//        fsparks.setARGB(127,100,100,164);
 
     }
 
@@ -101,11 +130,11 @@ class TouchLightning extends Drawgorythm {
                 canvas.drawCircle(x1, y1, 8, fcircle);
                 //canvas.drawCircle(tx, ty, radius, fsparks);
 
-                int strikes = (int) (Math.random() * 6 + 3);
+                int strikes = (int) (Math.random() * 3 + 3);
                 for (int i = 0; i < strikes; i++) {
-                    float x2 = (float) ((Math.random() + .1) * x + x1);
-                    float y2 = (float) ((Math.random() + .1) * y + y1);
-                    canvas.drawLine(x1, y1, x2, y2, fsparks);
+                    float x2 = (float) ((Math.random() - .5)*radius + x/2 + x1);
+                    float y2 = (float) ((Math.random() - .5)*radius + y/2 + y1);
+                    canvas.drawLine(x1, y1, x2, y2, getRandomForeground());
                 }
                 r += Math.PI * 2.0 / 5.0;
             }
@@ -176,7 +205,7 @@ class FuzzyRing extends Ring {
             float y = (float) (r * Math.cos(rad)) + mCenterY + sizey;
 
 
-            canvas.drawLine(x, y, x + 1, y + 1, mForeground);
+            canvas.drawLine(x, y, x + 1, y + 1, getRandomForeground());
 
             rad += .001;
 
@@ -226,7 +255,7 @@ class BarbedRing extends Ring {
             double rnd = Math.random();
             int sizex = (int) (modsize*rnd * r / 10 * Math.cos(rad * speed)) + 1;
             int sizey = (int) (modsize*rnd * r / 10 * Math.sin(rad * speed)) + 1;
-            canvas.drawLine(mCenterX + x, mCenterY + y, mCenterX + x + sizex, mCenterY + y + sizey, mForeground);
+            canvas.drawLine(mCenterX + x, mCenterY + y, mCenterX + x + sizex, mCenterY + y + sizey, getRandomForeground());
 
 
             rad += .005;
@@ -299,7 +328,7 @@ class PentaRing extends Ring {
                 for (int p = 1; p < trails; p++) {
                     int sizex = (int) (dmove * r / 5 / p * Math.cos((Math.PI * p - rad2) * 10 * p)) + 1;
                     int sizey = (int) (dmove * r / 5 / p * Math.sin((Math.PI * p - rad2) * 10 * p)) + 1;
-                    canvas.drawPoint((float) xp + sizex, (float) yp + sizey, mForeground);
+                    canvas.drawPoint((float) xp + sizex, (float) yp + sizey, getRandomForeground());
                     //canvas.drawRect((float) xp + sizex, (float) yp + sizey, (float) xp + sizex+p, (float) yp + sizey+p, mForeground);
                 }
 
@@ -388,7 +417,7 @@ class PentaStar extends Ring {
                 for (int p = 1; p < trails+1; p++) {
                     int sizex = (int) (r / 5 / p * Math.cos((Math.PI * p - rad2)*modspeed * 14 * p)) + 1;
                     int sizey = (int) (r / 5 / p * Math.sin((Math.PI * p - rad2)*modspeed * 14 * p)) + 1;
-                    canvas.drawPoint((float) xp + sizex, (float) yp + sizey, mForeground);
+                    canvas.drawPoint((float) xp + sizex, (float) yp + sizey, getRandomForeground());
                     //canvas.drawRect((float) xp + sizex, (float) yp + sizey, (float) xp + sizex+p, (float) yp + sizey+p, mForeground);
                 }
 
