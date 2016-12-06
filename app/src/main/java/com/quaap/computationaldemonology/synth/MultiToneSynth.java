@@ -8,6 +8,7 @@ import java.util.Arrays;
 public class MultiToneSynth extends Synth {
 
     private float [] mHzs;
+    private Object mHzsSync = new Object();
 
     protected int [] lastPos;
 
@@ -16,9 +17,24 @@ public class MultiToneSynth extends Synth {
     }
 
     public void setHz(float [] hzs) {
-        mHzs = hzs;
-        lastPos = new int[hzs.length];
+        synchronized(mHzsSync) {
+            mHzs = hzs;
+            lastPos = new int[hzs.length];
+        }
     }
+
+    public void modHz(float [] hzs) {
+        for (int i = 0; i < mHzs.length; i++) {
+            mHzs[i] += hzs[i];
+        }
+    }
+
+    public void modHz(float hz) {
+        for (int i = 0; i < mHzs.length; i++) {
+            mHzs[i] += hz;
+        }
+    }
+
 
     protected int addData(short[] data, float hz, int trackNum, int numTacks) {
         float period = sampleRate / hz;
@@ -38,9 +54,13 @@ public class MultiToneSynth extends Synth {
         Arrays.fill(data, (short)0);
 
         int length = 0;
-        for (int i=0; i<mHzs.length; i++) {
-            int written = addData(data, mHzs[i], i, mHzs.length);
-            if (written>length) length = written;
+        float [] hzs;
+        synchronized(mHzsSync) {
+            hzs = Arrays.copyOf(mHzs, mHzs.length); //
+            for (int i = 0; i < hzs.length; i++) {
+                int written = addData(data, hzs[i], i, hzs.length);
+                if (written > length) length = written;
+            }
         }
 
         return length;
