@@ -1,5 +1,96 @@
 <resources>
     <string name="app_name">ComputationalDemonology</string>
     <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="htmlparse">You can\'t parse [X]HTML with regex. Because HTML can\'t be parsed by regex. Regex is not a tool that can be used to
+correctly parse HTML. As I have answered in HTML-and-regex questions here so many times before, the use of regex will
+not allow you to consume HTML. Regular expressions are a tool that is insufficiently sophisticated to understand the
+constructs employed by HTML. HTML is not a regular language and hence cannot be parsed by regular expressions. Regex
+queries are not equipped to break down HTML into its meaningful parts. so many times but it is not getting to me. Even
+enhanced irregular regular expressions as used by Perl are not up to the task of parsing HTML. You will never make me
+crack. HTML is a language of sufficient complexity that it cannot be parsed by regular expressions. Even Jon Skeet
+cannot parse HTML using regular expressions. Every time you attempt to parse HTML with regular expressions, the unholy
+child weeps the blood of virgins, and Russian hackers pwn your webapp. Parsing HTML with regex summons tainted souls
+into the realm of the living. HTML and regex go together like love, marriage, and ritual infanticide. The
+&lt;center&gt; cannot hold it is too late. The force of regex and HTML together in the same conceptual space will
+destroy your mind like so much watery putty. If you parse HTML with regex you are giving in to Them and their
+blasphemous ways which doom us all to inhuman toil for the One whose Name cannot be expressed in the Basic Multilingual
+Plane, he comes. HTML-plus-regexp will liquify the n​erves of the sentient whilst you observe, your psyche withering in
+the onslaught of horror. Rege̿̔̉x-based HTML parsers are the cancer that is killing StackOverflow it is too late it is
+too late we cannot be saved the trangession of a chi͡ld ensures regex will consume all living tissue (except for HTML
+which it cannot, as previously prophesied) dear lord help us how can anyone survive this scourge using regex to parse
+HTML has doomed humanity to an eternity of dread torture and security holes using regex as a tool to process HTML
+establishes a breach between this world and the dread realm of c͒ͪo͛ͫrrupt entities (like SGML entities, but more
+corrupt) a mere glimpse of the world of reg​ex parsers for HTML will ins​tantly transport a programmer\'s consciousness
+into a world of ceaseless screaming, he comes, the pestilent slithy regex-infection wil​l devour your HT​ML parser,
+application and existence for all time like Visual Basic only worse he comes he comes do not fi​ght he com̡e̶s, ̕h̵i​s
+un̨ho͞ly radiańcé destro҉ying all enli̍̈́̂̈́ghtenment, HTML tags lea͠ki̧n͘g fr̶ǫm ̡yo​͟ur eye͢s̸ ̛l̕ik͏e liq​uid pain,
+the song of re̸gular exp​ression parsing will exti​nguish the voices of mor​tal man from the sp​here I can see it can
+you see ̲͚̖͔̙î̩́t̲͎̩̱͔́̋̀ it is beautiful t​he final snuffing of the lie​s of Man ALL IS LOŚ͖̩͇̗̪̏̈́T ALL I​S LOST the
+pon̷y he comes he c̶̮omes he comes the ich​or permeates all MY FACE MY FACE ᵒh god no NO NOO̼O​O NΘ stop the
+an​*̶͑̾̾​̅ͫ͏̙̤g͇̫͛͆̾ͫ̑͆l͖͉̗̩̳̟̍ͫͥͨe̠̅s ͎a̧͈͖r̽̾̈́͒͑e n​ot rè̑ͧ̌aͨl̘̝̙̃ͤ͂̾̆ ZA̡͊͠͝LGΌ ISͮ̂҉̯͈͕̹̘̱ TO͇̹̺ͅƝ̴ȳ̳ TH̘Ë͖́̉ ͠P̯͍̭O̚​N̐Y̡ H̸̡̪̯ͨ͊̽̅̾̎Ȩ̬̩̾͛ͪ̈́̀́͘ ̶̧̨̱̹̭̯ͧ̾ͬC̷̙̲̝͖ͭ̏ͥͮ͟Oͮ͏̮̪̝͍M̲̖͊̒ͪͩͬ̚̚͜Ȇ̴̟̟͙̞ͩ͌͝S̨̥̫͎̭ͯ̿̔̀ͅ  </string>
+    <string name="lovecraft">Hastur Ithaqua Nyarlathotep Zhar Lloigor	Cyäegha Nyogtha Shub-Niggurath Tsathoggua	Aphoom-Zhah Cthugha	Cthulhu Dagon
+Ghatanothoa Mother Hydra Zoth-Ommog Abhoth Aiueb Gnshal Azathoth Azhorra-Tha The Blackness from the Stars The Cloud-Thing C\'thalpa Cxaxukluth Daoloth
+ Darkness D’endrrah Ghroth The Hydra Ialdagorth Kaajh\'Kaalbh Lu-Kthu Mh\'ithrha Mlandoth and Mril Thorion Mother of
+ Pus The Nameless Mist Ngyr-Korath Nyarlathotep Nyctelios Ny-Rakath Olkoth Shabbith-Ka Shub-Niggurath Star Mother
+ Suc\'Naath Tru\'nembra Tulzscha Ubbo-Sathla Uvhash Xa\'ligha Xexanoth Ycnàgnnisssz Yhoundeh Yibb-Tstll Yidhra
+ Yog-Sothoth Yomagn\'tho Elder Gods List Bast Kthanid Orryx Oztalun Nodens Shavalyoth Ulthar Vorvadoss Yad-Thaddag
+ Yaggdytha</string>
+    <string name="lisp1" formatted="false"> (defun read-separator (str)
+ (let
+  ((*readtable* (copy-readtable *readtable* nil)))
+  (set-macro-character #\, (lambda (stream char)
+                            (declare (ignore char) (ignore stream))
+                            \'break))
+  (read str nil)))
+
+(set-macro-character #\{
+ (lambda (str char)
+  (declare (ignore char))
+  (let
+   ((*readtable* (copy-readtable *readtable* nil)))
+   (set-macro-character #\} (lambda (stream char)
+                             (declare (ignore char) (ignore stream))
+                             \'end))
+
+   (let
+    ((pairs (loop for key = (read str nil nil t)
+                  for sep = (read str nil nil t)
+                  for value = (read str nil nil t)
+                  for end? = (read-separator str)
+                  do (when (not (eql \'=> sep)) (error "Expected =>, did not get"))
+                  do (when (not (or (eql \'end end?) (eql \'break end?))) (error "Expected , or }"))
+                  collect (list key value)
+                  while (not (eql \'end end?))))
+     (retn (gensym)))
+    `(let
+      ((,retn (make-hash-table :test #\'equal)))
+      ,@(mapcar
+         (lambda (pair)
+          `(setf (gethash ,(car pair) ,retn) ,(cadr pair)))
+         pairs)
+      ,retn)))))
+    (defun read-listcomp (stream char)
+  (declare (ignore char))
+  (let (rezs srcs conds state)
+    (dolist (item (read-delimited-list #\} stream))
+      (if (eql \'|| item)
+          (setf state (if state :cond :src))
+          (case state
+            (:src (push item srcs))
+            (:cond (push item conds))
+            (otherwise (push item rezs)))))
+    (setf rezs (reverse rezs)
+          srcs (reverse srcs)
+          conds (reverse conds))
+    (let ((binds (mapcar (lambda (group) (cons (first group) (third group)))
+                         (group 3 srcs))))
+      `(mapcan (lambda ,(mapcar #\'car binds)
+                 (when (and ,@conds)
+                   (list ,(if (rest rezs)
+                              (cons \'list rezs)
+                              (first rezs)))))
+               ,@(mapcar #\'cdr binds)))))
+
+(set-macro-character #\{ #\'read-listcomp)
+(set-macro-character #\} (get-macro-character #\)))</string>
 </resources>

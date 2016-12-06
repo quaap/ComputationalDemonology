@@ -11,4 +11,14 @@
         android:layout_height="match_parent"
         android:id="@+id/dmnview" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/mathtxt"
+        android:layout_alignParentStart="true"
+        android:maxLines="2"
+        android:textColor="@android:color/holo_green_dark"
+        android:alpha=".7" />
+
 </RelativeLayout>
