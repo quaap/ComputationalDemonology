@@ -3,7 +3,6 @@ package com.quaap.computationaldemonology;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.os.Message;
@@ -12,7 +11,13 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
+
+import com.quaap.computationaldemonology.functions.BarbedRing;
+import com.quaap.computationaldemonology.functions.Drawgorythm;
+import com.quaap.computationaldemonology.functions.FuzzyRing;
+import com.quaap.computationaldemonology.functions.PentaRing;
+import com.quaap.computationaldemonology.functions.PentaStar;
+import com.quaap.computationaldemonology.functions.TouchLightning;
 
 import java.util.ArrayList;
 import java.util.List;
