@@ -63,15 +63,21 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
 
     }
 
+    public static final String GO = "go";
+    public static final int PROTECTION = 1;
+    public static final int SUMMON = 2;
+    public static final int EXPEL = 3;
+    public static final int CAST = 4;
+
 
     public void startDraw(int which) {
         Drawgorythm d = null;
 
         switch (which) {
-            case 1: d = new BarbedRing(); break;
-            case 2: d = new FuzzyRing(); break;
-            case 3: d = new PentaRing(); break;
-            case 4: d = new PentaStar(); break;
+            case PROTECTION: d = new BarbedRing(); break;
+            case EXPEL: d = new FuzzyRing(); break;
+            case CAST: d = new PentaRing(); break;
+            case SUMMON: d = new PentaStar(); break;
             default:
                 throw new IllegalArgumentException("No such drawgorithm " + which);
         }

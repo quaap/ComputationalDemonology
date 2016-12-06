@@ -32,7 +32,7 @@ public class GraphicDemonActivity extends AppCompatActivity implements SensorEve
         setContentView(R.layout.activity_graphic_demon);
         GraphicDmn dmnview = (GraphicDmn) findViewById(R.id.dmnview);
 
-        int which = getIntent().getIntExtra("go", 7);
+        int which = getIntent().getIntExtra(GraphicDmn.GO, 7);
         dmnview.startDraw(which);
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);

@@ -32,13 +32,13 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         Intent intent = new Intent(this, GraphicDemonActivity.class);
         switch (view.getId()) {
             case R.id.button_summon:
-                intent.putExtra("go", 1); break;
+                intent.putExtra( GraphicDmn.GO, GraphicDmn.SUMMON); break;
             case R.id.button_expel:
-                intent.putExtra("go", 2); break;
+                intent.putExtra(GraphicDmn.GO, GraphicDmn.EXPEL); break;
             case R.id.button_seek:
-                intent.putExtra("go", 3); break;
+                intent.putExtra(GraphicDmn.GO, GraphicDmn.PROTECTION); break;
             case R.id.button_cast:
-                intent.putExtra("go", 4); break;
+                intent.putExtra(GraphicDmn.GO, GraphicDmn.CAST); break;
         }
         startActivity(intent);
     }
