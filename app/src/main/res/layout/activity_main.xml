@@ -8,7 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.quaap.computationaldemonology.MainActivity">
+    tools:context="com.quaap.computationaldemonology.MainActivity"
+    android:background="@android:color/background_dark">
 
     <Button
         android:text="Summon"
@@ -17,24 +18,9 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
-        android:id="@+id/button_summon"/>
-
-    <Button
-        android:text="Expel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button_expel"
-        android:layout_below="@+id/button_summon"
-        android:layout_alignStart="@+id/button_summon"
-        android:layout_marginTop="26dp"/>
-
-    <Button
-        android:text="Cast"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/button_expel"
-        android:id="@+id/button_cast"/>
+        android:id="@+id/button_summon"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimaryDark" />
 
     <Button
         android:text="Seek"
@@ -43,5 +29,29 @@
         android:layout_below="@+id/button_cast"
         android:layout_alignStart="@+id/button_cast"
         android:layout_marginTop="37dp"
-        android:id="@+id/button_seek"/>
+        android:id="@+id/button_seek"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimaryDark" />
+
+    <Button
+        android:text="Expel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_expel"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/button_summon"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimaryDark" />
+
+    <Button
+        android:text="Cast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_cast"
+        android:layout_below="@+id/button_expel"
+        android:layout_alignStart="@+id/button_expel"
+        android:layout_marginTop="27dp"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimaryDark" />
 </RelativeLayout>

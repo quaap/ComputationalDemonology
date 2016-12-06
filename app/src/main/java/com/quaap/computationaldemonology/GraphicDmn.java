@@ -56,6 +56,7 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
 
 
 
+
 //        Synth synth = new Synth();
 //        synth.genSaw(64);
        // blackCanvas(holder);
@@ -76,6 +77,9 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
         }
         d.setPaints(mLinePaint, mBgColor);
         drawers.add(d);
+        Drawgorythm d2 = new TouchLightning();
+        d2.setPaints(mLinePaint, mBgColor);
+        drawers.add(d2);
     }
 
 
@@ -173,7 +177,7 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
                 break;
             case MotionEvent.ACTION_UP:
                 for (Drawgorythm d: drawers) {
-                    d.touched(e.getAction(), x, y, 0, 0);
+                    d.touched(e.getAction(), 0, 0, 0, 0);
                 }
                 break;
 

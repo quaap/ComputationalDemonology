@@ -63,6 +63,32 @@ public abstract class Drawgorythm {
     }
 }
 
+class TouchLightning extends Drawgorythm {
+
+    Paint fmine;
+    float radius = 70;
+    public void canvasChanged(final Canvas canvas) {
+        super.canvasChanged(canvas);
+        fmine = new Paint();
+        fmine.setStyle(Paint.Style.STROKE);
+        fmine.setStrokeWidth(4);
+        fmine.setARGB(127,100,100,164);
+    }
+
+    @Override
+    public void doDraw(Canvas canvas, long ticks) {
+
+        if (mTouchX!=0 && mTouchY!=0) {
+            canvas.drawCircle(mTouchX, mTouchY, radius, fmine);
+//            int strikes = (int) (Math.random() * 10 + 3);
+//            for (int i = 0; i < strikes; i++) {
+//                float x1 = (int) ((Math.random() - .5) * mWidth/3);
+//                float y1 = (int) ((Math.random() - .5) * mHeight/3);
+//                canvas.drawLine(x1 + mTouchX, y1 + mTouchY, x1/2 + mTouchX, y1/2 + mTouchY, fmine);
+//            }
+        }
+    }
+}
 
 abstract class Ring extends Drawgorythm {
 

@@ -63,7 +63,7 @@ public class GraphicDemonActivity extends AppCompatActivity implements SensorEve
 
 
             if (hist.length()>6) {
-                hist.delete(0,3);
+                hist.delete(0,2);
             }
             if (hist.length()<1000) {
                 for (int i = 0; i < 2; i++) {
@@ -86,7 +86,7 @@ public class GraphicDemonActivity extends AppCompatActivity implements SensorEve
                         int rnd = (int) (Math.random() * (hp.length() - 20));
                         hist.append(hp.substring(rnd, rnd + 20));
                     }
-                    if (Math.random() > .8) {
+                    if (Math.random() > .85) {
                         hist.append(" ");
                         int rnd = (int) (Math.random() * (lsp.length() - 20));
                         hist.append(lsp.substring(rnd, rnd + 20));
