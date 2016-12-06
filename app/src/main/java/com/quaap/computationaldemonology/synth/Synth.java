@@ -1,12 +1,9 @@
-package com.quaap.computationaldemonology;
+package com.quaap.computationaldemonology.synth;
 
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioTrack;
-import android.media.PlaybackParams;
-import android.os.AsyncTask;
 import android.os.Build;
-import android.util.Log;
 
 import java.util.Arrays;
 
@@ -90,82 +87,4 @@ public abstract class Synth extends Thread {
 
 }
 
-class StaticSynth extends Synth {
-    protected int getData(short[] data) {
 
-        for (int i = 0; i < data.length; i++) {
-            data[i] = (short) ((Math.random() - .5) * Short.MAX_VALUE * 2 * i / (float) data.length);
-        }
-        return data.length;
-    }
-
-}
-
-
-class MultiToneSynth extends Synth {
-
-    private float [] mHzs;
-
-    protected int [] lastPos;
-
-    public MultiToneSynth(float ... hzs) {
-        setHz(hzs);
-    }
-
-    public void setHz(float [] hzs) {
-        mHzs = hzs;
-        lastPos = new int[hzs.length];
-    }
-
-    protected int addData(short[] data, float hz, int trackNum, int numTacks) {
-        float period = sampleRate / hz;
-        for (int i = 0; i < data.length; i++) {
-            double val = Math.sin((lastPos[trackNum]++) / period * 2 * Math.PI);
-            data[i] += (short) (val * Short.MAX_VALUE / (double)numTacks);
-        }
-        return data.length;
-    }
-
-
-    protected int getData(short[] data) {
-
-        if (lastPos[0]>Integer.MAX_VALUE-sampleRate*10) {
-            Arrays.fill(lastPos,0);
-        }
-        Arrays.fill(data, (short)0);
-
-        int length = 0;
-        for (int i=0; i<mHzs.length; i++) {
-            int written = addData(data, mHzs[i], i, mHzs.length);
-            if (written>length) length = written;
-        }
-
-        return length;
-    }
-
-
-}
-
-
-class SawSynth extends MultiToneSynth {
-
-    public SawSynth(float ... hzs) {
-        setHz(hzs);
-    }
-
-    @Override
-    protected int addData(short[] data, float hz, int trackNum, int numTacks) {
-
-        float period = sampleRate / hz;
-
-        for (int i = 0; i < data.length; i++) {
-            float val = 2 * ((lastPos[trackNum]++) % period) / period - 1;
-
-            data[i] += (short) (val * Short.MAX_VALUE / numTacks);
-        }
-
-        return data.length;
-    }
-
-
-}
