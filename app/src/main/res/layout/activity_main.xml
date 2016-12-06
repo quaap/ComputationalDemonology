@@ -56,11 +56,13 @@
         android:layout_alignStart="@+id/button_cast" />
 
     <Button
-        android:text="Button"
+        android:text="Bleerp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button_seek"
         android:layout_alignStart="@+id/button_seek"
         android:layout_marginTop="32dp"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimaryDark"
         android:id="@+id/button" />
 </RelativeLayout>

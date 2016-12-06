@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
             @Override
             public void onClick(View view) {
                 if (s==null) {
-                    s = new MultiToneSynth(512);
+                    s = new MultiToneSynth(372.98f, 497.87f);
                     s.addFilter(new StaticFilter());
                     System.out.println(s.getMaxVol());
                     s.start();
