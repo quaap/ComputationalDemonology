@@ -3,6 +3,7 @@ package com.quaap.computationaldemonology;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.provider.Settings;
 
 /**
  * Created by tom on 12/4/16.
@@ -43,6 +44,7 @@ public abstract class Drawgorythm {
         done = false;
     }
 
+
     public abstract void doDraw(final Canvas canvas, final long ticks);
 
 
@@ -64,16 +66,26 @@ public abstract class Drawgorythm {
 
 abstract class Ring extends Drawgorythm {
 
-    double r = 0;
+    double rMax = 1;
+    double r;
     double rad = 0;
+
+    long started;
 
     @Override
     public void canvasChanged(final Canvas canvas) {
         super.canvasChanged(canvas);
-        r = Math.min(mHeight, mWidth) / 3;
+        rMax = Math.min(mHeight, mWidth) / 3;
+        r = 1;
         rad = 0;
+        started = System.currentTimeMillis();
     }
-
+    @Override
+    public void doDraw(final Canvas canvas, final long ticks) {
+        if (r<rMax) {
+            r+=(rMax - r)/rMax;
+        }
+    }
 }
 
 
@@ -86,7 +98,7 @@ class FuzzyRing extends Ring {
 
     @Override
     public void doDraw(final Canvas canvas, final long ticks) {
-
+        super.doDraw(canvas,ticks);
 
         if (mTouchDY!=0) {
             size+= Math.signum(mTouchDY)/5;
@@ -134,6 +146,7 @@ class BarbedRing extends Ring {
     double dsize = .1;
 
     public void doDraw(final Canvas canvas, final long ticks) {
+        super.doDraw(canvas,ticks);
 
         if (mTouchDY!=0) {
             size+= Math.signum(mTouchDY)/5;
@@ -193,6 +206,7 @@ class PentaRing extends Ring {
     double dmove = 1;
 
     public void doDraw(final Canvas canvas, final long ticks) {
+        super.doDraw(canvas,ticks);
 
        // rad = Math.atan((mTouchY - mCenterY) / (mTouchX - mCenterX));
        // rad2 = rad;
@@ -275,6 +289,7 @@ class PentaStar extends Ring {
 
 
     public void doDraw(final Canvas canvas, final long ticks) {
+        super.doDraw(canvas,ticks);
 
         // rad = Math.atan((mTouchY - mCenterY) / (mTouchX - mCenterX));
         // rad2 = rad;
