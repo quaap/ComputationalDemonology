@@ -22,6 +22,8 @@ public class GraphicDemonActivity extends AppCompatActivity implements SensorEve
     private Timer timer;
     String hp;
     String lsp;
+    String [] codes;
+    String [] nouns;
     String [] lc;
 
     @Override
@@ -42,6 +44,8 @@ public class GraphicDemonActivity extends AppCompatActivity implements SensorEve
         hp = getString(R.string.htmlparse);
         lsp = getString(R.string.lisp1);
         lc = getString(R.string.lovecraft).split(" ");
+        codes = getString(R.string.code).split(" ");
+        nouns = getString(R.string.nouns).split(" ");
 
         startTicker();
 
@@ -59,7 +63,7 @@ public class GraphicDemonActivity extends AppCompatActivity implements SensorEve
 
 
             if (hist.length()>6) {
-                hist.delete(0,4);
+                hist.delete(0,3);
             }
             if (hist.length()<1000) {
                 for (int i = 0; i < 2; i++) {
@@ -91,6 +95,18 @@ public class GraphicDemonActivity extends AppCompatActivity implements SensorEve
                         hist.append(" ");
 
                         hist.append(lc[(int)(Math.random()*lc.length)]);
+                    }
+
+                    if (Math.random() > .98) {
+                        hist.append("  -{{{");
+                        hist.append(codes[(int)(Math.random()*codes.length)].toUpperCase());
+                        hist.append("  ");
+                        hist.append(nouns[(int)(Math.random()*nouns.length)].toUpperCase());
+                        if (Math.random()>.5) {
+                            hist.append("  ");
+                            hist.append(nouns[(int) (Math.random() * nouns.length)].toUpperCase());
+                        }
+                        hist.append("}}}-  ");
                     }
                 }
             }
