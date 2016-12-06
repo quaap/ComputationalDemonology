@@ -102,7 +102,7 @@ public class GraphicDemonActivity extends AppCompatActivity implements SensorEve
                         hist.append(codes[(int)(Math.random()*codes.length)].toUpperCase());
                         hist.append("  ");
                         hist.append(nouns[(int)(Math.random()*nouns.length)].toUpperCase());
-                        if (Math.random()>.5) {
+                        if (Math.random()>.3) {
                             hist.append("  ");
                             hist.append(nouns[(int) (Math.random() * nouns.length)].toUpperCase());
                         }

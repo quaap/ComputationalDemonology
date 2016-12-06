@@ -8,6 +8,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements Button.OnClickListener {
 
+    Synth s;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +24,22 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         summon.setOnClickListener(this);
         expel.setOnClickListener(this);
 
+        Button sound = (Button)findViewById(R.id.button);
+
+        sound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (s==null) {
+                    s = new MultiToneSynth(512);
+                    System.out.println(s.getMaxVol());
+                    s.start();
+                } else {
+                    s.stopSynth();
+                    s = null;
+                }
+
+            }
+        });
 
     }
 
