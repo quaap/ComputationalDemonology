@@ -62,6 +62,31 @@ Ghatanothoa Mother Hydra Zoth-Ommog Abhoth Aiueb Gnshal Azathoth Azhorra-Tha The
  Suc\'Naath Tru\'nembra Tulzscha Ubbo-Sathla Uvhash Xa\'ligha Xexanoth Ycnàgnnisssz Yhoundeh Yibb-Tstll Yidhra
  Yog-Sothoth Yomagn\'tho Elder Gods List Bast Kthanid Orryx Oztalun Nodens Shavalyoth Ulthar Vorvadoss Yad-Thaddag
  Yaggdytha</string>
+    <string name="hwords">destroy kill avenge reap exterminate unmake sweep away kill extirpate wipe
+        pulverise pulverize rase end dilapidate disassemble self-destruct
+break apart eliminate fracture take down break up dismantle take apart undo tear down interdict demyelinate
+self-destroy demolish  level pull down destruct uproot extinguish raze root out eradicate</string>
+    <string name="occult">Abbey Thelema Abramelin oil Adept Aether Akashic Records Alchemy Desire Animism Anthroposophy Argenteum Astrum
+Ariosophy Asatru Ascended master Astral projection Astrological age aspect Astrology alchemy classical elements
+numerology Athame Aura Augury Automatic writing  Banishing Baphomet Bibliomancy Biosophy Black magic Black Sun Body of
+light Boline Bön  Candomblé Cartomancy Ceremonial magic Chalice Chaos magic Charmstone Clairvoyance Classical element
+Cleromancy Collective unconscious Cone of power Coven Cross St. Peter Curse  Da\'at Damballa Demonology Disappearance
+Divination Dowsing Druidism  Eight-circuit model of consciousness Elemental Enochian Esoteric Christianity Esoteric
+cosmology Esotericism Evocation Exorcism  Fama Fraternitatis Familiar spirit Feri Tradition Folk Magic Fortune-telling
+Galdr Gematria Geomancy Geomantic figures Gnosis Goetia Gray Magic Greater Magic and Lesser Magic Grimoire  Hadit
+Haitian Vodou Haruspex Hermeticism Hexagram Hex Holy Guardian Angel Homunculus Hoodoo Huna Human sacrifice  I Ching
+Initiation Incantation Invocation  Juju  Kabbalah Kemetism Kumina Kundalini energy  contagion Left-hand
+right-hand Legendary creature Lesser ritual of the pentagram List of occultists List of occult writers Literomancy
+Lithomancy Louisiana Voodoo Lucifer  Magic (paranormal) Magic circle Magic word Magical formula Magick Maleficium
+(sorcery) Mathers table Mediumship Merkabah Mesmerism Methods of divination Mojo Mystery religion Mysticism Myth and
+ritual  Nagual Necromancy Necronomicon Neodruidism Neopaganism Neoplatonism Neotantra Nephilim New Age New Thought
+Nosferatu Nuit Numerology  Obeah Obeah Wanga Occultism Omen Oracle Ouija  Paganism Palmistry Pentacle Penuel
+Planetary hours Power Animal Pow-wow (folk magic) Psionics Psychics Psychonautics Pyramid power  Qabalah Qi Quantum
+mysticism Quimbanda  Reality hacking Reiki Reincarnation Resurrection Rhabdomancy Ritual Rosicrucianism Runecasting
+Sacrifice Santería Satan Satanism Scrying Séance Secret Chiefs Seidr Seven Rays Sex magic Shamanism Sigil Spell
+Stregheria  Table of correspondences Talisman Tantra Tarot divination Thaumaturgy Thelema Thelemic mysticism Theosophy
+Therianthropy Theurgy Trance Transfiguration Transmutation True Will Typhonian  Vodun  Wand West African Vodun Wicca
+Witchcraft  Ya sang  Zos Kia Cultus</string>
     <string name="lisp1" formatted="false"> (defun read-separator (str)
  (let
   ((*readtable* (copy-readtable *readtable* nil)))
