@@ -12,6 +12,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.quaap.computationaldemonology.functions.BarbedRing;
+import com.quaap.computationaldemonology.functions.CloudChamber;
 import com.quaap.computationaldemonology.functions.Code;
 import com.quaap.computationaldemonology.functions.Drawgorythm;
 import com.quaap.computationaldemonology.functions.FuzzyRing;
@@ -69,6 +70,7 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
     public static final int SUMMON = 2;
     public static final int EXPEL = 3;
     public static final int CAST = 4;
+    public static final int CLOUD = 5;
 
 
     public void startDraw(int which) {
@@ -84,6 +86,7 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
             case EXPEL: d = new FuzzyRing(getContext()); break;
             case CAST: d = new PentaRing(getContext()); break;
             case SUMMON: d = new PentaStar(getContext()); break;
+            case CLOUD: d = new CloudChamber(getContext()); break;
             default:
                 throw new IllegalArgumentException("No such drawgorithm " + which);
         }

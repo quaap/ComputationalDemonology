@@ -33,6 +33,11 @@ public abstract class Drawgorythm {
 
     protected boolean done=false;
 
+    protected boolean toptouched = false;
+    protected boolean bottomtouched = false;
+    protected boolean lefttouched = false;
+    protected boolean righttouched = false;
+
     public Drawgorythm(Context context) {
         mContext = context;
     }
@@ -85,6 +90,20 @@ public abstract class Drawgorythm {
         mTouchY = touchY;
         mTouchDX = touchDX;
         mTouchDY = touchDY;
+        if (mTouchY!=0) {
+            toptouched = mTouchY<mCenterY;
+            bottomtouched = !toptouched;
+        } else {
+            toptouched = false;
+            bottomtouched = false;
+        }
+        if (mTouchX!=0) {
+            lefttouched = mTouchX<mCenterX;
+            righttouched = !lefttouched;
+        } else {
+            lefttouched = false;
+            righttouched = false;
+        }
     }
 
     public void deviceMoved(float x, float y, float z) {

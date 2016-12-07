@@ -23,29 +23,30 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         Button expel = (Button)findViewById(R.id.button_expel);
         Button seek = (Button)findViewById(R.id.button_seek);
         Button cast = (Button)findViewById(R.id.button_cast);
+        Button cloud = (Button)findViewById(R.id.button_cloud);
 
         seek.setOnClickListener(this);
         cast.setOnClickListener(this);
         summon.setOnClickListener(this);
         expel.setOnClickListener(this);
+        cloud.setOnClickListener(this);
 
-        Button sound = (Button)findViewById(R.id.button);
 
-        sound.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (s==null) {
-                    s = new SawSynth(372.98f, 497.87f);
-                    s.addFilter(new StaticFilter());
-                    System.out.println(s.getMaxVol());
-                    s.start();
-                } else {
-                    s.stopSynth();
-                    s = null;
-                }
-
-            }
-        });
+//        sound.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (s==null) {
+//                    s = new SawSynth(372.98f, 497.87f);
+//                    s.addFilter(new StaticFilter());
+//                    System.out.println(s.getMaxVol());
+//                    s.start();
+//                } else {
+//                    s.stopSynth();
+//                    s = null;
+//                }
+//
+//            }
+//        });
 
     }
 
@@ -62,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                 intent.putExtra(GraphicDmn.GO, GraphicDmn.PROTECTION); break;
             case R.id.button_cast:
                 intent.putExtra(GraphicDmn.GO, GraphicDmn.CAST); break;
+            case R.id.button_cloud:
+                intent.putExtra(GraphicDmn.GO, GraphicDmn.CLOUD); break;
         }
         startActivity(intent);
     }
