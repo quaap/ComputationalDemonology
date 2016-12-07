@@ -1,7 +1,6 @@
 package com.quaap.computationaldemonology;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Handler;
@@ -36,9 +35,6 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
 
     private final Paint mBgColor;
 
-    Bitmap viewdata;
-    Canvas passCanvas;
-
     List<Drawgorythm> drawers = new ArrayList<>();
 
     public GraphicDmn(Context context, AttributeSet attrs) {
@@ -61,9 +57,8 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
 
 
 
-
-//        Synth synth = new Synth();
-//        synth.genSaw(64);
+//        Synth mSynth = new Synth();
+//        mSynth.genSaw(64);
        // blackCanvas(holder);
 
     }
@@ -122,12 +117,12 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
             try {
                 c = surfaceHolder.lockCanvas(null);
                 synchronized (surfaceHolder) {
-                    viewdata = Bitmap.createBitmap(c.getWidth(), c.getHeight(), Bitmap.Config.ARGB_8888);
-                    passCanvas = new Canvas(viewdata);
-                    passCanvas.drawPaint(mBgColor);
+//                    viewdata = Bitmap.createBitmap(c.getWidth(), c.getHeight(), Bitmap.Config.ARGB_8888);
+//                    passCanvas = new Canvas(viewdata);
+//                    passCanvas.drawPaint(mBgColor);
 
                     for(Drawgorythm d: drawers) {
-                        d.canvasChanged(passCanvas);
+                        d.canvasChanged(c);
                     }
                 }
             } finally {

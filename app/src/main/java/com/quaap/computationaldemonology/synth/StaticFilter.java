@@ -10,7 +10,7 @@ public class StaticFilter implements Filter {
     public int filter(short[] data, int length) {
 
         for (int i = 0; i < length; i++) {
-            data[i] = (short) ( data[i]/1.5 +  data[i]*(Math.random() - .5)/5 );
+            data[i] = (short) ( data[i]/1.5 +  data[i]*(Math.random() - .5)/4 );
         }
 
         return length;

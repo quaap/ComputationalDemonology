@@ -22,27 +22,34 @@ public abstract class Synth extends Thread {
     private AudioTrack mAudioTrack;
 
     private boolean mRun = false;
+    private boolean mPause = false;
 
     protected float mVol = 1f;
 
     public Synth() {
+        int bufferSize = AudioTrack.getMinBufferSize(sampleRate, AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_16BIT);
+        mAudioTrack = new AudioTrack(AudioManager.STREAM_MUSIC, sampleRate, AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_16BIT, bufferSize, AudioTrack.MODE_STREAM);
 
     }
 
     @Override
     public void run() {
         mRun = true;
-        int bufferSize = AudioTrack.getMinBufferSize(sampleRate, AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_16BIT);
         try {
-            mAudioTrack = new AudioTrack(AudioManager.STREAM_MUSIC, sampleRate, AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_16BIT, bufferSize, AudioTrack.MODE_STREAM);
             mAudioTrack.play();
             int entries = (int)(sampleRate/mSnipsPerSample);
             short [] data = new short[entries];
 
             while (mRun) {
-                getData(data);
-                write(data);
+                if (mPause) {
+                    sleep(100);
+                } else {
+                    getData(data);
+                    write(data);
+                }
             }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         } finally {
             close();
         }
@@ -65,8 +72,26 @@ public abstract class Synth extends Thread {
         }
     }
 
+    public void incVol(float volInc) {
+        mVol += volInc;
+        if (mVol>getMaxVol())  mVol = getMaxVol();
+        if (mVol<0)  mVol = 0;
+        setVol(mVol);
+    }
+
+    public void pauseSynth() {
+        mPause = true;
+    }
+    public void unpauseSynth() {
+        mPause = false;
+    }
+
     public void stopSynth() {
         mRun = false;
+    }
+
+    public boolean isRunning() {
+        return mRun;
     }
 
     public void addFilter(Filter filter) {
