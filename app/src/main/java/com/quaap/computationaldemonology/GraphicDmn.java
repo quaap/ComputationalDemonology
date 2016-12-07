@@ -28,7 +28,7 @@ import java.util.List;
 
 public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
 
-    private long step = 33;
+    private long step = 50;
 
     private GraphicDmnThread mThread;
 

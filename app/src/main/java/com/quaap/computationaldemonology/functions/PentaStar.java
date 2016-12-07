@@ -2,6 +2,7 @@ package com.quaap.computationaldemonology.functions;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 
 /**
  * Created by tom on 12/6/16.
@@ -38,7 +39,7 @@ public class PentaStar extends Ring {
         // rad2 = rad;
         if (mTouchDY!=0) {
             trails+= Math.signum(mTouchDY)/2;
-            if (trails>7) trails=7;
+            if (trails>5) trails=5;
             if (trails<1) trails=1;
 
         }
@@ -79,10 +80,11 @@ public class PentaStar extends Ring {
 
                 rad2 = Math.atan((y - mCenterY) / (x - mCenterX)) + Math.PI/3;
 
+                Paint paint = getRandomForeground();
                 for (int p = 1; p < trails+1; p++) {
-                    int sizex = (int) (r / 5 / p * Math.cos((Math.PI * p - rad2)*modspeed * 14 * p)) + 1;
-                    int sizey = (int) (r / 5 / p * Math.sin((Math.PI * p - rad2)*modspeed * 14 * p)) + 1;
-                    canvas.drawPoint((float) xp + sizex, (float) yp + sizey, getRandomForeground());
+                    int sizex = (int) (r / 4 / p * Math.cos((Math.PI * p - rad2)*modspeed * 16 * p)) + 1;
+                    int sizey = (int) (r / 4 / p * Math.sin((Math.PI * p - rad2)*modspeed * 16 * p)) + 1;
+                    canvas.drawPoint((float) xp + sizex, (float) yp + sizey, paint);
                     //canvas.drawRect((float) xp + sizex, (float) yp + sizey, (float) xp + sizex+p, (float) yp + sizey+p, mForeground);
                 }
 

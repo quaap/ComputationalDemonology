@@ -3,6 +3,7 @@ package com.quaap.computationaldemonology.functions;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 
 import com.quaap.computationaldemonology.R;
 
@@ -29,7 +30,7 @@ public class Code extends Drawgorythm  {
 
     long tickspast = 0;
 
-    int numlines = 8;
+    int numlines = 7;
     List<String> hists = new LinkedList<>();
 
     public Code(Context context) {
@@ -45,7 +46,8 @@ public class Code extends Drawgorythm  {
 
         mTextPaint = new Paint();
         mTextPaint.setARGB(90, 128, 255, 128);
-        mTextPaint.setTextSize(24);
+        mTextPaint.setTextSize(28);
+        mTextPaint.setTypeface(Typeface.MONOSPACE);
         theight = (int) (mTextPaint.descent() - mTextPaint.ascent());
         makeText();
     }
@@ -56,7 +58,6 @@ public class Code extends Drawgorythm  {
         if (tickspast > 100) {
             makeText();
             tickspast = 0;
-
         }
 /*        int pos1 = 0;
         int pos2 = 0;
@@ -93,7 +94,7 @@ public class Code extends Drawgorythm  {
             StringBuilder hist = new StringBuilder(2048);
 
             if (Math.random() > .98) {
-                hist.append("  -{{{");
+                hist.append("-{{{");
                 hist.append(codes[(int) (Math.random() * codes.length)].toUpperCase());
                 hist.append("  ");
                 hist.append(nouns[(int) (Math.random() * nouns.length)].toUpperCase());
@@ -101,7 +102,7 @@ public class Code extends Drawgorythm  {
                     hist.append("  ");
                     hist.append(nouns[(int) (Math.random() * nouns.length)].toUpperCase());
                 }
-                hist.append("}}}-  ");
+                hist.append("}}}- ");
             } else if (Math.random() > .8) {
                     int rnd = (int) (Math.random() * (hp.length() - 20));
                     hist.append(hp.substring(rnd, rnd + 20));
