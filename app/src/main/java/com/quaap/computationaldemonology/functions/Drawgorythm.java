@@ -1,5 +1,6 @@
 package com.quaap.computationaldemonology.functions;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -9,6 +10,8 @@ import android.graphics.Paint;
  */
 
 public abstract class Drawgorythm {
+
+    protected Context mContext;
     protected Paint [] mForeground;
 
     protected Paint mBackground;
@@ -30,8 +33,8 @@ public abstract class Drawgorythm {
 
     protected boolean done=false;
 
-    public Drawgorythm() {
-
+    public Drawgorythm(Context context) {
+        mContext = context;
     }
 
     public void setPaints(Paint foreground, Paint background) {

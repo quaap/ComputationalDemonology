@@ -1,5 +1,6 @@
 package com.quaap.computationaldemonology.functions;
 
+import android.content.Context;
 import android.graphics.Canvas;
 
 /**
@@ -26,7 +27,9 @@ public class PentaStar extends Ring {
     private double modspeed = speed;
     private double dspeed = .005;
 
-
+    public PentaStar(Context context) {
+        super(context);
+    }
 
     public void doDraw(final Canvas canvas, final long ticks) {
         super.doDraw(canvas,ticks);

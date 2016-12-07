@@ -1,5 +1,6 @@
 package com.quaap.computationaldemonology.functions;
 
+import android.content.Context;
 import android.graphics.Canvas;
 
 /**
@@ -12,6 +13,9 @@ public class FuzzyRing extends Ring {
     double modsize = size;
     double dsize = .1;
 
+    public FuzzyRing(Context context) {
+        super(context);
+    }
     @Override
     public void doDraw(final Canvas canvas, final long ticks) {
         super.doDraw(canvas,ticks);

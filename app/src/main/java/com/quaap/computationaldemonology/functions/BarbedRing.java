@@ -1,5 +1,6 @@
 package com.quaap.computationaldemonology.functions;
 
+import android.content.Context;
 import android.graphics.Canvas;
 
 /**
@@ -12,6 +13,10 @@ public class BarbedRing extends Ring {
     double speed = 40;
     double modsize = size;
     double dsize = .1;
+
+    public BarbedRing(Context context) {
+        super(context);
+    }
 
     public void doDraw(final Canvas canvas, final long ticks) {
         super.doDraw(canvas,ticks);

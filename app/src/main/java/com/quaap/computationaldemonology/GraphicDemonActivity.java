@@ -20,11 +20,7 @@ public class GraphicDemonActivity extends AppCompatActivity implements SensorEve
     private Sensor mAccelerometer;
 
     private Timer timer;
-    String hp;
-    String lsp;
-    String [] codes;
-    String [] nouns;
-    String [] lc;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,104 +37,47 @@ public class GraphicDemonActivity extends AppCompatActivity implements SensorEve
         if (mAccelerometer!=null) {
             mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
         }
-        hp = getString(R.string.htmlparse);
-        lsp = getString(R.string.lisp1);
-        lc = getString(R.string.lovecraft).split(" ");
-        codes = getString(R.string.code).split(" ");
-        nouns = getString(R.string.nouns).split(" ");
 
-        startTicker();
+
+       // startTicker();
 
     }
 
 
-    StringBuilder hist = new StringBuilder(2048);
-    public Handler mHandler = new Handler() {
-        public void handleMessage(Message msg) {
-            TextView mathtxt = (TextView)findViewById(R.id.mathtxt);
-            int low1=Integer.parseInt("2200", 16);
-            int high1=Integer.parseInt("22FF", 16);
-            int low2=Integer.parseInt("1D400", 16);
-            int high2=Integer.parseInt("1D7FF", 16);
 
-
-            if (hist.length()>6) {
-                hist.delete(0,2);
-            }
-            if (hist.length()<1000) {
-                for (int i = 0; i < 2; i++) {
-                    hist.append(" ");
-                    hist.append(new String(Character.toChars((int) (Math.random() * (high2 - low2) + low2))));
-                    if (Math.random() > .5) {
-                        hist.append(new String(Character.toChars((int) (Math.random() * (high2 - low2) + low2))));
-                    }
-                    if (Math.random() > .5) {
-                        hist.append(" ");
-                        hist.append(String.format("%6.3e", Math.random() * 100));
-                    }
-                    if (Math.random() > .5) {
-                        hist.append(" ");
-                        hist.append(new String(Character.toChars((int) (Math.random() * (high1 - low1) + low1))));
-                        hist.append(new String(Character.toChars((int) (Math.random() * (high1 - low1) + low1))));
-                    }
-                    if (Math.random() > .94) {
-                        hist.append(" ");
-                        int rnd = (int) (Math.random() * (hp.length() - 20));
-                        hist.append(hp.substring(rnd, rnd + 20));
-                    }
-                    if (Math.random() > .85) {
-                        hist.append(" ");
-                        int rnd = (int) (Math.random() * (lsp.length() - 20));
-                        hist.append(lsp.substring(rnd, rnd + 20));
-                    }
-                    if (Math.random() > .9) {
-                        hist.append(" ");
-
-                        hist.append(lc[(int)(Math.random()*lc.length)]);
-                    }
-
-                    if (Math.random() > .98) {
-                        hist.append("  -{{{");
-                        hist.append(codes[(int)(Math.random()*codes.length)].toUpperCase());
-                        hist.append("  ");
-                        hist.append(nouns[(int)(Math.random()*nouns.length)].toUpperCase());
-                        if (Math.random()>.3) {
-                            hist.append("  ");
-                            hist.append(nouns[(int) (Math.random() * nouns.length)].toUpperCase());
-                        }
-                        hist.append("}}}-  ");
-                    }
-                }
-            }
-            mathtxt.setText(hist);
-        }
-    };
-
-    private synchronized void startTicker() {
-        if (timer==null) {
-            timer = new Timer();
-            timer.scheduleAtFixedRate(new TimerTask() {
-                public void run() {
-
-                    mHandler.obtainMessage(1).sendToTarget();
-                }
-            }, 0, 100);
-        }
-    }
-
-    private synchronized void stopTicker() {
-        if (timer!=null) {
-            timer.cancel();
-            timer = null;
-        }
-    }
+//    public Handler mHandler = new Handler() {
+//        public void handleMessage(Message msg) {
+//            TextView mathtxt = (TextView)findViewById(R.id.mathtxt);
+//
+//           // mathtxt.setText(hist);
+//        }
+//    };
+//
+//    private synchronized void startTicker() {
+//        if (timer==null) {
+//            timer = new Timer();
+//            timer.scheduleAtFixedRate(new TimerTask() {
+//                public void run() {
+//
+//                    mHandler.obtainMessage(1).sendToTarget();
+//                }
+//            }, 0, 100);
+//        }
+//    }
+//
+//    private synchronized void stopTicker() {
+//        if (timer!=null) {
+//            timer.cancel();
+//            timer = null;
+//        }
+//    }
 
     @Override
     protected void onStart() {
         super.onStart();
         GraphicDmn dmnview = (GraphicDmn) findViewById(R.id.dmnview);
         dmnview.unpause();
-        startTicker();
+     //   startTicker();
     }
 
     @Override
@@ -152,7 +91,7 @@ public class GraphicDemonActivity extends AppCompatActivity implements SensorEve
      */
     @Override
     protected void onPause() {
-        stopTicker();
+    //    stopTicker();
         mSensorManager.unregisterListener(this);
         GraphicDmn dmnview = (GraphicDmn) findViewById(R.id.dmnview);
         dmnview.pause();
@@ -168,7 +107,7 @@ public class GraphicDemonActivity extends AppCompatActivity implements SensorEve
         if (mAccelerometer!=null) {
             mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
         }
-        startTicker();
+     //   startTicker();
     }
 
     private float mLastX=Float.MAX_VALUE, mLastY, mLastZ;

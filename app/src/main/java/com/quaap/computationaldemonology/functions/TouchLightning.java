@@ -1,5 +1,6 @@
 package com.quaap.computationaldemonology.functions;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
@@ -14,6 +15,11 @@ public class TouchLightning extends Drawgorythm {
     float radius = 50;
     double r = 0;
     double rstart = Math.PI/2;
+
+    public TouchLightning(Context context) {
+        super(context);
+    }
+
     public void canvasChanged(final Canvas canvas) {
         super.canvasChanged(canvas);
         fcircle = new Paint();

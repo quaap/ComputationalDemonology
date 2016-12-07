@@ -12,6 +12,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.quaap.computationaldemonology.functions.BarbedRing;
+import com.quaap.computationaldemonology.functions.Code;
 import com.quaap.computationaldemonology.functions.Drawgorythm;
 import com.quaap.computationaldemonology.functions.FuzzyRing;
 import com.quaap.computationaldemonology.functions.PentaRing;
@@ -71,19 +72,24 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
 
 
     public void startDraw(int which) {
+
+        Drawgorythm d0 = new Code(getContext());
+        d0.setPaints(mLinePaint, mBgColor);
+        drawers.add(d0);
+
         Drawgorythm d = null;
 
         switch (which) {
-            case PROTECTION: d = new BarbedRing(); break;
-            case EXPEL: d = new FuzzyRing(); break;
-            case CAST: d = new PentaRing(); break;
-            case SUMMON: d = new PentaStar(); break;
+            case PROTECTION: d = new BarbedRing(getContext()); break;
+            case EXPEL: d = new FuzzyRing(getContext()); break;
+            case CAST: d = new PentaRing(getContext()); break;
+            case SUMMON: d = new PentaStar(getContext()); break;
             default:
                 throw new IllegalArgumentException("No such drawgorithm " + which);
         }
         d.setPaints(mLinePaint, mBgColor);
         drawers.add(d);
-        Drawgorythm d2 = new TouchLightning();
+        Drawgorythm d2 = new TouchLightning(getContext());
         d2.setPaints(mLinePaint, mBgColor);
         drawers.add(d2);
     }

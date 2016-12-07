@@ -1,5 +1,6 @@
 package com.quaap.computationaldemonology.functions;
 
+import android.content.Context;
 import android.graphics.Canvas;
 
 /**
@@ -13,6 +14,11 @@ public abstract class Ring extends Drawgorythm {
     double rad = 0;
 
     long started;
+
+
+    public Ring(Context context) {
+        super(context);
+    }
 
     @Override
     public void canvasChanged(final Canvas canvas) {

@@ -1,5 +1,6 @@
 package com.quaap.computationaldemonology.functions;
 
+import android.content.Context;
 import android.graphics.Canvas;
 
 /**
@@ -22,6 +23,10 @@ public class PentaRing extends Ring {
     int trails = 7;
 
     double dmove = 1;
+
+    public PentaRing(Context context) {
+        super(context);
+    }
 
     public void doDraw(final Canvas canvas, final long ticks) {
         super.doDraw(canvas,ticks);
