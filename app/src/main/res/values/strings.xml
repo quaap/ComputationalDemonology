@@ -2,32 +2,32 @@
     <string name="app_name">ComputationalDemonology</string>
     <string name="action_settings">Settings</string>
     <string name="code">CASE CODE GAME INDEX OPERATION INCIDENT SCENARIO SEQUENCE PLAN PROJECT</string>
-    <string name="nouns">BLUE RED GREEN BLACK VIOLET WHITE MAUVE CODEX PENAL BOVINE EQUUS FELINE CANINE OATMEAL CRIVENS
-    NIGHTMARE salt scar wound bone ball bat bed book boy bun can cake cap car cat cow cub cup dad day dog doll dust fan feet girl gun
-hall hat hen jar kite man map men mom pan pet pie pig pot rat son sun toe tub van apple arm banana bike bird book chin
-clam class clover club corn crayon crow crown crowd crib desk dime dirt dress fang field flag flower fog game heat hill
-home horn hose joke juice kite lake maid mask mice milk mint meal meat moon mother morning name nest nose pear pen
-pencil plant rain river road rock room rose seed shape shoe shop show sink snail snake snow soda sofa star step stew
-stove straw string summer swing table tank team tent test toes tree vest water wing winter woman women  2nd Grade
-alarm animal aunt bait balloon bath bead beam bean bedroom boot bread brick brother camp chicken children crook deer
-dock doctor downtown drum dust eye family father fight flesh food frog goose grade grandfather grandmother grape grass
-hook horse jail jam kiss kitten light loaf lock lunch lunchroom meal mother notebook owl pail parent park plot rabbit
-rake robin sack sail scale sea sister soap song spark space spoon spot spy summer tiger toad town trail tramp tray
-trick trip uncle vase winter water week wheel wish wool yard zebra actor airplane airport army baseball beef birthday
-boy brush bushes butter cast cave cent cherries cherry cobweb coil cracker dinner eggnog elbow face fireman flavor gate
-glove glue goldfish goose grain hair haircut hobbies holiday hot jellyfish ladybug mailbox number oatmeal pail pancake
-pear pest popcorn queen quicksand quiet quilt rainstorm scarecrow scarf stream street sugar throne toothpaste twig
-volleyball wood wrench advice anger answer apple arithmetic badge basket basketball battle beast beetle beggar brain
-branch bubble bucket cactus cannon cattle celery cellar cloth coach coast crate cream daughter donkey drug earthquake
-feast fifth finger flock frame furniture geese ghost giraffe governor honey hope hydrant icicle income island jeans
-judge lace lamp lettuce marble month north ocean patch plane playground poison riddle rifle scale seashore sheet
-sidewalk skate slave sleet smoke stage station thrill throat throne title toothbrush turkey underwear vacation
-vegetable visitor voyage year able achieve acoustics action activity aftermath afternoon afterthought apparel appliance
-beginner believe bomb border boundary breakfast cabbage cable calculator calendar caption carpenter cemetery channel
-circle creator creature education faucet feather friction fruit fuel galley guide guitar health heart idea kitten
-laborer language lawyer linen locket lumber magic minister mitten money mountain music partner passenger pickle picture
-plantation plastic pleasure pocket police pollution railway recess reward route scene scent squirrel stranger suit
-sweater temper territory texture thread treatment veil vein volcano wealth weather wilderness wren wrist writer </string>
+    <string name="nouns">BLUE RED GREEN BLACK VIOLET WHITE MAUVE CODEX PENAL BOVINE EQUUS FELINE CANINE S
+    NIGHTMARE salt scar wound bone
+    amorphous  indefinite  shapeless beguile  deceive caprice  impulse cascade  steep waterfall cashmere  fine  delicate
+wool chrysalis  its soft brown color coalesce  unite fuse
+crepuscular  dim  crystalline desultory  half-hearted  meandering diaphanous  gauzy
+dulcet  sweet ebullient  enthusiastic effervescent  bubbly elision  omission enchanted  charmed encompass  surround
+enrapture  delighted ephemeral  fleeting epiphany  revelation epitome  embodiment ethereal  celestial
+unworldly  immaterial etiquette  proper conduct evanescent  fleeting evocative  suggestive exuberant  abundant
+unrestrained  outsize felicity  happiness  pleasantness filament  thread  strand halcyon  care-free idyllic
+contentedly pleasing incorporeal  incandescent  glowing  radiant  brilliant  zealous ineffable
+indescribable  unspeakable inexorable  relentless insouciance  nonchalance iridescent  luster languid  slow  listless
+lassitude  fatigue lilt  cheerful buoyant song movement lithe  flexible  graceful lullaby  soothing song
+luminescence  dim chemical organic light mellifluous  smooth  sweet mist  cloudy moisture similar literal or
+virtual obstacle murmur  soothing sound myriad  great number nebulous  indistinct opulent  ostentatious penumbra  shade
+shroud  fringe plethora  abundance quiescent  peaceful quintessential  most purely representative or typical radiant
+glowing redolent  aromatic  evocative resonant  echoing  evocative resplendent  shining rhapsodic  intensely emotional
+sapphire  rich  deep bluish purple scintilla  trace serendipitous  chance serene  peaceful somnolent  drowsy  sleep
+inducing sonorous  loud  impressive  imposing spherical  ball-like  globular sublime  exalted  transcendent succulent
+juicy  tasty  rich suffuse  flushed  full susurration  whispering symphony  harmonious assemblage talisman  charm
+magical device tessellated  checkered in pattern tranquility  peacefulness vestige  trace zenith  highest point ugly
+words cacophony  confused noise cataclysm  flood  catastrophe  upheaval chafe  irritate  abrade coarse  common  crude
+rough  harsh cynical  distrustful  self-interested decrepit  worn-out  run-down disgust  aversion  distaste grimace
+expression disgust pain grotesque  distorted  bizarre harangue  rant hirsute  hairy hoarse  harsh  grating leech
+parasite  maladroit  clumsy obstreperous  noisy  unruly rancid  offensive  smelly
+repugnant  distasteful repulsive  disgusting shriek  sharp  screeching sound shrill  high-pitched sound shun  avoid
+ostracize slaughter  butcher  carnage unctuous  smug  ingratiating visceral  crude  anatomically graphic </string>
     <string name="htmlparse">You can\'t parse [X]HTML with regex. Because HTML can\'t be parsed by regex. Regex is not a tool that can be used to
 correctly parse HTML. As I have answered in HTML-and-regex questions here so many times before, the use of regex will
 not allow you to consume HTML. Regular expressions are a tool that is insufficiently sophisticated to understand the
@@ -61,88 +61,36 @@ Ghatanothoa Mother Hydra Zoth-Ommog Abhoth Aiueb Gnshal Azathoth Azhorra-Tha The
  Pus The Nameless Mist Ngyr-Korath Nyarlathotep Nyctelios Ny-Rakath Olkoth Shabbith-Ka Shub-Niggurath Star Mother
  Suc\'Naath Tru\'nembra Tulzscha Ubbo-Sathla Uvhash Xa\'ligha Xexanoth Ycnàgnnisssz Yhoundeh Yibb-Tstll Yidhra
  Yog-Sothoth Yomagn\'tho Elder Gods List Bast Kthanid Orryx Oztalun Nodens Shavalyoth Ulthar Vorvadoss Yad-Thaddag
- Yaggdytha</string>
+ Yaggdytha </string>
+    <string name="lovecraft2">Yog-Sothoth knows the gate. Yog-Sothoth is the gate. Yog-Sothoth is the key and guardian of the gate.
+        Past, present, future, all are one in Yog-Sothoth. He knows where the Old Ones broke through of old, and where They shall break
+through again. He knows where They have trod earth\'s fields, and where They still tread them, and why no one can behold
+Them as They tread. ph\'nglui mglw\'nafh Cthulhu R\'lyeh wgah\'nagl fhtagn. ph\'nglui mglw\'nafh Cthulhu R\'lyeh wgah\'nagl fhtagn.
+That is not dead which can eternal lie, And with strange aeons even death may die. All that the universe has to hold of
+        horror, and even the skies of spring and the flowers of summer must ever afterward be poison to me.
+        The other gods! The other gods! The gods of the outer hells that guard the feeble gods of earth!...
+        Look away... Go back... Do not see! Do not see!"
+    </string>
     <string name="hwords">destroy kill avenge reap exterminate unmake sweep away kill extirpate wipe
         pulverise pulverize rase end dilapidate disassemble self-destruct
 break apart eliminate fracture take down break up dismantle take apart undo tear down interdict demyelinate
-self-destroy demolish  level pull down destruct uproot extinguish raze root out eradicate</string>
-    <string name="occult">Abbey Thelema Abramelin oil Adept Aether Akashic Records Alchemy Desire Animism Anthroposophy Argenteum Astrum
-Ariosophy Asatru Ascended master Astral projection Astrological age aspect Astrology alchemy classical elements
-numerology Athame Aura Augury Automatic writing  Banishing Baphomet Bibliomancy Biosophy Black magic Black Sun Body of
-light Boline Bön  Candomblé Cartomancy Ceremonial magic Chalice Chaos magic Charmstone Clairvoyance Classical element
-Cleromancy Collective unconscious Cone of power Coven Cross St. Peter Curse  Da\'at Damballa Demonology Disappearance
-Divination Dowsing Druidism  Eight-circuit model of consciousness Elemental Enochian Esoteric Christianity Esoteric
-cosmology Esotericism Evocation Exorcism  Fama Fraternitatis Familiar spirit Feri Tradition Folk Magic Fortune-telling
-Galdr Gematria Geomancy Geomantic figures Gnosis Goetia Gray Magic Greater Magic and Lesser Magic Grimoire  Hadit
-Haitian Vodou Haruspex Hermeticism Hexagram Hex Holy Guardian Angel Homunculus Hoodoo Huna Human sacrifice  I Ching
-Initiation Incantation Invocation  Juju  Kabbalah Kemetism Kumina Kundalini energy  contagion Left-hand
-right-hand Legendary creature Lesser ritual of the pentagram List of occultists List of occult writers Literomancy
-Lithomancy Louisiana Voodoo Lucifer  Magic (paranormal) Magic circle Magic word Magical formula Magick Maleficium
-(sorcery) Mathers table Mediumship Merkabah Mesmerism Methods of divination Mojo Mystery religion Mysticism Myth and
-ritual  Nagual Necromancy Necronomicon Neodruidism Neopaganism Neoplatonism Neotantra Nephilim New Age New Thought
-Nosferatu Nuit Numerology  Obeah Obeah Wanga Occultism Omen Oracle Ouija  Paganism Palmistry Pentacle Penuel
-Planetary hours Power Animal Pow-wow (folk magic) Psionics Psychics Psychonautics Pyramid power  Qabalah Qi Quantum
-mysticism Quimbanda  Reality hacking Reiki Reincarnation Resurrection Rhabdomancy Ritual Rosicrucianism Runecasting
-Sacrifice Santería Satan Satanism Scrying Séance Secret Chiefs Seidr Seven Rays Sex magic Shamanism Sigil Spell
-Stregheria  Table of correspondences Talisman Tantra Tarot divination Thaumaturgy Thelema Thelemic mysticism Theosophy
-Therianthropy Theurgy Trance Transfiguration Transmutation True Will Typhonian  Vodun  Wand West African Vodun Wicca
-Witchcraft  Ya sang  Zos Kia Cultus</string>
-    <string name="lisp1" formatted="false"> (defun read-separator (str)
- (let
-  ((*readtable* (copy-readtable *readtable* nil)))
-  (set-macro-character #\, (lambda (stream char)
-                            (declare (ignore char) (ignore stream))
-                            \'break))
-  (read str nil)))
-
-(set-macro-character #\{
- (lambda (str char)
-  (declare (ignore char))
-  (let
-   ((*readtable* (copy-readtable *readtable* nil)))
-   (set-macro-character #\} (lambda (stream char)
-                             (declare (ignore char) (ignore stream))
-                             \'end))
-
-   (let
-    ((pairs (loop for key = (read str nil nil t)
-                  for sep = (read str nil nil t)
-                  for value = (read str nil nil t)
-                  for end? = (read-separator str)
-                  do (when (not (eql \'=> sep)) (error "Expected =>, did not get"))
-                  do (when (not (or (eql \'end end?) (eql \'break end?))) (error "Expected , or }"))
-                  collect (list key value)
-                  while (not (eql \'end end?))))
-     (retn (gensym)))
-    `(let
-      ((,retn (make-hash-table :test #\'equal)))
-      ,@(mapcar
-         (lambda (pair)
-          `(setf (gethash ,(car pair) ,retn) ,(cadr pair)))
-         pairs)
-      ,retn)))))
-    (defun read-listcomp (stream char)
-  (declare (ignore char))
-  (let (rezs srcs conds state)
-    (dolist (item (read-delimited-list #\} stream))
-      (if (eql \'|| item)
-          (setf state (if state :cond :src))
-          (case state
-            (:src (push item srcs))
-            (:cond (push item conds))
-            (otherwise (push item rezs)))))
-    (setf rezs (reverse rezs)
-          srcs (reverse srcs)
-          conds (reverse conds))
-    (let ((binds (mapcar (lambda (group) (cons (first group) (third group)))
-                         (group 3 srcs))))
-      `(mapcan (lambda ,(mapcar #\'car binds)
-                 (when (and ,@conds)
-                   (list ,(if (rest rezs)
-                              (cons \'list rezs)
-                              (first rezs)))))
-               ,@(mapcar #\'cdr binds)))))
-
-(set-macro-character #\{ #\'read-listcomp)
-(set-macro-character #\} (get-macro-character #\)))</string>
+self-destroy demolish  level pull down destruct uproot extinguish raze root out eradicate
+evil vile wicked base corrupt immoral dishonest sinful heinous depraved profane iniquitous ungodly
+    </string>
+    <string name="lisp1" formatted="false"> (defun read-separator (str) (let ((*readtable* (copy-readtable *readtable* nil)))
+(set-macro-character #\, (lambda(stream char) (declare (ignore char) (ignore stream)) \'break)) (read str nil)))  (set-macro-character #\{ (lambda (str
+char) (declare (ignore char)) (let ((*readtable* (copy-readtable *readtable* nil))) (set-macro-character #\} (lambda
+(stream char) (declare (ignore char) (ignore stream)) \'end))  (let ((pairs (loop for key = (read str nil nil t) for
+sep = (read str nil nil t) for value = (read str nil nil t) for end? = (read-separator str) do (when (not (eql \'=>
+sep)) (error "Expected =>, did not get")) do (when (not (or (eql \'end end?) (eql \'break end?))) (error "Expected , or
+}")) collect (list key value) while (not (eql \'end end?)))) (retn (gensym))) `(let ((,retn (make-hash-table :test
+#\'equal))) ,@(mapcar (lambda (pair) `(setf (gethash ,(car pair) ,retn) ,(cadr pair))) pairs) ,retn))))) (defun
+read-listcomp (stream char) (declare (ignore char)) (let (rezs srcs conds state) (dolist (item (read-delimited-list #\}
+stream)) (if (eql \'|| item) (setf state (if state :cond :src)) (case state (:src (push item srcs)) (:cond (push item
+conds)) (otherwise (push item rezs))))) (setf rezs (reverse rezs) srcs (reverse srcs) conds (reverse conds)) (let
+((binds (mapcar (lambda (group) (cons (first group) (third group))) (group 3 srcs)))) `(mapcan (lambda ,(mapcar #\'car
+binds) (when (and ,@conds) (list ,(if (rest rezs) (cons \'list rezs) (first rezs))))) ,@(mapcar #\'cdr binds)))))
+(set-macro-character #\{ #\'read-listcomp) (set-macro-character #\} (get-macro-character #\)))</string>
+    <string name="endwords">all is lost,oh god oh god oh god,no more,the end,shall rise,has fallen to,
+        my mind,no one left,death is all,sleep no more,don\'t blink,eternal sleep,he comes,no escape,no rest</string>
 </resources>
