@@ -2,7 +2,7 @@
     <string name="app_name">ComputationalDemonology</string>
     <string name="action_settings">Settings</string>
     <string name="code">CASE CODE GAME INDEX OPERATION INCIDENT SCENARIO SEQUENCE PLAN PROJECT</string>
-    <string name="nouns">BLUE RED GREEN BLACK VIOLET WHITE MAUVE CODEX PENAL BOVINE EQUUS FELINE CANINE S
+    <string name="nouns">BLUE RED GREEN BLACK VIOLET WHITE MAUVE CODEX PENAL BOVINE EQUUS FELINE CANINE
     NIGHTMARE salt scar wound bone
     amorphous  indefinite  shapeless beguile  deceive caprice  impulse cascade  steep waterfall cashmere  fine  delicate
 wool chrysalis  its soft brown color coalesce  unite fuse
@@ -18,16 +18,17 @@ luminescence  dim chemical organic light mellifluous  smooth  sweet mist  cloudy
 virtual obstacle murmur  soothing sound myriad  great number nebulous  indistinct opulent  ostentatious penumbra  shade
 shroud  fringe plethora  abundance quiescent  peaceful quintessential  most purely representative or typical radiant
 glowing redolent  aromatic  evocative resonant  echoing  evocative resplendent  shining rhapsodic  intensely emotional
-sapphire  rich  deep bluish purple scintilla  trace serendipitous  chance serene  peaceful somnolent  drowsy  sleep
+sapphire  bluish purple scintilla  trace serendipitous  chance serene  peaceful somnolent  drowsy  sleep
 inducing sonorous  loud  impressive  imposing spherical  ball-like  globular sublime  exalted  transcendent succulent
-juicy  tasty  rich suffuse  flushed  full susurration  whispering symphony  harmonious assemblage talisman  charm
+ suffuse  flushed  full susurration  whispering symphony  harmonious assemblage talisman  charm
 magical device tessellated  checkered in pattern tranquility  peacefulness vestige  trace zenith  highest point ugly
-words cacophony  confused noise cataclysm  flood  catastrophe  upheaval chafe  irritate  abrade coarse  common  crude
+cacophony  confused noise cataclysm  flood  catastrophe  upheaval chafe  irritate  abrade coarse  common  crude
 rough  harsh cynical  distrustful  self-interested decrepit  worn-out  run-down disgust  aversion  distaste grimace
 expression disgust pain grotesque  distorted  bizarre harangue  rant hirsute  hairy hoarse  harsh  grating leech
-parasite  maladroit  clumsy obstreperous  noisy  unruly rancid  offensive  smelly
+parasite  maladroit  clumsy obstreperous  unruly rancid
 repugnant  distasteful repulsive  disgusting shriek  sharp  screeching sound shrill  high-pitched sound shun  avoid
-ostracize slaughter  butcher  carnage unctuous  smug  ingratiating visceral  crude  anatomically graphic </string>
+ostracize slaughter  butcher  carnage unctuous  smug  ingratiating visceral  crude  anatomically graphic
+unbearable intolerable</string>
     <string name="htmlparse">You can\'t parse [X]HTML with regex. Because HTML can\'t be parsed by regex. Regex is not a tool that can be used to
 correctly parse HTML. As I have answered in HTML-and-regex questions here so many times before, the use of regex will
 not allow you to consume HTML. Regular expressions are a tool that is insufficiently sophisticated to understand the
@@ -73,9 +74,9 @@ That is not dead which can eternal lie, And with strange aeons even death may di
     </string>
     <string name="hwords">destroy kill avenge reap exterminate unmake sweep away kill extirpate wipe
         pulverise pulverize rase end dilapidate disassemble self-destruct
-break apart eliminate fracture take down break up dismantle take apart undo tear down interdict demyelinate
+break apart eliminate fracture take down break up dismantle take apart undo tear interdict demyelinate
 self-destroy demolish  level pull down destruct uproot extinguish raze root out eradicate
-evil vile wicked base corrupt immoral dishonest sinful heinous depraved profane iniquitous ungodly
+evil vile wicked base corrupt immoral dishonest sinful heinous depraved profane iniquitous ungodly blood bile
     </string>
     <string name="lisp1" formatted="false"> (defun read-separator (str) (let ((*readtable* (copy-readtable *readtable* nil)))
 (set-macro-character #\, (lambda(stream char) (declare (ignore char) (ignore stream)) \'break)) (read str nil)))  (set-macro-character #\{ (lambda (str
@@ -92,5 +93,6 @@ conds)) (otherwise (push item rezs))))) (setf rezs (reverse rezs) srcs (reverse 
 binds) (when (and ,@conds) (list ,(if (rest rezs) (cons \'list rezs) (first rezs))))) ,@(mapcar #\'cdr binds)))))
 (set-macro-character #\{ #\'read-listcomp) (set-macro-character #\} (get-macro-character #\)))</string>
     <string name="endwords">all is lost,oh god oh god oh god,no more,the end,shall rise,has fallen to,
-        my mind,no one left,death is all,sleep no more,don\'t blink,eternal sleep,he comes,no escape,no rest</string>
+        my mind,no one left,death is all,sleep no more,don\'t blink,eternal sleep,he comes,no escape,no rest,
+    the abyss is staring back, the abyss, nothingness encompasses, the angles are not real, my face my face</string>
 </resources>

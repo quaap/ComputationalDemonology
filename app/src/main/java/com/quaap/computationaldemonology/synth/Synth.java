@@ -44,6 +44,7 @@ public abstract class Synth extends Thread {
                 if (mPause) {
                     sleep(100);
                 } else {
+                    Arrays.fill(data, (short)0);
                     getData(data);
                     write(data);
                 }

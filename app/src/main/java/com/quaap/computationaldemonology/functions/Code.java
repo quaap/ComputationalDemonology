@@ -30,7 +30,7 @@ public class Code extends Drawgorythm  {
 
     long tickspast = 0;
 
-    int numlines = 8;
+    int numlines = 11;
     List<String> hists = new LinkedList<>();
     Paint [] mTextPaint = new Paint[numlines];
     int [] theight = new int[numlines];
@@ -57,7 +57,7 @@ public class Code extends Drawgorythm  {
             //mTextPaint[t].setTextSize(18 + t*2);
             //mTextPaint[t].setTextScaleX((numlines - t)/(float)numlines + 1);
             mTextPaint[t].setTypeface(Typeface.MONOSPACE);
-            mTextPaint[t].setAlpha((t+1)*(255/(numlines+3)));
+            mTextPaint[t].setAlpha((t+1)*(230/(numlines+1)));
             theight[t] = (int) (mTextPaint[t].descent() - mTextPaint[t].ascent());
             theighttot += theight[t];
         }
@@ -99,6 +99,10 @@ public class Code extends Drawgorythm  {
     int low1=Integer.parseInt("2200", 16);
     int high1=Integer.parseInt("22FF", 16);
 
+    int dia1 = 768;
+//    int dia2 = 879;
+    int dia2 = 2042;
+
     public void makeText() {
         if (hists.size()>numlines*3) {
             hists.remove(0);
@@ -108,11 +112,11 @@ public class Code extends Drawgorythm  {
         for (int i = 0; i < numlines*10; i++) {
             StringBuilder hist = new StringBuilder(2048);
 
-            if (Math.random() > .6) {
+            if (Math.random() > .7) {
                 hist.append(String.format("%2.1f", Math.random() * 10));
                 hist.append(" ");
             }
-            if (Math.random() > .5) {
+            if (Math.random() > .6) {
                 hist.append(new String(Character.toChars((int) (Math.random() * (high1 - low1) + low1))));
             }
             if (Math.random() > .6) {
@@ -184,6 +188,13 @@ public class Code extends Drawgorythm  {
                 hist.append(" ");
             }
 
+            int r1 = (int)(Math.random()*2);
+
+            for (int r=0; r<r1; r++) {
+                int pos = (int) (Math.random() * (hist.length()-2) + 1);
+
+                hist.insert(pos, new String(Character.toChars((int) (Math.random() * (dia2 - dia1) + dia1))));
+            }
 
 
             hists.add(hist.toString());

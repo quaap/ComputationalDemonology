@@ -9,17 +9,25 @@ import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.quaap.computationaldemonology.synth.AmbilectricSynth;
+import com.quaap.computationaldemonology.synth.Synth;
+
 
 public class GraphicDemonActivity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
 
+    private Synth synth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graphic_demon);
+
+        synth = new AmbilectricSynth();
+        synth.setVol(.2f);
+
         GraphicDmn dmnview = (GraphicDmn) findViewById(R.id.dmnview);
 
         int which = getIntent().getIntExtra(GraphicDmn.GO, 7);
@@ -28,7 +36,9 @@ public class GraphicDemonActivity extends AppCompatActivity implements SensorEve
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
-        unpause();
+        //unpause();
+
+
 
     }
 
@@ -37,6 +47,7 @@ public class GraphicDemonActivity extends AppCompatActivity implements SensorEve
         GraphicDmn dmnview = (GraphicDmn) findViewById(R.id.dmnview);
         dmnview.pause();
         mSensorManager.unregisterListener(this);
+        synth.pauseSynth();
     }
 
     protected void unpause() {
@@ -45,6 +56,11 @@ public class GraphicDemonActivity extends AppCompatActivity implements SensorEve
         }
         GraphicDmn dmnview = (GraphicDmn) findViewById(R.id.dmnview);
         dmnview.unpause();
+        if (!synth.isRunning()) {
+            synth.start();
+        } else {
+            synth.unpauseSynth();
+        }
     }
 
     @Override

@@ -51,7 +51,6 @@ public class MultiToneSynth extends Synth {
         if (lastPos[0]>Integer.MAX_VALUE-sampleRate*10) {
             Arrays.fill(lastPos,0);
         }
-        Arrays.fill(data, (short)0);
 
         int length = 0;
         float [] hzs;
