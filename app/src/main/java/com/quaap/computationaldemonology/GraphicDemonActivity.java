@@ -28,10 +28,7 @@ public class GraphicDemonActivity extends AppCompatActivity implements SensorEve
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
-
         unpause();
-
-
 
     }
 
