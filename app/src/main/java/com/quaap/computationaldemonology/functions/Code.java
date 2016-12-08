@@ -112,11 +112,11 @@ public class Code extends Drawgorythm  {
         for (int i = 0; i < numlines*10; i++) {
             StringBuilder hist = new StringBuilder(2048);
 
-            if (Math.random() > .7) {
+            if (Math.random() > .8) {
                 hist.append(String.format("%2.1f", Math.random() * 10));
                 hist.append(" ");
             }
-            if (Math.random() > .6) {
+            if (Math.random() > .5) {
                 hist.append(new String(Character.toChars((int) (Math.random() * (high1 - low1) + low1))));
             }
             if (Math.random() > .6) {

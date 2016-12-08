@@ -22,15 +22,16 @@ public class CloudChamber extends Drawgorythm {
     private double [] sparkDX;
     private double [] sparkDY;
     private Paint  [] fgs;
-    private String [] words;
-
+    private String words;
+    long totalticks = 0;
+    int startchar;
     private Paint mTextPaint;
-    private String word;
+
 
     private long iterations = 0;
     public CloudChamber(Context context) {
         super(context);
-        words = context.getString(R.string.lovecraft).split("\\s+");
+        words = context.getString(R.string.lovecraft2);
     }
 
     @Override
@@ -38,10 +39,10 @@ public class CloudChamber extends Drawgorythm {
         super.canvasChanged(canvas);
         setValues();
         mTextPaint = new Paint();
-        mTextPaint.setColor(mBackground.getColor()+30);
-        mTextPaint.setTextSize(90);
-        mTextPaint.setTypeface(Typeface.MONOSPACE);
-        mTextPaint.setAlpha(255);
+        mTextPaint.setARGB(255, 32, 32, 64);
+        mTextPaint.setTextSize(80);
+        mTextPaint.setTypeface(Typeface.SERIF);
+        startchar=mWidth;
     }
 
     private void setValues() {
@@ -73,14 +74,24 @@ public class CloudChamber extends Drawgorythm {
 
     int swirl = -1;
 
+
     @Override
     public void doDraw(Canvas canvas, long ticks) {
         iterations++;
 
+        totalticks += ticks;
+
+
+//        if (iterations%10 == 0) {
+//            word++;
+//            if (word>=words.length) {
+//                word = -3;
+//            }
+//        }
         if (swirl<0 || iterations>500) {
             swirl = (int)(Math.random()*(num+3)) - 3;
             iterations=0;
-            word = words[(int)(Math.random()*words.length)];
+
         }
 
         if (swirl>=0) {
@@ -103,7 +114,11 @@ public class CloudChamber extends Drawgorythm {
             }
         }
 
-        canvas.drawText(word, 15, mCenterY, mTextPaint);
+
+        startchar-=20;
+
+        canvas.drawText(words, startchar, mCenterY-mCenterY/2, mTextPaint);
+
 
 
     }

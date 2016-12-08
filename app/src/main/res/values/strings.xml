@@ -14,19 +14,19 @@ unrestrained  outsize felicity  happiness  pleasantness filament  thread  strand
 contentedly pleasing incorporeal  incandescent  glowing  radiant  brilliant  zealous ineffable
 indescribable  unspeakable inexorable  relentless insouciance  nonchalance iridescent  luster languid  slow  listless
 lassitude  fatigue lilt  cheerful buoyant song movement lithe  flexible  graceful lullaby  soothing song
-luminescence  dim chemical organic light mellifluous  smooth  sweet mist  cloudy moisture similar literal or
-virtual obstacle murmur  soothing sound myriad  great number nebulous  indistinct opulent  ostentatious penumbra  shade
-shroud  fringe plethora  abundance quiescent  peaceful quintessential  most purely representative or typical radiant
+luminescence  dim chemical organic light mellifluous smooth cloudy moisture virtual obstacle murmur
+        sound myriad  great number nebulous  indistinct opulent  ostentatious penumbra  shade
+shroud  fringe plethora  abundance quiescent  peaceful quintessential purely representative radiant
 glowing redolent  aromatic  evocative resonant  echoing  evocative resplendent  shining rhapsodic  intensely emotional
 sapphire  bluish purple scintilla  trace serendipitous  chance serene  peaceful somnolent  drowsy  sleep
 inducing sonorous  loud  impressive  imposing spherical  ball-like  globular sublime  exalted  transcendent succulent
  suffuse  flushed  full susurration  whispering symphony  harmonious assemblage talisman  charm
 magical device tessellated  checkered in pattern tranquility  peacefulness vestige  trace zenith  highest point ugly
 cacophony  confused noise cataclysm  flood  catastrophe  upheaval chafe  irritate  abrade coarse  common  crude
-rough  harsh cynical  distrustful  self-interested decrepit  worn-out  run-down disgust  aversion  distaste grimace
+rough  harsh cynical  distrustful  self-interested decrepit   disgust  aversion  distaste grimace
 expression disgust pain grotesque  distorted  bizarre harangue  rant hirsute  hairy hoarse  harsh  grating leech
 parasite  maladroit  clumsy obstreperous  unruly rancid
-repugnant  distasteful repulsive  disgusting shriek  sharp  screeching sound shrill  high-pitched sound shun  avoid
+repugnant  distasteful repulsive  disgusting shriek  sharp  screeching  shrill  high-pitched  shun  avoid
 ostracize slaughter  butcher  carnage unctuous  smug  ingratiating visceral  crude  anatomically graphic
 unbearable intolerable</string>
     <string name="htmlparse">You can\'t parse [X]HTML with regex. Because HTML can\'t be parsed by regex. Regex is not a tool that can be used to
@@ -94,5 +94,6 @@ binds) (when (and ,@conds) (list ,(if (rest rezs) (cons \'list rezs) (first rezs
 (set-macro-character #\{ #\'read-listcomp) (set-macro-character #\} (get-macro-character #\)))</string>
     <string name="endwords">all is lost,oh god oh god oh god,no more,the end,shall rise,has fallen to,
         my mind,no one left,death is all,sleep no more,don\'t blink,eternal sleep,he comes,no escape,no rest,
-    the abyss is staring back, the abyss, nothingness encompasses, the angles are not real, my face my face</string>
+    the abyss is staring back, the abyss, nothingness encompasses, the angles are not real, my face my face,
+    nothing is left,nothing,the sky is blood</string>
 </resources>
