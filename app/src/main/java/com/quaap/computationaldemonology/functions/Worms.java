@@ -17,6 +17,8 @@ import java.util.Random;
 
 public class Worms extends Drawgorythm {
 
+    int num = 23;
+    int segments = 11;
     List<Worm> worms = new ArrayList<>();
 
 
@@ -30,8 +32,8 @@ public class Worms extends Drawgorythm {
         super.canvasChanged(canvas);
 
         worms.clear();
-        for (int i=1; i<17;i++) {
-            worms.add(new Worm(9));
+        for (int i=1; i<num;i++) {
+            worms.add(new Worm(segments));
         }
     }
 
@@ -45,7 +47,7 @@ public class Worms extends Drawgorythm {
 
         for (int i=0; i<mForeground.length; i++) {
             mForeground[i] = new Paint();
-            mForeground[i].setARGB(alpha, red+i, green, blue+32 - i);
+            mForeground[i].setARGB(alpha, red+i, green, blue+36 - i);
         }
         mBackground = background;
     }
@@ -81,7 +83,10 @@ public class Worms extends Drawgorythm {
             pointDeltas = new PointF[segments];
 
             maxseglen = Math.min(mWidth,mHeight)/30;
-            points[0] = new PointF(r.nextFloat()*mWidth, r.nextFloat()*mHeight/2f);
+            float x = r.nextFloat() * maxseglen;
+            x = r.nextBoolean() ? 0-x : mWidth + x;
+
+            points[0] = new PointF(x, r.nextFloat()*mHeight/2f);
             dest = new PointF(r.nextFloat()*mWidth, r.nextFloat()*mHeight*2/3.0f);
 
             float xdir = (r.nextFloat()-.5f);
@@ -96,7 +101,7 @@ public class Worms extends Drawgorythm {
                         points[i-1].y + ((r.nextFloat()-.5f)+ydir)*maxseglen
                 );
                // pointDeltas[i] = new PointF((r.nextFloat()-.5f)*2, (r.nextFloat()-.5f)*2);
-                pointDeltas[i] = new PointF((r.nextFloat()-.5f)/5, (r.nextFloat()-.5f)/5);
+                pointDeltas[i] = new PointF((r.nextFloat()-.5f)/2, (r.nextFloat()-.5f)/2);
             }
         }
 
@@ -118,14 +123,10 @@ public class Worms extends Drawgorythm {
         }
 
         void moveToward() {
-            pointDeltas[0].x +=  (dest.x - points[0].x)/mCenterX;
-            pointDeltas[0].y +=  (dest.y - points[0].y)/mCenterY;
+            pointDeltas[0].x = (dest.x - points[0].x)/mCenterX;
+            pointDeltas[0].y = (dest.y - points[0].y)/mCenterY;
 
-
-            if (pointDeltas[0].x>mD) pointDeltas[0].x = mD;
-            if (pointDeltas[0].x<-mD) pointDeltas[0].x = -mD;
-            if (pointDeltas[0].y>mD) pointDeltas[0].y = mD;
-            if (pointDeltas[0].y<-mD) pointDeltas[0].y = -mD;
+            constrainDelta(pointDeltas[0]);
 
             for (int i=0; i<points.length; i++) {
                 points[i].x += pointDeltas[i].x;
@@ -135,15 +136,12 @@ public class Worms extends Drawgorythm {
                 pointDeltas[i].x += (float)((points[i-1].x-points[i].x)/(double)maxseglen/10);
                 pointDeltas[i].y += (float)((points[i-1].y-points[i].y)/(double)maxseglen/10);
 
-                if (r.nextFloat()>.95) {
+                if (r.nextFloat()>.8) {
                     pointDeltas[i].x += (r.nextFloat()-.5f)*mD;
                     pointDeltas[i].y += (r.nextFloat()-.5f)*mD;
                 }
+                constrainDelta(pointDeltas[i]);
 
-                if (pointDeltas[i].x>mD) pointDeltas[i].x = mD;
-                if (pointDeltas[i].x<-mD) pointDeltas[i].x = -mD;
-                if (pointDeltas[i].y>mD) pointDeltas[i].y = mD;
-                if (pointDeltas[i].y<-mD) pointDeltas[i].y = -mD;
             }
             if ( Math.abs(points[0].x-dest.x) < maxseglen*3 && Math.abs(points[0].y-dest.y) < maxseglen*3 ) {
                 dest.x = r.nextFloat()*mWidth;
@@ -151,7 +149,7 @@ public class Worms extends Drawgorythm {
             }
         }
 
-        float mD = 1.5f;
+        private final float mD = 2.1f;
         void constrainDelta(PointF p) {
             if (p.x>mD) p.x = mD;
             if (p.x<-mD) p.x = -mD;
