@@ -61,11 +61,15 @@ public abstract class Drawgorythm {
         return mForeground[(int)(Math.random()*mForeground.length)];
     }
 
-    private static int getRVal(int base) {
+    protected static int getRVal(int base) {
         return getVal(base, (int)((Math.random()-.5)*96));
     }
 
-    private static int getVal(int base, int diff) {
+    protected static int getRVal2(int base) {
+        return getVal(base, (int)((Math.random()-.5)*16));
+    }
+
+    protected static int getVal(int base, int diff) {
         int value=base+diff;
         if (value>255) value=255;
         if (value<0) value=0;

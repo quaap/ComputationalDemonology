@@ -1,6 +1,7 @@
 package com.quaap.computationaldemonology.functions;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
@@ -28,6 +29,9 @@ public class CloudChamber extends Drawgorythm {
     private Paint mTextPaint;
 
 
+    private Bitmap mScreen;
+    private Canvas mCanvas;
+
     private long iterations = 0;
     public CloudChamber(Context context) {
         super(context);
@@ -43,10 +47,13 @@ public class CloudChamber extends Drawgorythm {
         mTextPaint.setTextSize(80);
         mTextPaint.setTypeface(Typeface.SERIF);
         startchar=mWidth;
+
+        mScreen = Bitmap.createBitmap(canvas.getWidth(),canvas.getHeight(), Bitmap.Config.ARGB_8888);
+        mCanvas = new Canvas(mScreen);
     }
 
     private void setValues() {
-        num = (int)(Math.random()*50 + 20);
+        num = 2; //(int)(Math.random()*50 + 20);
         sparkX = new double[num];
         sparkY = new double[num];
         sparkOldX = new double[num];
@@ -69,44 +76,31 @@ public class CloudChamber extends Drawgorythm {
         sparkDY[i] = (Math.random()-.5);
 
         fgs[i] = getRandomForeground();
-        if (swirl == i) swirl=-1;
+
+       // if (swirl == i) swirl=-1;
     }
 
-    int swirl = -1;
+   // int swirl = -1;
 
 
     @Override
     public void doDraw(Canvas canvas, long ticks) {
-        iterations++;
 
         totalticks += ticks;
 
 
-//        if (iterations%10 == 0) {
-//            word++;
-//            if (word>=words.length) {
-//                word = -3;
-//            }
-//        }
-        if (swirl<0 || iterations>500) {
-            swirl = (int)(Math.random()*(num+3)) - 3;
-            iterations=0;
-
-        }
-
-        if (swirl>=0) {
-            sparkDX[swirl] = Math.cos(iterations/10.0)/2;
-            sparkDY[swirl] = Math.sin(iterations/10.0)/2;
-        }
-
-        for (int m=0; m<100; m++) {
+        for (int m=0; m<20; m++) {
 
             for (int i = 0; i < num; i++) {
                 sparkX[i] += sparkDX[i];
                 sparkY[i] += sparkDY[i];
-                canvas.drawLine((float) sparkX[i], (float) sparkY[i], (float) sparkOldX[i], (float) sparkOldY[i], fgs[i]);
+                mCanvas.drawLine((float) sparkX[i], (float) sparkY[i], (float) sparkOldX[i], (float) sparkOldY[i], fgs[i]);
                 sparkOldX[i] = sparkX[i];
                 sparkOldY[i] = sparkY[i];
+
+                iterations++;
+                sparkDX[i] += Math.cos(iterations / 8);
+                sparkDY[i] += Math.sin(iterations / 8);
 
                 if (sparkX[i]>mWidth || sparkX[i]<0 || sparkY[i]>mHeight ||sparkY[i]<0) {
                     setValue(i);
@@ -115,11 +109,11 @@ public class CloudChamber extends Drawgorythm {
         }
 
 
-        startchar-=20;
+    //    startchar-=20;
 
-        canvas.drawText(words, startchar, mCenterY-mCenterY/2, mTextPaint);
+     //   canvas.drawText(words, startchar, mCenterY-mCenterY/2, mTextPaint);
 
-
+        canvas.drawBitmap(mScreen,0,0,null);
 
     }
 }

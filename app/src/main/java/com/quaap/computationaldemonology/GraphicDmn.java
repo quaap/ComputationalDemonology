@@ -19,6 +19,7 @@ import com.quaap.computationaldemonology.functions.FuzzyRing;
 import com.quaap.computationaldemonology.functions.PentaRing;
 import com.quaap.computationaldemonology.functions.PentaStar;
 import com.quaap.computationaldemonology.functions.TouchLightning;
+import com.quaap.computationaldemonology.functions.Worms;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,7 +87,7 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
             case EXPEL: d = new FuzzyRing(getContext()); break;
             case CAST: d = new PentaRing(getContext()); break;
             case SUMMON: d = new PentaStar(getContext()); break;
-            case CLOUD: d = new CloudChamber(getContext()); break;
+            case CLOUD: d = new Worms(getContext()); break;
             default:
                 throw new IllegalArgumentException("No such drawgorithm " + which);
         }
