@@ -62,7 +62,7 @@ public abstract class Drawgorythm {
     }
 
     protected static int getRVal(int base) {
-        return getVal(base, (int)((Math.random()-.5)*96));
+        return getVal(base, (int)((Math.random()-.5)*64));
     }
 
     protected static int getRVal2(int base) {

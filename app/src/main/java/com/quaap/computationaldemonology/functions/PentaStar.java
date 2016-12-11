@@ -9,19 +9,10 @@ import android.graphics.Paint;
  */
 
 public class PentaStar extends Ring {
-    private float lastX = 0;
-    private float lastY = 0;
-    private float nextX = 0;
-    private float nextY = 0;
-
-    private double x;
-    private double y;
-    private double dX;
-    private double dY;
 
     private double rad2 = rad;
 
-    double trails = 2;
+    private double trails = 2;
 
     private double speed = 1;
 
@@ -56,41 +47,59 @@ public class PentaStar extends Ring {
         rad = 0;
 
         for (long j = 0; j < 5; j++) {
-            lastX = (float) (r * Math.sin(rad)) + mCenterX;
-            lastY = (float) (r * Math.cos(rad)) + mCenterY;
+            double lastX = (float) (r * Math.sin(rad)) + mCenterX;
+            double lastY = (float) (r * Math.cos(rad)) + mCenterY;
 
             rad += Math.PI * 4.0 / 5.0;
-            nextX = (float) (r * Math.sin(rad)) + mCenterX;
-            nextY = (float) (r * Math.cos(rad)) + mCenterY;
+            double nextX = (float) (r * Math.sin(rad)) + mCenterX;
+            double nextY = (float) (r * Math.cos(rad)) + mCenterY;
 
-            x = lastX;
-            y = lastY;
+            double x = lastX;
+            double y = lastY;
 
-            dX = nextX - lastX;
-            dY = nextY - lastY;
+            double dX = nextX - lastX;
+            double dY = nextY - lastY;
 
+            double [] lastPointsX = new double[(int)trails];
+            double [] lastPointsY = new double[(int)trails];
+
+
+            int g = 0;
             do {
 
                 double fac = (dX==0?0:Math.abs(dY / dX))+1;
                 if (fac > 2) fac = 2;
+                if (fac < 1) fac = 1;
                 double xp = x + Math.signum(dX) / fac;
                 double yp = lastY + dY * (x - lastX) / dX;
 
                 //canvas.drawLine((float)x, (float)y, (float)xp, (float)yp, mForeground);
 
                 rad2 = Math.atan((y - mCenterY) / (x - mCenterX)) + Math.PI/3;
-
                 Paint paint = getRandomForeground();
-                for (int p = 1; p < trails+1; p++) {
-                    int sizex = (int) (r / 4 / p * Math.cos((Math.PI * p - rad2)*modspeed * 16 * p)) + 1;
-                    int sizey = (int) (r / 4 / p * Math.sin((Math.PI * p - rad2)*modspeed * 16 * p)) + 1;
-                    canvas.drawPoint((float) xp + sizex, (float) yp + sizey, paint);
+                for (int i = 0; i < (int)trails; i++) {
+                    int p=i+1;
+                    int sizex = (int) (r / 3 / p * Math.cos((Math.PI * p - rad2)*modspeed * 12 * p)) + 1;
+                    int sizey = (int) (r / 3 / p * Math.sin((Math.PI * p - rad2)*modspeed * 12 * p)) + 1;
+
+                    double px = xp + sizex;
+                    double py = yp + sizey;
+
+                    if (g>0) {
+                        canvas.drawLine((float) px, (float) py, (float) lastPointsX[i], (float) lastPointsY[i], paint);
+                    }
+
+                    //canvas.drawPoint((float) px, (float) py, paint);
+
+                    lastPointsX[i] =  px;
+                    lastPointsY[i] =  py;
+
                     //canvas.drawRect((float) xp + sizex, (float) yp + sizey, (float) xp + sizex+p, (float) yp + sizey+p, mForeground);
                 }
 
                 x = xp;
                 y = yp;
-
+                g++;
 
             } while (Math.round(x+1) != Math.round(nextX+1));
 
