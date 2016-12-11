@@ -83,7 +83,7 @@ public class Worms extends Drawgorythm {
             pointDeltas = new PointF[segments];
 
             maxseglen = Math.min(mWidth,mHeight)/30;
-            float x = r.nextFloat() * maxseglen;
+            float x = r.nextFloat() * maxseglen + maxseglen;
             x = r.nextBoolean() ? 0-x : mWidth + x;
 
             points[0] = new PointF(x, r.nextFloat()*mHeight/2f);
@@ -123,8 +123,8 @@ public class Worms extends Drawgorythm {
         }
 
         void moveToward() {
-            pointDeltas[0].x = (dest.x - points[0].x)/mCenterX;
-            pointDeltas[0].y = (dest.y - points[0].y)/mCenterY;
+            pointDeltas[0].x = (dest.x - points[0].x)/(mCenterX/2);
+            pointDeltas[0].y = (dest.y - points[0].y)/(mCenterY/2);
 
             constrainDelta(pointDeltas[0]);
 
@@ -133,23 +133,34 @@ public class Worms extends Drawgorythm {
                 points[i].y += pointDeltas[i].y;
             }
             for (int i=1; i<pointDeltas.length; i++) {
-                pointDeltas[i].x += (float)((points[i-1].x-points[i].x)/(double)maxseglen/10);
-                pointDeltas[i].y += (float)((points[i-1].y-points[i].y)/(double)maxseglen/10);
+                float distX = points[i-1].x-points[i].x;
+                float distY = points[i-1].y-points[i].y;
 
-                if (r.nextFloat()>.8) {
+                //throw random shimmies
+                if (r.nextFloat()>.9) {
                     pointDeltas[i].x += (r.nextFloat()-.5f)*mD;
                     pointDeltas[i].y += (r.nextFloat()-.5f)*mD;
                 }
+                float dist = (float)Math.sqrt(distX*distX + distY*distY);
+
+                float fac = 10f;
+                if (dist>maxseglen) {
+                    fac = 5f;
+                }
+
+                pointDeltas[i].x += (distX/maxseglen/fac);
+                pointDeltas[i].y += (distY/maxseglen/fac);
+
                 constrainDelta(pointDeltas[i]);
 
             }
-            if ( Math.abs(points[0].x-dest.x) < maxseglen*3 && Math.abs(points[0].y-dest.y) < maxseglen*3 ) {
+            if ( Math.abs(points[0].x-dest.x) < maxseglen*4 && Math.abs(points[0].y-dest.y) < maxseglen*4 ) {
                 dest.x = r.nextFloat()*mWidth;
                 dest.y = r.nextFloat()*mHeight*2/3;
             }
         }
 
-        private final float mD = 2.1f;
+        private final float mD = 2.5f;
         void constrainDelta(PointF p) {
             if (p.x>mD) p.x = mD;
             if (p.x<-mD) p.x = -mD;
