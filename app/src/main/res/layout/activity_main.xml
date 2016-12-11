@@ -31,7 +31,8 @@
         android:id="@+id/textView"
         android:layout_columnSpan="2"
         android:layout_gravity="center_horizontal"
-        android:textColor="@android:color/holo_blue_light" />
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="18sp" />
 
     <Button
         android:text="Protect"

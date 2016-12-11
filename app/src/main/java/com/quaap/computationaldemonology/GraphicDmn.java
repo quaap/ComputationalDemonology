@@ -3,6 +3,9 @@ package com.quaap.computationaldemonology;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
@@ -20,15 +23,18 @@ import com.quaap.computationaldemonology.functions.PentaRing;
 import com.quaap.computationaldemonology.functions.PentaStar;
 import com.quaap.computationaldemonology.functions.TouchLightning;
 import com.quaap.computationaldemonology.functions.Worms;
+import com.quaap.computationaldemonology.synth.AmbilectricSynth;
+import com.quaap.computationaldemonology.synth.Synth;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by tom on 12/2/16.
  */
 
-public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
+public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, MediaPlayer.OnPreparedListener{
 
     private long step = 50;
 
@@ -40,13 +46,35 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
 
     List<Drawgorythm> drawers = new ArrayList<>();
 
+
+    MediaPlayer[] mplayers;
+
+    Random rand = new Random();
+
+    private Synth synth;
+    private long iterations = 0;
+
+    private long totalticks = 0;
     public GraphicDmn(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         Log.d("GraphicDmn", "Constructor");
+
+
+
         final SurfaceHolder holder = getHolder();
         holder.addCallback(this);
 
+
+        int [] rs = {R.raw.wheoh, R.raw.daddyphonerev, R.raw.getout, R.raw.touteg};
+        mplayers = new MediaPlayer[rs.length];
+        for (int r=0; r<rs.length; r++) {
+            mplayers[r] = MediaPlayer.create(getContext(),rs[r]);
+            mplayers[r].setAudioStreamType(AudioManager.STREAM_MUSIC);
+            mplayers[r].setVolume(.4f,.4f);
+//            mplayers[r].setOnPreparedListener(this);
+//            mplayers[r].prepareAsync();
+        }
 
 
         // Initialize paints for speedometer
@@ -103,6 +131,9 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         Log.d("GraphicDmn", "surfaceCreated");
 
+        synth = new AmbilectricSynth();
+        synth.setVol(.01f);
+
         mThread = new GraphicDmnThread(surfaceHolder, new Handler() {
             @Override
             public void handleMessage(final Message m) {
@@ -117,10 +148,15 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
     @Override
     public void surfaceChanged(final SurfaceHolder surfaceHolder, final int format, final int width, final int height) {
         Log.d("GraphicDmn", "surfaceChanged");
+        iterations = 0;
 
+        totalticks = 0;
         if (mThread!=null) {
             if (!mThread.isRunning()) {
                 mThread.start();
+            }
+            if (!synth.isRunning()) {
+                synth.start();
             }
 
             Canvas c = null;
@@ -151,17 +187,34 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
         mThread.stopRunning();
         try {
             mThread.join();
+            mThread = null;
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        synth.stopSynth();
+        synth = null;
+
     }
 
     public void pause() {
         if (mThread!=null) mThread.pauseRunning();
+        if (synth!=null) {
+            synth.pauseSynth();
+        }
     }
 
     public void unpause() {
         if (mThread!=null) mThread.unpauseRunning();
+
+
+        if (synth!=null) {
+            if (!synth.isRunning()) {
+                synth.start();
+            } else {
+                synth.unpauseSynth();
+            }
+        }
     }
 
 
@@ -204,6 +257,11 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
         mPreviousX = x;
         mPreviousY = y;
         return true;
+    }
+
+    @Override
+    public void onPrepared(MediaPlayer mediaPlayer) {
+
     }
 
 
@@ -292,15 +350,46 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback {
 
     private void doDraw(final Canvas canvas, long ticks) {
         // Log.d("GraphicDmn", "doDraw");
+        iterations++;
+        totalticks += ticks;
 
-            canvas.drawPaint(mBgColor);
-            //Log.d("GraphicDmn", "doDraw" + lasttime + " " + now);
-            for (Drawgorythm d : drawers) {
-                d.doDraw(canvas, ticks);
-            }
+        canvas.drawPaint(mBgColor);
+        //Log.d("GraphicDmn", "doDraw" + lasttime + " " + now);
+        for (Drawgorythm d : drawers) {
+            d.doDraw(canvas, ticks);
+        }
 
+//        if (Math.random()>(1.0/iterations+.8)) {
+//            canvas.drawColor(mLinePaint.getColor(), PorterDuff.Mode.MULTIPLY);
+//        }
 
+        if (synth.getVol()<.2f) {
+            synth.setVol(.2f * totalticks/10000);
+//            if (totalticks > 2000 && synth.getVol() < .04f) {
+//                synth.setVol(.05f);
+//            }
+//            if (totalticks > 4000 && synth.getVol() < .09f) {
+//                synth.setVol(.1f);
+//            }
+//            if (totalticks > 8000 && synth.getVol() < .19f) {
+//                synth.setVol(.2f);
+//            }
+        }
+      //  synth.setVol(1 - 100.0f/iterations);
        // canvas.drawBitmap(viewdata, 0, 0, null);
+
+        if (totalticks> 10000 && Math.random()>.995) {
+            MediaPlayer m = mplayers[rand.nextInt(mplayers.length)];
+            if (!m.isPlaying()) {
+                if (rand.nextFloat()>.8) {
+                    m.setLooping(true);
+                }
+                m.start();
+            }
+            if (m.isLooping()) {
+                m.setLooping(false);
+            }
+        }
 
     }
 
