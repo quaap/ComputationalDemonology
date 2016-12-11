@@ -191,7 +191,9 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
         }
 
         for (MediaPlayer m: mplayers) {
-            m.pause();
+            if (m.isPlaying()) {
+                m.stop();
+            }
             m.release();
         }
 
