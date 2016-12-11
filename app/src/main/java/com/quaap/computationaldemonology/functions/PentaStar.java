@@ -17,20 +17,30 @@ public class PentaStar extends Ring {
     private double speed = 1;
 
     private double modspeed = speed;
-    private double dspeed = .005;
+
+    private double dmove = 1;
+
 
     public PentaStar(Context context) {
         super(context);
     }
 
+
+    protected void incRad() {
+        rad += Math.PI * 4.0 / 5.0;
+    }
     public void doDraw(final Canvas canvas, final long ticks) {
         super.doDraw(canvas,ticks);
 
-        // rad = Math.atan((mTouchY - mCenterY) / (mTouchX - mCenterX));
-        // rad2 = rad;
+        if (Math.abs(mMoveZ)>.1) {
+            dmove += (mMoveZ+mMoveY)/5;
+            if (dmove>5) dmove = 5;
+            if (dmove<-5) dmove = -5;
+        }
+
         if (mTouchDY!=0) {
             trails+= Math.signum(mTouchDY)/2;
-            if (trails>5) trails=5;
+            if (trails>7) trails=7;
             if (trails<1) trails=1;
 
         }
@@ -40,7 +50,6 @@ public class PentaStar extends Ring {
             if (speed>60) speed=60;
             if (speed<1) speed=1;
             modspeed = speed;
-            dspeed = .005;
         }
         modspeed += (mMoveX + mMoveY + mMoveZ)/20;
 
@@ -50,7 +59,8 @@ public class PentaStar extends Ring {
             double lastX = (float) (r * Math.sin(rad)) + mCenterX;
             double lastY = (float) (r * Math.cos(rad)) + mCenterY;
 
-            rad += Math.PI * 4.0 / 5.0;
+            incRad();
+
             double nextX = (float) (r * Math.sin(rad)) + mCenterX;
             double nextY = (float) (r * Math.cos(rad)) + mCenterY;
 
@@ -79,8 +89,8 @@ public class PentaStar extends Ring {
                 Paint paint = getRandomForeground();
                 for (int i = 0; i < (int)trails; i++) {
                     int p=i+1;
-                    int sizex = (int) (r / 3 / p * Math.cos((Math.PI * p - rad2)*modspeed * 12 * p)) + 1;
-                    int sizey = (int) (r / 3 / p * Math.sin((Math.PI * p - rad2)*modspeed * 12 * p)) + 1;
+                    int sizex = (int) (dmove * r / 3 / p * Math.cos((Math.PI * p - rad2)*modspeed * 15 * p)) + 1;
+                    int sizey = (int) (dmove * r / 3 / p * Math.sin((Math.PI * p - rad2)*modspeed * 15 * p)) + 1;
 
                     double px = xp + sizex;
                     double py = yp + sizey;
