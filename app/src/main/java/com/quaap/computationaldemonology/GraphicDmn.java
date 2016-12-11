@@ -66,17 +66,6 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
         holder.addCallback(this);
 
 
-        int [] rs = {R.raw.wheoh, R.raw.daddyphonerev, R.raw.getout, R.raw.touteg};
-        mplayers = new MediaPlayer[rs.length];
-        for (int r=0; r<rs.length; r++) {
-            mplayers[r] = MediaPlayer.create(getContext(),rs[r]);
-            mplayers[r].setAudioStreamType(AudioManager.STREAM_MUSIC);
-            mplayers[r].setVolume(.4f,.4f);
-//            mplayers[r].setOnPreparedListener(this);
-//            mplayers[r].prepareAsync();
-        }
-
-
         // Initialize paints for speedometer
         mLinePaint = new Paint();
         //mLinePaint.setAntiAlias(true);
@@ -142,6 +131,15 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
             }
         });
 
+        int [] rs = {R.raw.wheoh, R.raw.daddyphonerev, R.raw.getout, R.raw.touteg};
+        mplayers = new MediaPlayer[rs.length];
+        for (int r=0; r<rs.length; r++) {
+            mplayers[r] = MediaPlayer.create(getContext(),rs[r]);
+            mplayers[r].setAudioStreamType(AudioManager.STREAM_MUSIC);
+            mplayers[r].setVolume(.4f,.4f);
+//            mplayers[r].setOnPreparedListener(this);
+//            mplayers[r].prepareAsync();
+        }
 
     }
 
@@ -190,6 +188,11 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
             mThread = null;
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+
+        for (MediaPlayer m: mplayers) {
+            m.pause();
+            m.release();
         }
 
         synth.stopSynth();

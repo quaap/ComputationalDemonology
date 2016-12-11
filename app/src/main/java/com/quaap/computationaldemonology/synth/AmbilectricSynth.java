@@ -30,8 +30,8 @@ public class AmbilectricSynth extends Synth {
 
         for (int i=0; i<data.length; i++) {
             total++;
-            double sawval1 = 2 * ((total % period1) / period1 - 1) * Short.MAX_VALUE/9;
-            double sawval2 = 2 * ((total % period2) / period2 - 1) * Short.MAX_VALUE/9;
+            double sawval1 = 2 * ((total % period1) / period1 - 1) * Short.MAX_VALUE/12;
+            double sawval2 = 2 * ((total % period2) / period2 - 1) * Short.MAX_VALUE/12;
             double staticval = (Math.random() - .5) * Short.MAX_VALUE/25 ;
 
             double fval = sawval1/3 * (Math.abs(Math.sin(total/30000.0))+1)
