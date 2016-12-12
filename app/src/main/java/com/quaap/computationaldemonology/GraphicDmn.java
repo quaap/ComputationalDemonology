@@ -3,9 +3,9 @@ package com.quaap.computationaldemonology;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
@@ -92,9 +92,44 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
     public static final int WORMS = 5;
     public static final int CLOUD = 6;
 
+    private static final int [] soundRes = {
+            R.raw.ahohow,
+            R.raw.breath1,
+            R.raw.breath1_slow,
+            R.raw.cleak1,
+            R.raw.cleak1_slow,
+            R.raw.cleak2,
+            R.raw.cleak2_slow,
+            R.raw.cleak3,
+            R.raw.cleak3_slow,
+            R.raw.daddyphone1,
+            R.raw.daddyphone2,
+            R.raw.daddyphonerev,
+            R.raw.daddyphonerev_slow,
+            R.raw.eeeeh1,
+            R.raw.getout,
+            R.raw.getout_slow,
+            R.raw.growl1,
+            R.raw.growl1_slow,
+            R.raw.growl2,
+            R.raw.growl2_slow,
+            R.raw.moan1,
+            R.raw.moan1_slow,
+            R.raw.moan2,
+            R.raw.moan2_slow,
+            R.raw.ooooowh,
+            R.raw.ooouuh,
+            R.raw.skreeooo,
+            R.raw.skreeooo_slow,
+            R.raw.touteg,
+            R.raw.touteg_slow,
+            R.raw.wheoh,
+            R.raw.wheoh_slow
+    };
 
+    private int mMethod = 0;
     public void startDraw(int which) {
-
+        mMethod = which;
         Drawgorythm d0 = new Code(getContext(), which);
         d0.setPaints(mLinePaint, mBgColor);
         drawers.add(d0);
@@ -134,15 +169,22 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
             }
         });
 
-        int [] rs = {R.raw.wheoh, R.raw.daddyphonerev, R.raw.getout, R.raw.touteg};
-        mplayers = new MediaPlayer[rs.length];
-        for (int r=0; r<rs.length; r++) {
-            mplayers[r] = MediaPlayer.create(getContext(),rs[r]);
-            mplayers[r].setAudioStreamType(AudioManager.STREAM_MUSIC);
-            mplayers[r].setVolume(.4f,.4f);
-//            mplayers[r].setOnPreparedListener(this);
-//            mplayers[r].prepareAsync();
-        }
+        final Context context = getContext();
+
+        AsyncTask<Void,Void,Void> med = new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                mplayers = new MediaPlayer[soundRes.length];
+                for (int r = 0; r< soundRes.length; r++) {
+                    mplayers[r] = MediaPlayer.create(context, soundRes[r]);
+                    mplayers[r].setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    mplayers[r].setVolume(.3f,.3f);
+                }
+                return null;
+            }
+        };
+        med.execute();
+
 
     }
 
@@ -386,117 +428,24 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
       //  synth.setVol(1 - 100.0f/iterations);
        // canvas.drawBitmap(viewdata, 0, 0, null);
 
-        if (totalticks> 10000 && Rand.chance(.5)) {
-            MediaPlayer m = mplayers[rand.nextInt(mplayers.length)];
+        if (totalticks> 10000 && Rand.chance(.4)) {
+            int num = Rand.getInt(mplayers.length/(mMethod+1)) * (mMethod +1);
+
+            MediaPlayer m = mplayers[num];
             if (!m.isPlaying()) {
                 if (rand.nextFloat()>.8) {
+                    for (MediaPlayer m2: mplayers) {
+                        m2.setLooping(false);
+                    }
                     m.setLooping(true);
                 }
                 m.start();
-            }
-            if (m.isLooping()) {
+            } else if (m.isLooping()) {
                 m.setLooping(false);
             }
         }
 
     }
 
-
-///////////////////////////
-////barbed circle
-//    double r = 0;
-//    double rad = 0;
-//    private void doDraw(final Canvas canvas) {
-//       // Log.d("GraphicDmn", "doDraw");
-//
-//
-//
-//        if (rad/Math.PI < Math.PI*10) {
-//            float mx = canvas.getWidth() / 2;
-//            float my = canvas.getHeight() / 2;
-//
-//            r = Math.min(canvas.getWidth(), canvas.getHeight()) / 3;
-//
-//            for (int i = 0; i < 2; i++) {
-//                double rad1 = rad;
-//                if (i == 1) rad1 = i * Math.PI - rad;
-//                float x = (float) (r * Math.sin(rad1));
-//                float y = (float) (r * Math.cos(rad1));
-//                double rnd = Math.random();
-//                int sizex = (int) (r / 10 * Math.sin(rad1*50)) + 1;
-//                int sizey = (int) (r / 10 * Math.cos(rad1*50)) + 1;
-//                canvas.drawLine(mx + x, my + y, mx + x + sizex, my + y + sizey, mLinePaint);
-//            }
-//
-//            rad += .05;
-//        }
-//
-//    }
-
-
-/////////////////////////
-//penta
-//    double r = 0;
-//    double rad = 0;
-//    float lastX = 0;
-//    float lastY = 0;
-//    private void doDraw(final Canvas canvas) {
-//        // Log.d("GraphicDmn", "doDraw");
-//
-//        float mx = canvas.getWidth() / 2;
-//        float my = canvas.getHeight() / 2;
-//
-//
-//        if (rad/Math.PI < Math.PI*10) {
-//
-//            r = Math.min(canvas.getWidth(), canvas.getHeight()) / 3;
-//
-//            float x = (float) (r * Math.sin(rad)) + mx;
-//            float y = (float) (r * Math.cos(rad)) + my;
-//            if (lastX != 0 && lastY != 0) {
-//                canvas.drawLine(x,y, lastX, lastY, mLinePaint);
-//               // canvas.drawLine(x,y, mx, my, mLinePaint);
-//            }
-//
-//            lastX = x;
-//            lastY = y;
-//
-//            rad += Math.PI * 2.0 / 5.0;
-//
-//        }
-//
-//
-//    }
-
-/////////////////////////
-//fuzzy circle
-//    double r = 0;
-//    double rad = 0;
-//    private void doDraw(final Canvas canvas) {
-//       // Log.d("GraphicDmn", "doDraw");
-//
-//
-//
-//        if (rad/Math.PI < Math.PI*10) {
-//            float mx = canvas.getWidth() / 2;
-//            float my = canvas.getHeight() / 2;
-//
-//            r = Math.min(canvas.getWidth(), canvas.getHeight()) / 3;
-//
-//            for (int i = 0; i < 2; i++) {
-//                double rad1 = rad;
-//                if (i == 1) rad1 = i * Math.PI - rad;
-//                float x = (float) (r * Math.sin(rad1));
-//                float y = (float) (r * Math.cos(rad1));
-//                double rnd = Math.random();
-//                int sizex = (int) (rnd * 4 * r / 10 * Math.sin(rad1)) + 1;
-//                int sizey = (int) (rnd * 4 * r / 10 * Math.cos(rad1)) + 1;
-//                canvas.drawLine(mx + x, my + y, mx + x + sizex, my + y + sizey, mLinePaint);
-//            }
-//
-//            rad += .05;
-//        }
-//
-//    }
 
 }
