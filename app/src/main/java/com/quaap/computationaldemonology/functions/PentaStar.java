@@ -34,8 +34,8 @@ public class PentaStar extends Ring {
 
         if (Math.abs(mMoveZ)>.1) {
             dmove += (mMoveZ+mMoveY)/5;
-            if (dmove>5) dmove = 5;
-            if (dmove<-5) dmove = -5;
+            if (dmove>3) dmove = 3;
+            if (dmove<-3) dmove = -3;
         }
 
         if (mTouchDY!=0) {
@@ -52,6 +52,8 @@ public class PentaStar extends Ring {
             modspeed = speed;
         }
         modspeed += (mMoveX + mMoveY + mMoveZ)/20;
+        if (modspeed>5) modspeed=5;
+        if (modspeed<-5) modspeed=-5;
 
         rad = 0;
 

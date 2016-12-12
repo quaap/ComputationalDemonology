@@ -89,7 +89,8 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
     public static final int SUMMON = 2;
     public static final int EXPEL = 3;
     public static final int CAST = 4;
-    public static final int CLOUD = 5;
+    public static final int WORMS = 5;
+    public static final int CLOUD = 6;
 
 
     public void startDraw(int which) {
@@ -105,7 +106,8 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
             case EXPEL: d = new FuzzyRing(getContext()); break;
             case CAST: d = new PentaRing(getContext()); break;
             case SUMMON: d = new PentaStar(getContext()); break;
-            case CLOUD: d = new Worms(getContext()); break;
+            case WORMS: d = new Worms(getContext()); break;
+            case CLOUD: d = new CloudChamber(getContext()); break;
             default:
                 throw new IllegalArgumentException("No such drawgorithm " + which);
         }

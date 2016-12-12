@@ -23,7 +23,9 @@ public abstract class Ring extends Drawgorythm {
     @Override
     public void canvasChanged(final Canvas canvas) {
         super.canvasChanged(canvas);
-        rMax = Math.min(mHeight, mWidth) / 2.5;
+
+        mCenterY = (int)(mHeight*3.0/8);
+        rMax = Math.min(mCenterY, mCenterX) *.8;
         r = 1;
         rad = 0;
         started = System.currentTimeMillis();

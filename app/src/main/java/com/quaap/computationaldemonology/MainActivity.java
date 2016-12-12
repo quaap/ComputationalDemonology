@@ -5,6 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.SeekBar;
+import android.widget.ToggleButton;
+import android.widget.ViewFlipper;
 
 import com.quaap.computationaldemonology.synth.MultiToneSynth;
 import com.quaap.computationaldemonology.synth.SawSynth;
@@ -19,34 +23,31 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ToggleButton toggle = (ToggleButton)findViewById(R.id.toggleButton);
+        final ViewFlipper flip = (ViewFlipper)findViewById(R.id.flipper);
+        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) flip.showPrevious(); else flip.showNext();
+
+            }
+        });
+
+
+
         Button summon = (Button)findViewById(R.id.button_summon);
         Button expel = (Button)findViewById(R.id.button_expel);
         Button seek = (Button)findViewById(R.id.button_seek);
         Button cast = (Button)findViewById(R.id.button_cast);
         Button cloud = (Button)findViewById(R.id.button_cloud);
+        Button worms = (Button)findViewById(R.id.button_worms);
 
         seek.setOnClickListener(this);
         cast.setOnClickListener(this);
         summon.setOnClickListener(this);
         expel.setOnClickListener(this);
+        worms.setOnClickListener(this);
         cloud.setOnClickListener(this);
-
-
-//        sound.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (s==null) {
-//                    s = new SawSynth(372.98f, 497.87f);
-//                    s.addFilter(new StaticFilter());
-//                    System.out.println(s.getMaxVol());
-//                    s.start();
-//                } else {
-//                    s.stopSynth();
-//                    s = null;
-//                }
-//
-//            }
-//        });
 
     }
 
@@ -65,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                 intent.putExtra(GraphicDmn.GO, GraphicDmn.CAST); break;
             case R.id.button_cloud:
                 intent.putExtra(GraphicDmn.GO, GraphicDmn.CLOUD); break;
+            case R.id.button_worms:
+                intent.putExtra(GraphicDmn.GO, GraphicDmn.WORMS); break;
         }
         startActivity(intent);
     }

@@ -77,6 +77,7 @@ public class Code extends Drawgorythm  {
     @Override
     public void canvasChanged(Canvas canvas) {
         super.canvasChanged(canvas);
+
         textarea = Bitmap.createBitmap(mWidth, theighttot, Bitmap.Config.ARGB_8888);
         textareaCanvas = new Canvas(textarea);
     }
@@ -127,8 +128,8 @@ public class Code extends Drawgorythm  {
 //    private CharRange mathLetters2 = new CharRange(0x2100, 0x214F);
 //    private CharRange mathLetters3 = new CharRange(0x1EE00, 0x1EE7E);
 //
-//    private CharRange mathArrows1 = new CharRange(0x2190, 0x21FF);
-//    private CharRange mathArrows2 = new CharRange(0x27F0, 0x27FF);
+    private CharRange mathArrows1 = new CharRange(0x2190, 0x21FF);
+    private CharRange mathArrows2 = new CharRange(0x27F0, 0x27FF);
 //    private CharRange mathArrows3 = new CharRange(0x2900, 0x297F);
 
     private CharRange txtAdditions = new CharRange(768, 2042);
@@ -144,7 +145,7 @@ public class Code extends Drawgorythm  {
                     {"(",")"}, {"{","}"}, {"[","]"},
                     {"(",")"}, {"{","}"}, {"[","]"},
                     {"⦃","⦄"}, {"⟦","⟧"}, {"⟨","⟩"},
-                    {"⟪","⟫"}, {"⦇", "⦈"}
+                    {"⟪","⟫"}, {"⦇", "⦈"}, {"( (",") )"}
                 });
 
 
@@ -179,7 +180,7 @@ public class Code extends Drawgorythm  {
                 for (int p = 0; p < 4; p++) {
                     if (Rand.chance(40) && pstack.size()<STACKMAX) {
                         String[] gpair = groupings.rand();
-                        hist.append(gpair[0]);
+                        hist.append(" ").append(gpair[0]).append(" ");
                         pstack.push(gpair[1]);
                     }
 
@@ -190,24 +191,26 @@ public class Code extends Drawgorythm  {
                         }
                         if (Rand.chance(50)) hist.append(" ").append(mathSyms2.rand()).append(" ");
 
-                        if (Rand.chance(20)) hist.append(mathSyms1.rand());
+                        if (Rand.chance(20)) hist.append(mathSyms1.rand()).append(" ");
 
-                        if (Rand.chance(40)) hist.append(number());
+                        if (Rand.chance(40)) hist.append(number()).append(" ");
                     }
 
                     if (Rand.chance(30)) hist.append(" ").append(mathSyms2.rand()).append(" ");
 
-                    if (Rand.chance(20)) hist.append(mathSyms1.rand());
+                    if (Rand.chance(20)) hist.append(mathSyms1.rand()).append(" ");
 
+                    if (Rand.chance(20)) hist.append(number()).append(" ");
 
-                    if (Rand.chance(20)) hist.append(number());
+                    if (Rand.chance(20)) hist.append(" (").append(number()).append(") ");
+                    if (Rand.chance(2)) hist.append(" [").append(Rand.rand(nouns)).append("] ");
 
                     if (Rand.chance(20)) hist.append(Rand.getBoolean() ? Rand.getChar(greek) : Rand.getChar(eng)).append(" ");
 //                    if (Rand.chance(10)) hist.append(mathLetters2.rand());
 //                    if (Rand.chance(5)) hist.append(mathLetters3.rand());
 //
-//                    if (Rand.chance(3)) hist.append(" ").append(mathArrows1.rand()).append(" ");
-//                    if (Rand.chance(1)) hist.append(" ").append(mathArrows2.rand()).append(" ");
+                    if (Rand.chance(3)) hist.append(" ").append(mathArrows1.rand()).append(" ");
+                   // if (Rand.chance(1)) hist.append(" ").append(mathArrows2.rand()).append(" ");
 //                    if (Rand.chance(.5)) hist.append(mathArrows3.rand());
 
                     if (Rand.chance(3.0 / mMethod)) hist.append(Rand.rand(endwords)).append(" ");

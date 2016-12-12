@@ -30,8 +30,8 @@ public class CloudChamber extends Drawgorythm {
     private Paint mTextPaint;
 
 
-    private Bitmap mScreen;
-    private Canvas mCanvas;
+    //private Bitmap mScreen;
+  //  private Canvas mCanvas;
 
     private long iterations = 0;
     public CloudChamber(Context context) {
@@ -49,12 +49,12 @@ public class CloudChamber extends Drawgorythm {
         mTextPaint.setTypeface(Typeface.SERIF);
         startchar=mWidth;
 
-        mScreen = Bitmap.createBitmap(canvas.getWidth(),canvas.getHeight(), Bitmap.Config.ARGB_8888);
-        mCanvas = new Canvas(mScreen);
+       // mScreen = Bitmap.createBitmap(canvas.getWidth(),canvas.getHeight(), Bitmap.Config.ARGB_8888);
+       // mCanvas = new Canvas(mScreen);
     }
 
     private void setValues() {
-        num = 2; //(int)(Math.random()*50 + 20);
+        num = (int)(Math.random()*20 + 20);
         sparkX = new double[num];
         sparkY = new double[num];
         sparkOldX = new double[num];
@@ -95,13 +95,13 @@ public class CloudChamber extends Drawgorythm {
             for (int i = 0; i < num; i++) {
                 sparkX[i] += sparkDX[i];
                 sparkY[i] += sparkDY[i];
-                mCanvas.drawLine((float) sparkX[i], (float) sparkY[i], (float) sparkOldX[i], (float) sparkOldY[i], fgs[i]);
+                canvas.drawLine((float) sparkX[i], (float) sparkY[i], (float) sparkOldX[i], (float) sparkOldY[i], fgs[i]);
                 sparkOldX[i] = sparkX[i];
                 sparkOldY[i] = sparkY[i];
 
                 iterations++;
-                sparkDX[i] += Math.cos(iterations / 8);
-                sparkDY[i] += Math.sin(iterations / 8);
+                sparkDX[i] += Math.cos(iterations / 6.0)/1.0;
+                sparkDY[i] += Math.sin(iterations / 6.0)/1.0;
 
                 if (sparkX[i]>mWidth || sparkX[i]<0 || sparkY[i]>mHeight ||sparkY[i]<0) {
                     setValue(i);
@@ -110,11 +110,11 @@ public class CloudChamber extends Drawgorythm {
         }
 
 
-    //    startchar-=20;
+        startchar-=20;
 
-     //   canvas.drawText(words, startchar, mCenterY-mCenterY/2, mTextPaint);
+        canvas.drawText(words, startchar, mCenterY-mCenterY/2, mTextPaint);
 
-        canvas.drawBitmap(mScreen,0,0,null);
+       // canvas.drawBitmap(mScreen,0,0,null);
 
     }
 }
