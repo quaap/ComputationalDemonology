@@ -260,12 +260,12 @@ public class Rand {
     private static Map<Long,Random> threadRands = Collections.synchronizedMap(new WeakHashMap<Long, Random>());
 
     private static final int MSIZE = 10;
-    private static Map<Long,Random> threadRandsFixed = new LinkedHashMap<Long,Random>() {
+    private static Map<Long,Random> threadRandsFixed = Collections.synchronizedMap(new LinkedHashMap<Long,Random>() {
         @Override
         protected boolean removeEldestEntry(Entry<Long, Random> eldest) {
             return size()>MSIZE;
         }
-    };
+    });
 
     private static Random current() {
 
@@ -274,8 +274,8 @@ public class Rand {
         if (r==null) {
             r = new Random();
             threadRands.put(me,r);
-            threadRandsFixed.put(me,r); //add to keep a limited number from being garbage collected
         }
+        threadRandsFixed.put(me,r); //add to keep a limited number from being garbage collected
         return r;
     }
 
