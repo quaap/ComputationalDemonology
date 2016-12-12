@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import com.quaap.computationaldemonology.util.Rand;
+
 /**
  * Created by tom on 12/4/16.
  */
@@ -58,15 +60,15 @@ public abstract class Drawgorythm {
     }
 
     protected Paint getRandomForeground() {
-        return mForeground[(int)(Math.random()*mForeground.length)];
+        return Rand.rand(mForeground);
     }
 
     protected static int getRVal(int base) {
-        return getVal(base, (int)((Math.random()-.5)*64));
+        return getVal(base, (int)((Rand.getDoubleNeg1To1()/2)*64));
     }
 
     protected static int getRVal2(int base) {
-        return getVal(base, (int)((Math.random()-.5)*16));
+        return getVal(base, (int)((Rand.getDoubleNeg1To1()/2)*16));
     }
 
     protected static int getVal(int base, int diff) {

@@ -3,6 +3,8 @@ package com.quaap.computationaldemonology.functions;
 import android.content.Context;
 import android.graphics.Canvas;
 
+import com.quaap.computationaldemonology.util.Rand;
+
 /**
  * Created by tom on 12/6/16.
  */
@@ -47,7 +49,7 @@ public class BarbedRing extends Ring {
 
             float x = (float) (r * Math.sin(rad));
             float y = (float) (r * Math.cos(rad));
-            double rnd = Math.random();
+            double rnd = Rand.getDouble();
             int sizex = (int) (modsize*rnd * r / 10 * Math.cos(rad * speed)) + 1;
             int sizey = (int) (modsize*rnd * r / 10 * Math.sin(rad * speed)) + 1;
             canvas.drawLine(mCenterX + x, mCenterY + y, mCenterX + x + sizex, mCenterY + y + sizey, getRandomForeground());

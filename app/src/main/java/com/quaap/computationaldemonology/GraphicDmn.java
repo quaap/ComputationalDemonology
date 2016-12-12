@@ -25,6 +25,7 @@ import com.quaap.computationaldemonology.functions.TouchLightning;
 import com.quaap.computationaldemonology.functions.Worms;
 import com.quaap.computationaldemonology.synth.AmbilectricSynth;
 import com.quaap.computationaldemonology.synth.Synth;
+import com.quaap.computationaldemonology.util.Rand;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -383,7 +384,7 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
       //  synth.setVol(1 - 100.0f/iterations);
        // canvas.drawBitmap(viewdata, 0, 0, null);
 
-        if (totalticks> 10000 && Math.random()>.995) {
+        if (totalticks> 10000 && Rand.chance(.5)) {
             MediaPlayer m = mplayers[rand.nextInt(mplayers.length)];
             if (!m.isPlaying()) {
                 if (rand.nextFloat()>.8) {

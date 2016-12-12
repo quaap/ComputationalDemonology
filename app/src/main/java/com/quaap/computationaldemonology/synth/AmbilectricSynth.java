@@ -1,5 +1,7 @@
 package com.quaap.computationaldemonology.synth;
 
+import com.quaap.computationaldemonology.util.Rand;
+
 /**
  * Created by tom on 12/7/16.
  */
@@ -15,9 +17,9 @@ public class AmbilectricSynth extends Synth {
 
         int doclick = (int)(Math.random()*data.length * mSnipsPerSample - data.length*(mSnipsPerSample-1));
 
-        float periodchirp = (float)(sampleRate / (Math.random()*800+800));
+        float periodchirp = (float)(sampleRate / Rand.getDouble(800,1600));
         if (doclick>=window && doclick+window<data.length) {
-            double vol = Math.random();
+            double vol = Rand.getDouble();
             for (int i = doclick - window; i < doclick + window; i++) {
                 double sawval = 2 * ((i % periodchirp) / periodchirp - 1) * Short.MAX_VALUE/(vol*20 + 13);
                 data[i] = (short) (sawval * (Math.abs(Math.sin(total/15000))+.2));
@@ -32,7 +34,7 @@ public class AmbilectricSynth extends Synth {
             total++;
             double sawval1 = 2 * ((total % period1) / period1 - 1) * Short.MAX_VALUE/12;
             double sawval2 = 2 * ((total % period2) / period2 - 1) * Short.MAX_VALUE/12;
-            double staticval = (Math.random() - .5) * Short.MAX_VALUE/25 ;
+            double staticval = (Rand.getDoubleNeg1To1()/2) * Short.MAX_VALUE/25 ;
 
             double fval = sawval1/3 * (Math.abs(Math.sin(total/30000.0))+1)
                         + sawval2/3 * (Math.abs(Math.sin(total/35000.0)))

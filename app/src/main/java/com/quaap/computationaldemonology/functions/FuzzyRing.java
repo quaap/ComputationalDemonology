@@ -3,6 +3,8 @@ package com.quaap.computationaldemonology.functions;
 import android.content.Context;
 import android.graphics.Canvas;
 
+import com.quaap.computationaldemonology.util.Rand;
+
 /**
  * Created by tom on 12/6/16.
  */
@@ -40,7 +42,7 @@ public class FuzzyRing extends Ring {
         rad = 0;
         do {
 
-            double rnd = Math.random()/2 + .5;
+            double rnd = Rand.getDouble()/2 + .5;
             int sizex = (int) (size * rnd * r / 20 * Math.cos(rad * 20 * speed)) + 1;
             int sizey = (int) (size * rnd * r / 20 * Math.sin(rad * 20 * speed)) + 1;
             float x = (float) (r * Math.sin(rad)) + mCenterX + sizex;

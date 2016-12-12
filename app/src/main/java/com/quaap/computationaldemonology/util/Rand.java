@@ -79,6 +79,23 @@ public class Rand {
         return rand.nextInt(sides) + 1;
     }
 
+    /**
+     * Get a random double between 0 (inclusive) and 1 (exclusive)
+     *
+     * @return a random double in the specified range
+     */
+    public static double getDouble() {
+        return rand.nextDouble();
+    }
+
+    /**
+     * Get a random double between -1 (inclusive) and 1 (exclusive)
+     *
+     * @return a random double in the specified range
+     */
+    public static double getDoubleNeg1To1() {
+        return (rand.nextDouble() - .5)*2;
+    }
 
     /**
      * Get a random double between 0 (inclusive) and ceiling (exclusive)

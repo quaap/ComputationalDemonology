@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
+import com.quaap.computationaldemonology.util.Rand;
+
 /**
  * Created by tom on 12/6/16.
  */
@@ -53,10 +55,10 @@ public class TouchLightning extends Drawgorythm {
                 canvas.drawCircle(x1, y1, 8, fcircle);
                 //canvas.drawCircle(tx, ty, radius, fsparks);
 
-                int strikes = (int) (Math.random() * 3 + 3);
+                int strikes = Rand.getNumber(3,6);
                 for (int i = 0; i < strikes; i++) {
-                    float x2 = (float) ((Math.random() - .5)*radius + x/2 + x1);
-                    float y2 = (float) ((Math.random() - .5)*radius + y/2 + y1);
+                    float x2 = (float) ((Rand.getDoubleNeg1To1()/2)*radius + x/2 + x1);
+                    float y2 = (float) ((Rand.getDoubleNeg1To1()/2)*radius + y/2 + y1);
                     canvas.drawLine(x1, y1, x2, y2, getRandomForeground());
                 }
                 r += Math.PI * 2.0 / 5.0;
