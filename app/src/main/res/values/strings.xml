@@ -88,20 +88,6 @@ break apart eliminate fracture take down break up dismantle take apart undo tear
 self-destroy demolish  level pull down destruct uproot extinguish raze root out eradicate
 evil vile wicked base corrupt immoral dishonest sinful heinous depraved profane iniquitous ungodly blood bile
     </string>
-    <string name="lisp1" formatted="false"> (defun read-separator (str) (let ((*readtable* (copy-readtable *readtable* nil)))
-(set-macro-character #\, (lambda(stream char) (declare (ignore char) (ignore stream)) \'break)) (read str nil)))  (set-macro-character #\{ (lambda (str
-char) (declare (ignore char)) (let ((*readtable* (copy-readtable *readtable* nil))) (set-macro-character #\} (lambda
-(stream char) (declare (ignore char) (ignore stream)) \'end))  (let ((pairs (loop for key = (read str nil nil t) for
-sep = (read str nil nil t) for value = (read str nil nil t) for end? = (read-separator str) do (when (not (eql \'=>
-sep)) (error "Expected =>, did not get")) do (when (not (or (eql \'end end?) (eql \'break end?))) (error "Expected , or
-}")) collect (list key value) while (not (eql \'end end?)))) (retn (gensym))) `(let ((,retn (make-hash-table :test
-#\'equal))) ,@(mapcar (lambda (pair) `(setf (gethash ,(car pair) ,retn) ,(cadr pair))) pairs) ,retn))))) (defun
-read-listcomp (stream char) (declare (ignore char)) (let (rezs srcs conds state) (dolist (item (read-delimited-list #\}
-stream)) (if (eql \'|| item) (setf state (if state :cond :src)) (case state (:src (push item srcs)) (:cond (push item
-conds)) (otherwise (push item rezs))))) (setf rezs (reverse rezs) srcs (reverse srcs) conds (reverse conds)) (let
-((binds (mapcar (lambda (group) (cons (first group) (third group))) (group 3 srcs)))) `(mapcan (lambda ,(mapcar #\'car
-binds) (when (and ,@conds) (list ,(if (rest rezs) (cons \'list rezs) (first rezs))))) ,@(mapcar #\'cdr binds)))))
-(set-macro-character #\{ #\'read-listcomp) (set-macro-character #\} (get-macro-character #\)))</string>
     <string name="endwords">all is lost,oh god oh god oh god,no more,the end,shall rise,has fallen to,
         my mind,no one left,death is all,sleep no more,don\'t blink,eternal sleep,he comes,no escape,no rest,
     the abyss is staring back, the abyss, nothingness encompasses, the angles are not real, my face my face,

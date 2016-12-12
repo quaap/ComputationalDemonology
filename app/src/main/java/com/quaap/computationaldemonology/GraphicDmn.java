@@ -91,6 +91,7 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
     public static final int CAST = 4;
     public static final int WORMS = 5;
     public static final int CLOUD = 6;
+    public static final int METHODS = 7;
 
     private static final int [] soundRes = {
             R.raw.ahohow,
@@ -159,7 +160,7 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
         Log.d("GraphicDmn", "surfaceCreated");
 
         synth = new AmbilectricSynth();
-        synth.setVol(.01f);
+        synth.setVol(.008f);
 
         mThread = new GraphicDmnThread(surfaceHolder, new Handler() {
             @Override
@@ -428,9 +429,9 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
       //  synth.setVol(1 - 100.0f/iterations);
        // canvas.drawBitmap(viewdata, 0, 0, null);
 
-        if (totalticks> 10000 && Rand.chance(.4)) {
-            int num = Rand.getInt(mplayers.length/(mMethod+1)) * (mMethod +1);
-
+        if (totalticks> 10000 && Rand.chance(.5)) {
+            //int num = (Rand.getInt(METHODS)+1) + mplayers.length/METHODS * mMethod;
+            int num = Rand.getInt(mplayers.length);
             MediaPlayer m = mplayers[num];
             if (!m.isPlaying()) {
                 if (rand.nextFloat()>.8) {

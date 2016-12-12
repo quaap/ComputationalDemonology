@@ -209,7 +209,7 @@ public class Code extends Drawgorythm  {
 //                    if (Rand.chance(10)) hist.append(mathLetters2.rand());
 //                    if (Rand.chance(5)) hist.append(mathLetters3.rand());
 //
-                    if (Rand.chance(3)) hist.append(" ").append(mathArrows1.rand()).append(" ");
+                    //if (Rand.chance(3)) hist.append(" ").append(mathArrows1.rand()).append(" ");
                    // if (Rand.chance(1)) hist.append(" ").append(mathArrows2.rand()).append(" ");
 //                    if (Rand.chance(.5)) hist.append(mathArrows3.rand());
 

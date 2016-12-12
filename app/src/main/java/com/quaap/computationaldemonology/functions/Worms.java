@@ -83,7 +83,7 @@ public class Worms extends Drawgorythm {
             pointDeltas = new PointF[segments];
 
             maxseglen = Math.min(mWidth,mHeight)/30;
-            float x = r.nextFloat() * maxseglen + maxseglen;
+            float x = r.nextFloat() * maxseglen + maxseglen*5;
             x = r.nextBoolean() ? 0-x : mWidth + x;
 
             points[0] = new PointF(x, r.nextFloat()*mHeight/2f);
