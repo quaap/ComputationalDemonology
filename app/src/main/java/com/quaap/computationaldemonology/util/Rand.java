@@ -3,17 +3,20 @@ package com.quaap.computationaldemonology.util;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
+import java.util.WeakHashMap;
+
 
 /**
  * Created by tom on 12/11/16.
  */
 
 public class Rand {
-
-
-    private static Random rand = new Random();
 
 
 
@@ -23,7 +26,7 @@ public class Rand {
      * @return a random integer
      */
     public static int getInt() {
-        return rand.nextInt();
+        return current().nextInt();
     }
 
     /**
@@ -32,7 +35,7 @@ public class Rand {
      * @return a random integer
      */
     public static int getInt(int ceiling) {
-        return rand.nextInt(ceiling);
+        return current().nextInt(ceiling);
     }
 
     /**
@@ -41,7 +44,7 @@ public class Rand {
      * @return a random integer
      */
     public static int getInt(int floor, int ceiling) {
-        return rand.nextInt(ceiling-floor) + floor;
+        return current().nextInt(ceiling-floor) + floor;
     }
     /**
      * Get a random integer between 0 and max, inclusive
@@ -50,7 +53,7 @@ public class Rand {
      * @return a random integer in the specified range
      */
     public static int getNumber(int max) {
-        return rand.nextInt(max+1);
+        return current().nextInt(max+1);
     }
 
     /**
@@ -61,7 +64,7 @@ public class Rand {
      * @return a random integer in the specified range
      */
     public static int getNumber(int min, int max) {
-        return rand.nextInt(max-min + 1) + min;
+        return current().nextInt(max-min + 1) + min;
     }
 
     /**
@@ -76,7 +79,7 @@ public class Rand {
      * @return  a random integer in the specified range
      */
     public static int diceRoll(int sides) {
-        return rand.nextInt(sides) + 1;
+        return current().nextInt(sides) + 1;
     }
 
     /**
@@ -85,7 +88,7 @@ public class Rand {
      * @return a random double in the specified range
      */
     public static double getDouble() {
-        return rand.nextDouble();
+        return current().nextDouble();
     }
 
     /**
@@ -94,7 +97,7 @@ public class Rand {
      * @return a random double in the specified range
      */
     public static double getDoubleNeg1To1() {
-        return (rand.nextDouble() - .5)*2;
+        return (current().nextDouble() - .5)*2;
     }
 
     /**
@@ -103,7 +106,7 @@ public class Rand {
      * @return a random double in the specified range
      */
     public static double getDouble(double ceiling) {
-        return rand.nextDouble()*ceiling;
+        return current().nextDouble()*ceiling;
     }
 
     /**
@@ -114,7 +117,7 @@ public class Rand {
      * @return a random double in the specified range
      */
     public static double getDouble(double floor, double ceiling) {
-        return (rand.nextDouble()*(ceiling-floor)) + floor;
+        return (current().nextDouble()*(ceiling-floor)) + floor;
     }
 
     /**
@@ -123,7 +126,7 @@ public class Rand {
      * @return true or false
      */
     public static boolean getBoolean() {
-        return rand.nextBoolean();
+        return current().nextBoolean();
     }
 
     /**
@@ -133,7 +136,7 @@ public class Rand {
      * @return true if the event should happen
      */
     public static boolean chance(double percentchance) {
-        return rand.nextDouble() < percentchance/100.0;
+        return current().nextDouble() < percentchance/100.0;
     }
 
 
@@ -172,8 +175,16 @@ public class Rand {
      * re-randomize the random instance
      */
     public static void randomize() {
-        rand.setSeed(System.nanoTime());
+        current().setSeed(System.nanoTime());
     }
+
+    /**
+     * re-randomize the random instance
+     */
+    public static void randomize(long seed) {
+        current().setSeed(seed);
+    }
+
 
     ////////////////////////////
 
@@ -195,7 +206,7 @@ public class Rand {
         }
 
         public T rand() {
-            return this.get(rand.nextInt(this.size()));
+            return this.get(current().nextInt(this.size()));
         }
     }
 
@@ -220,7 +231,7 @@ public class Rand {
 
         public String rand() {
 
-            return convert(rand.nextInt(mHighChar-mLowChar) + mLowChar);
+            return convert(current().nextInt(mHighChar-mLowChar) + mLowChar);
         }
 
         private String[] allChars = null;
@@ -239,6 +250,33 @@ public class Rand {
             return new String(Character.toChars(charpoint));
         }
 
-
     }
+
+
+
+    // ThreadLocalRandom is not available on old APIs.
+    //Store randoms in a Weak map so they can be cleaned if we get too many from short-lived threads,
+    // but also keep a small list in a regular map to avoid constant recreating.
+    private static Map<Long,Random> threadRands = Collections.synchronizedMap(new WeakHashMap<Long, Random>());
+
+    private static final int MSIZE = 10;
+    private static Map<Long,Random> threadRandsFixed = new LinkedHashMap<Long,Random>() {
+        @Override
+        protected boolean removeEldestEntry(Entry<Long, Random> eldest) {
+            return size()>MSIZE;
+        }
+    };
+
+    private static Random current() {
+
+        Long me = Thread.currentThread().getId();
+        Random r = threadRands.get(me);
+        if (r==null) {
+            r = new Random();
+            threadRands.put(me,r);
+            threadRandsFixed.put(me,r); //add to keep a limited number from being garbage collected
+        }
+        return r;
+    }
+
 }
