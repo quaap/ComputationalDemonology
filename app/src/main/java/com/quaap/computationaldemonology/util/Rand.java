@@ -220,7 +220,7 @@ public class Rand {
 
         public String rand() {
 
-            return convert(rand.nextInt(mHighChar) + mLowChar);
+            return convert(rand.nextInt(mHighChar-mLowChar) + mLowChar);
         }
 
         private String[] allChars = null;
