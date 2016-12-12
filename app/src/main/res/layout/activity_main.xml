@@ -20,13 +20,13 @@
         android:layout_height="wrap_content">
 
         <ToggleButton
-            android:text="Page"
-            android:layout_width="wrap_content"
+            android:text="@string/page"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/toggleButton"
             android:layout_weight="1"
-            android:textOff="Go To Controls"
-            android:textOn="Back To Description"
+            android:textOff="@string/go_to_controls"
+            android:textOn="@string/back_to_description"
             android:background="@color/colorPrimaryDark"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:textColor="@android:color/white" />
@@ -51,7 +51,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView"
-            android:layout_columnSpan="2"
             android:layout_gravity="center_horizontal"
             android:textColor="@android:color/holo_blue_light"
             android:textSize="18sp" />
@@ -74,7 +73,7 @@
 
 
             <Button
-                android:text="Protect"
+                android:text="@string/protect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button_seek"
@@ -86,7 +85,7 @@
                 android:layout_marginTop="@dimen/activity_vertical_margin" />
 
             <Button
-                android:text="Cast"
+                android:text="@string/cast"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button_cast"
@@ -98,7 +97,7 @@
                 android:layout_marginTop="@dimen/activity_vertical_margin" />
 
             <Button
-                android:text="Summon"
+                android:text="@string/summon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button_summon"
@@ -110,7 +109,7 @@
                 android:layout_marginTop="@dimen/activity_vertical_margin" />
 
             <Button
-                android:text="ftaghu"
+                android:text="@string/ftaghu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white"
@@ -122,7 +121,7 @@
                 android:layout_marginTop="@dimen/activity_vertical_margin" />
 
             <Button
-                android:text="Expel"
+                android:text="@string/expel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button_expel"
@@ -134,7 +133,7 @@
                 android:layout_marginTop="@dimen/activity_vertical_margin" />
 
                 <Button
-                    android:text="Incant"
+                    android:text="@string/incant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/button_cloud"

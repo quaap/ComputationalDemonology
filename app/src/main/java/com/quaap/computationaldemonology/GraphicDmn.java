@@ -33,11 +33,24 @@ import java.util.Random;
 
 /**
  * Created by tom on 12/2/16.
+ *
+ *    Copyright (C) 2016  tom
+ *
+ *    This program is free software; you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation; either version 3 of the License, or
+ *    (at your option) any later version.
+ *
+ *    This program is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU General Public License for more details.
+ *
  */
 
 public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, MediaPlayer.OnPreparedListener{
 
-    private long step = 50;
+    private final long step = 50;
 
     private GraphicDmnThread mThread;
 
@@ -45,12 +58,12 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
 
     private final Paint mBgColor;
 
-    List<Drawgorythm> drawers = new ArrayList<>();
+    final List<Drawgorythm> drawers = new ArrayList<>();
 
 
     MediaPlayer[] mplayers;
 
-    Random rand = new Random();
+    final Random rand = new Random();
 
     private Synth synth;
     private long iterations = 0;
@@ -162,13 +175,7 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
         synth = new AmbilectricSynth();
         synth.setVol(.008f);
 
-        mThread = new GraphicDmnThread(surfaceHolder, new Handler() {
-            @Override
-            public void handleMessage(final Message m) {
-                // mStatusText.setVisibility(m.getData().getInt("viz"));
-                //  mStatusText.setText(m.getData().getString("text"));
-            }
-        });
+        mThread = new GraphicDmnThread(surfaceHolder);
 
         final Context context = getContext();
 
@@ -237,10 +244,12 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
         }
 
         for (MediaPlayer m: mplayers) {
-            if (m.isPlaying()) {
-                m.stop();
+            if (m!=null) {
+                if (m.isPlaying()) {
+                    m.stop();
+                }
+                m.release();
             }
-            m.release();
         }
 
         synth.stopSynth();
@@ -318,8 +327,6 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
 
     class GraphicDmnThread extends Thread {
 
-        /** Message handler used by thread to interact with TextView */
-        private final Handler mHandler;
         /** Handle to the surface manager object we interact with */
         private final SurfaceHolder mSurfaceHolder;
 
@@ -330,11 +337,9 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
         private boolean mRun = false;
 
 
-        public GraphicDmnThread(final SurfaceHolder surfaceHolder,
-                                final Handler handler) {
+        public GraphicDmnThread(final SurfaceHolder surfaceHolder) {
             // get handles to some important objects
             mSurfaceHolder = surfaceHolder;
-            mHandler = handler;
         }
 
         @Override

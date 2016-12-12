@@ -9,9 +9,6 @@ import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.quaap.computationaldemonology.synth.AmbilectricSynth;
-import com.quaap.computationaldemonology.synth.Synth;
-
 
 public class GraphicDemonActivity extends AppCompatActivity implements SensorEventListener {
 

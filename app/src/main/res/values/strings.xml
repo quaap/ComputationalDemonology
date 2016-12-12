@@ -92,4 +92,13 @@ evil vile wicked base corrupt immoral dishonest sinful heinous depraved profane 
         my mind,no one left,death is all,sleep no more,don\'t blink,eternal sleep,he comes,no escape,no rest,
     the abyss is staring back, the abyss, nothingness encompasses, the angles are not real, my face my face,
     nothing is left</string>
+    <string name="page">Page</string>
+    <string name="go_to_controls">Go To Controls</string>
+    <string name="back_to_description">Back To Description</string>
+    <string name="protect">Protect</string>
+    <string name="cast">Cast</string>
+    <string name="summon">Summon</string>
+    <string name="ftaghu">ftaghu</string>
+    <string name="expel">Expel</string>
+    <string name="incant">Incant</string>
 </resources>

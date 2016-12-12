@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.graphics.PointF;
 
 import java.util.ArrayList;
@@ -13,13 +12,26 @@ import java.util.Random;
 
 /**
  * Created by tom on 12/8/16.
+ *
+ *    Copyright (C) 2016  tom
+ *
+ *    This program is free software; you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation; either version 3 of the License, or
+ *    (at your option) any later version.
+ *
+ *    This program is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU General Public License for more details.
+ *
  */
 
 public class Worms extends Drawgorythm {
 
-    int num = 23;
-    int segments = 11;
-    List<Worm> worms = new ArrayList<>();
+    final int num = 23;
+    final int segments = 11;
+    final List<Worm> worms = new ArrayList<>();
 
 
     public Worms(Context context) {
@@ -66,12 +78,12 @@ public class Worms extends Drawgorythm {
     }
 
     class Worm {
-        PointF [] points;
-        PointF [] pointDeltas;
-        PointF dest;
-        Paint color;
-        Random r = new Random();
-        float maxseglen;
+        final PointF [] points;
+        final PointF [] pointDeltas;
+        final PointF dest;
+        final Paint color;
+        final Random r = new Random();
+        final float maxseglen;
 
         public Worm(int segments) {
 

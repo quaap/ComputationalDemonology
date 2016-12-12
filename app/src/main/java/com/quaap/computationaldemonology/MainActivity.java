@@ -6,13 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.SeekBar;
 import android.widget.ToggleButton;
 import android.widget.ViewFlipper;
 
-import com.quaap.computationaldemonology.synth.MultiToneSynth;
-import com.quaap.computationaldemonology.synth.SawSynth;
-import com.quaap.computationaldemonology.synth.StaticFilter;
 import com.quaap.computationaldemonology.synth.Synth;
 
 public class MainActivity extends AppCompatActivity implements Button.OnClickListener {

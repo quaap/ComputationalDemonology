@@ -1,10 +1,8 @@
 package com.quaap.computationaldemonology.functions;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.graphics.Typeface;
 
 import com.quaap.computationaldemonology.R;
@@ -12,6 +10,19 @@ import com.quaap.computationaldemonology.util.Rand;
 
 /**
  * Created by tom on 12/7/16.
+ *
+ *    Copyright (C) 2016  tom
+ *
+ *    This program is free software; you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation; either version 3 of the License, or
+ *    (at your option) any later version.
+ *
+ *    This program is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU General Public License for more details.
+ *
  */
 
 public class CloudChamber extends Drawgorythm {
@@ -24,7 +35,7 @@ public class CloudChamber extends Drawgorythm {
     private double [] sparkDX;
     private double [] sparkDY;
     private Paint  [] fgs;
-    private String words;
+    private final String words;
     long totalticks = 0;
     int startchar;
     private Paint mTextPaint;

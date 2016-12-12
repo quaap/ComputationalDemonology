@@ -11,7 +11,6 @@ import com.quaap.computationaldemonology.R;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 import java.util.Stack;
 
 import com.quaap.computationaldemonology.util.Rand;
@@ -19,32 +18,45 @@ import com.quaap.computationaldemonology.util.Rand.*;
 
 /**
  * Created by tom on 12/6/16.
+ *
+ *    Copyright (C) 2016  tom
+ *
+ *    This program is free software; you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation; either version 3 of the License, or
+ *    (at your option) any later version.
+ *
+ *    This program is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU General Public License for more details.
+ *
  */
 
 public class Code extends Drawgorythm  {
-    String hp;
+    final String hp;
 
-    String [] codes;
-    String [] nouns;
-    String [] lc;
-    String lc2;
-    String [] endwords;
-    String [] hwords;
+    final String [] codes;
+    final String [] nouns;
+    final String [] lc;
+    final String lc2;
+    final String [] endwords;
+    final String [] hwords;
 
 
 
 
     long tickspast = 0;
 
-    int numlines = 11;
-    List<String> hists = new LinkedList<>();
-    Paint [] mTextPaint = new Paint[numlines];
-    int [] theight = new int[numlines];
+    final int numlines = 11;
+    final List<String> hists = new LinkedList<>();
+    final Paint [] mTextPaint = new Paint[numlines];
+    final int [] theight = new int[numlines];
     int theighttot = 0;
     Bitmap textarea;
     Canvas textareaCanvas;
 
-    int mMethod;
+    final int mMethod;
 
     public Code(Context context, int method) {
         super(context);
@@ -107,21 +119,21 @@ public class Code extends Drawgorythm  {
     }
 
 
-    private RandomList<String> mathSyms1 = new RandomList<>("+", "-", "\u00D7", "\u00F7", "=", "0", "1", "NIL");
+    private final RandomList<String> mathSyms1 = new RandomList<>("+", "-", "\u00D7", "\u00F7", "=", "0", "1", "NIL");
 
-    private CharRange mathSyms2 = new CharRange(0x2200, 0x22FF);
+    private final CharRange mathSyms2 = new CharRange(0x2200, 0x22FF);
 
 //    private CharRange mathLetters1 = new CharRange('A', 'Z');
 //    private CharRange mathLetters2 = new CharRange('Α', 'Ω');
 //    private CharRange mathLetters3 = new CharRange('a', 'z');
 //    private CharRange mathLetters4 = new CharRange('α', 'ω');
 
-    private String lcgreek = "αβγδεζηθικλμνξοπρςστυφχψω";
-    private String ucgreek = "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ";
-    private String eng = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxwy";
+    private final String lcgreek = "αβγδεζηθικλμνξοπρςστυφχψω";
+    private final String ucgreek = "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ";
+    private final String eng = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxwy";
 
 
-    private String greek =  ucgreek + lcgreek;
+    private final String greek =  ucgreek + lcgreek;
 
 
 //    private CharRange mathLetters1 = new CharRange(0x1D400, 0x1D7FF);
@@ -136,11 +148,11 @@ public class Code extends Drawgorythm  {
 
 
 
-    private Stack<String> pstack = new Stack<>();
+    private final Stack<String> pstack = new Stack<>();
 
 
-    private RandomList<String[]> groupings =
-            new RandomList<String[]>(new String [][]
+    private final RandomList<String[]> groupings =
+            new RandomList<>(new String [][]
                 {
                     {"(",")"}, {"{","}"}, {"[","]"},
                     {"(",")"}, {"{","}"}, {"[","]"},
@@ -150,7 +162,7 @@ public class Code extends Drawgorythm  {
 
 
 
-    int STACKMAX = 5;
+    final int STACKMAX = 5;
 
     public void makeText() {
         if (hists.size() > numlines * 3) {
@@ -227,21 +239,21 @@ public class Code extends Drawgorythm  {
                 }
             }
 
-            if (hist.length()>6) {
-                int r1 = Rand.getInt(2);
-
-                for (int r = 0; r < r1; r++) {
-                    int pos = Rand.getInt(hist.length() - 2) + 1;
-
-                   // hist.insert(pos, txtAdditions.rand());
-                }
-            }
+//            if (hist.length()>6) {
+//                int r1 = Rand.getInt(2);
+//
+//                for (int r = 0; r < r1; r++) {
+//                    int pos = Rand.getInt(hist.length() - 2) + 1;
+//
+//                   // hist.insert(pos, txtAdditions.rand());
+//                }
+//            }
             hists.add(hist.toString());
         }
 
     }
 
-    private RandomList<String> formats = new RandomList<>("%3.2e", "%10.7f", "%5.0f");
+    private final RandomList<String> formats = new RandomList<>("%3.2e", "%10.7f", "%5.0f");
     private String number() {
         return String.format(Locale.getDefault(),formats.rand(),Rand.getDouble(1000));
     }
