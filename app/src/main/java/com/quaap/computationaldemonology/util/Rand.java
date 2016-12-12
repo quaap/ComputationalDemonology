@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -257,10 +256,10 @@ public class Rand {
     // ThreadLocalRandom is not available on old APIs.
     //Store randoms in a Weak map so they can be cleaned if we get too many from short-lived threads,
     // but also keep a small list in a regular map to avoid constant recreating.
-    private static Map<Long,Random> threadRands = Collections.synchronizedMap(new WeakHashMap<Long, Random>());
+    private static final Map<Long,Random> threadRands = Collections.synchronizedMap(new WeakHashMap<Long, Random>());
 
     private static final int MSIZE = 10;
-    private static Map<Long,Random> threadRandsFixed = Collections.synchronizedMap(new LinkedHashMap<Long,Random>() {
+    private static final Map<Long,Random> threadRandsFixed = Collections.synchronizedMap(new LinkedHashMap<Long,Random>() {
         @Override
         protected boolean removeEldestEntry(Entry<Long, Random> eldest) {
             return size()>MSIZE;
@@ -269,7 +268,7 @@ public class Rand {
 
     private static Random current() {
 
-        Long me = Thread.currentThread().getId();
+        final Long me = Thread.currentThread().getId();
         Random r = threadRands.get(me);
         if (r==null) {
             r = new Random();
