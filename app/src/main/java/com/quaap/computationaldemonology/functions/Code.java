@@ -65,7 +65,7 @@ public class Code extends Drawgorythm  {
             mTextPaint[t].setTextSize(28);
             //mTextPaint[t].setTextSize(18 + t*2);
             //mTextPaint[t].setTextScaleX((numlines - t)/(float)numlines + 1);
-            mTextPaint[t].setTypeface(Typeface.MONOSPACE);
+            mTextPaint[t].setTypeface(Typeface.SANS_SERIF);
             mTextPaint[t].setAlpha((t+1)*(230/(numlines+1)));
             theight[t] = (int) (mTextPaint[t].descent() - mTextPaint[t].ascent());
             theighttot += theight[t];
@@ -111,17 +111,25 @@ public class Code extends Drawgorythm  {
     private CharRange mathSyms2 = new CharRange(0x2200, 0x22FF);
 
 //    private CharRange mathLetters1 = new CharRange('A', 'Z');
-//    private CharRange mathLetters2 = new CharRange('a', 'z');
-//    private CharRange mathLetters3 = new CharRange('Α', 'Ω');
-//    private CharRange mathLetters4 = new CharRange('α', 'α');
+//    private CharRange mathLetters2 = new CharRange('Α', 'Ω');
+//    private CharRange mathLetters3 = new CharRange('a', 'z');
+//    private CharRange mathLetters4 = new CharRange('α', 'ω');
 
-    private CharRange mathLetters1 = new CharRange(0x1D400, 0x1D7FF);
-    private CharRange mathLetters2 = new CharRange(0x2100, 0x214F);
-    private CharRange mathLetters3 = new CharRange(0x1EE00, 0x1EE7E);
+    private String lcgreek = "αβγδεζηθικλμνξοπρςστυφχψω";
+    private String ucgreek = "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ";
+    private String eng = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxwy";
 
-    private CharRange mathArrows1 = new CharRange(0x2190, 0x21FF);
-    private CharRange mathArrows2 = new CharRange(0x27F0, 0x27FF);
-    private CharRange mathArrows3 = new CharRange(0x2900, 0x297F);
+
+    private String greek =  ucgreek + lcgreek;
+
+
+//    private CharRange mathLetters1 = new CharRange(0x1D400, 0x1D7FF);
+//    private CharRange mathLetters2 = new CharRange(0x2100, 0x214F);
+//    private CharRange mathLetters3 = new CharRange(0x1EE00, 0x1EE7E);
+//
+//    private CharRange mathArrows1 = new CharRange(0x2190, 0x21FF);
+//    private CharRange mathArrows2 = new CharRange(0x27F0, 0x27FF);
+//    private CharRange mathArrows3 = new CharRange(0x2900, 0x297F);
 
     private CharRange txtAdditions = new CharRange(768, 2042);
 
@@ -148,7 +156,9 @@ public class Code extends Drawgorythm  {
             hists.remove(0);
             return;
         }
-        for (int i = 0; i < numlines*10; i++) {
+
+
+        for (int i = 0; i < numlines*4; i++) {
             StringBuilder hist = new StringBuilder(2048);
             if (Rand.chance(1)) {
                 hist.append("-{{{");
@@ -175,36 +185,36 @@ public class Code extends Drawgorythm  {
 
                     if (p==mMethod) {
 
-                        for (int k = 0; k < Rand.getInt(2,7); k++) {
-                            hist.append(mathLetters1.rand());
+                        for (int k = 0; k < Rand.getInt(1,7); k++) {
+                           hist.append(Rand.getBoolean() ? Rand.getChar(greek) : Rand.getChar(eng));
                         }
-                        if (Rand.chance(50)) hist.append(mathSyms2.rand());
+                        if (Rand.chance(50)) hist.append(" ").append(mathSyms2.rand()).append(" ");
 
                         if (Rand.chance(20)) hist.append(mathSyms1.rand());
 
                         if (Rand.chance(40)) hist.append(number());
                     }
 
-                    if (Rand.chance(10)) hist.append(mathSyms2.rand());
+                    if (Rand.chance(30)) hist.append(" ").append(mathSyms2.rand()).append(" ");
 
                     if (Rand.chance(20)) hist.append(mathSyms1.rand());
 
 
                     if (Rand.chance(20)) hist.append(number());
 
-                    if (Rand.chance(20)) hist.append(mathLetters1.rand()).append(" ");
-                    if (Rand.chance(10)) hist.append(mathLetters2.rand());
-                    if (Rand.chance(5)) hist.append(mathLetters3.rand());
+                    if (Rand.chance(20)) hist.append(Rand.getBoolean() ? Rand.getChar(greek) : Rand.getChar(eng)).append(" ");
+//                    if (Rand.chance(10)) hist.append(mathLetters2.rand());
+//                    if (Rand.chance(5)) hist.append(mathLetters3.rand());
+//
+//                    if (Rand.chance(3)) hist.append(" ").append(mathArrows1.rand()).append(" ");
+//                    if (Rand.chance(1)) hist.append(" ").append(mathArrows2.rand()).append(" ");
+//                    if (Rand.chance(.5)) hist.append(mathArrows3.rand());
 
-                    if (Rand.chance(3)) hist.append(" ").append(mathArrows1.rand()).append(" ");
-                    if (Rand.chance(1)) hist.append(" ").append(mathArrows2.rand()).append(" ");
-                    if (Rand.chance(.5)) hist.append(mathArrows3.rand());
-
-                    if (Rand.chance(3 * mMethod)) hist.append(Rand.rand(endwords)).append(" ");
-                    if (Rand.chance(2 * mMethod)) hist.append(Rand.rand(hwords)).append(" ");
-                    if (Rand.chance(2 * mMethod)) hist.append(Rand.rand(lc)).append(" ");
-                    if (Rand.chance(1 * mMethod)) hist.append(Rand.getSubstr(lc2,10,30)).append(" ");
-                    if (Rand.chance(2 * mMethod)) hist.append(Rand.getSubstr(hp,10,30)).append(" ");
+                    if (Rand.chance(3.0 / mMethod)) hist.append(Rand.rand(endwords)).append(" ");
+                    if (Rand.chance(2.0 / mMethod)) hist.append(Rand.rand(hwords)).append(" ");
+                    if (Rand.chance(2.0 / mMethod)) hist.append(Rand.rand(lc)).append(" ");
+                    if (Rand.chance(1.0 / mMethod)) hist.append(Rand.getSubstr(lc2,10,30)).append(" ");
+                    if (Rand.chance(2.0 / mMethod)) hist.append(Rand.getSubstr(hp,10,30)).append(" ");
 
 
                     if (pstack.size() > 1 && Rand.chance(50) || pstack.size() > STACKMAX) {
@@ -220,7 +230,7 @@ public class Code extends Drawgorythm  {
                 for (int r = 0; r < r1; r++) {
                     int pos = Rand.getInt(hist.length() - 2) + 1;
 
-                    hist.insert(pos, txtAdditions.rand());
+                   // hist.insert(pos, txtAdditions.rand());
                 }
             }
             hists.add(hist.toString());
