@@ -187,6 +187,17 @@
             android:textSize="12sp"
             android:layout_marginTop="16dp" />
 
+        <TextView
+            android:text="@string/copyright"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/holo_blue_bright"
+            android:gravity="center_horizontal"
+            android:id="@+id/textView8"
+            android:textSize="12sp"
+            android:layout_marginTop="164dp"
+            android:maxLines="7" />
+
 
     </LinearLayout>
 

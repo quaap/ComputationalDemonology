@@ -39,6 +39,7 @@ parasite  maladroit  clumsy obstreperous  unruly rancid
 repugnant  distasteful repulsive  disgusting shriek  sharp  screeching  shrill  high-pitched  shun  avoid
 ostracize slaughter  butcher  carnage unctuous  smug  ingratiating visceral  crude  anatomically graphic
 unbearable intolerable</string>
+    <!-- http://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags/ -->
     <string name="htmlparse">You can\'t parse [X]HTML with regex. Because HTML can\'t be parsed by regex. Regex is not a tool that can be used to
 correctly parse HTML. As I have answered in HTML-and-regex questions here so many times before, the use of regex will
 not allow you to consume HTML. Regular expressions are a tool that is insufficiently sophisticated to understand the
@@ -108,8 +109,10 @@ evil vile wicked base corrupt immoral dishonest sinful heinous depraved profane 
 
     <string name="protection_desc">Protection:\nPerforms the Rosencraft toroidal sequence. Purpose: slow the advance of ectastic entities into the local reality gradient.</string>
     <string name="summon_desc">Summon:\nRuns the level-7 imaginary prime series. Purpose: attract (hopefully benevolent) mesonic-energy entities.</string>
-    <string name="cast_desc">Cast:\nPerforms a randomized nth-cardinality. Purpose: potentially disturb any nearby JKR energy fields enough to change the outcome of future events.</string>
+    <string name="cast_desc">Cast:\nPerforms a randomized, nth-cardinality polynomial set. Purpose: potentially disturb any nearby boson-based JKR energy fields enough to change the outcome of future events.</string>
     <string name="ftaghu_desc">Ftaghu:\nPerforms a linear integration over the quintic reciprocal convergence set. Purpose: attempt to tune Planck constant enough to allow crucial observation and measurement of The Old Ones.</string>
     <string name="expel_desc">Expel:\nCalculates full set of Golberg entirion matrices. Purpose: force back any local boundry anomolies.</string>
     <string name="battery_warn">Warning:\nThese calculations use a lot of power, so watch your battery!</string>
+    <string name="copyright">Copyright © 2016 Tom Kliethermes</string>
+    <string name="the_laundry">Yes, this is a joke.</string>
 </resources>
