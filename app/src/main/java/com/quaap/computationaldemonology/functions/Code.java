@@ -81,7 +81,11 @@ public class Code extends Drawgorythm  {
             mTextPaint[t].setAlpha((t+1)*(230/(numlines+1)));
             theight[t] = (int) (mTextPaint[t].descent() - mTextPaint[t].ascent());
             theighttot += theight[t];
+            hists.add("  ");
         }
+        hists.add("  ");
+        hists.add("  ");
+        hists.add("BEGIN ");
         makeText();
         //
     }
@@ -140,8 +144,8 @@ public class Code extends Drawgorythm  {
 //    private CharRange mathLetters2 = new CharRange(0x2100, 0x214F);
 //    private CharRange mathLetters3 = new CharRange(0x1EE00, 0x1EE7E);
 //
-    private CharRange mathArrows1 = new CharRange(0x2190, 0x21FF);
-    private CharRange mathArrows2 = new CharRange(0x27F0, 0x27FF);
+ //   private CharRange mathArrows1 = new CharRange(0x2190, 0x21FF);
+ //   private CharRange mathArrows2 = new CharRange(0x27F0, 0x27FF);
 //    private CharRange mathArrows3 = new CharRange(0x2900, 0x297F);
 
     private CharRange txtAdditions = new CharRange(768, 2042);
@@ -154,8 +158,8 @@ public class Code extends Drawgorythm  {
     private final RandomList<String[]> groupings =
             new RandomList<>(new String [][]
                 {
-                    {"(",")"}, {"{","}"}, {"[","]"},
-                    {"(",")"}, {"{","}"}, {"[","]"},
+                    {"(",")"}, {"{","}"}, {"[","]"},{"while (e) {","}"},
+                        {"(",")"}, {"{","}"}, {"[","]"},
                     {"⦃","⦄"}, {"⟦","⟧"}, {"⟨","⟩"},
                     {"⟪","⟫"}, {"⦇", "⦈"}, {"( (",") )"}
                 });
