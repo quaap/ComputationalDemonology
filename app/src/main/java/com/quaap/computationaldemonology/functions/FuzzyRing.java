@@ -53,6 +53,8 @@ public class FuzzyRing extends Ring {
             if (speed<4) speed=4;
         }
         rad = 0;
+        float lastX=0;
+        float lastY=0;
         do {
 
             double rnd = Rand.getDouble()/2 + .5;
@@ -61,10 +63,14 @@ public class FuzzyRing extends Ring {
             float x = (float) (r * Math.sin(rad)) + mCenterX + sizex;
             float y = (float) (r * Math.cos(rad)) + mCenterY + sizey;
 
+            if (lastX!=0) {
+                canvas.drawLine(x, y, lastX, lastY, getRandomForeground());
+            }
 
-            canvas.drawLine(x, y, x + 1, y + 1, getRandomForeground());
+            lastX = x;
+            lastY = y;
 
-            rad += .001;
+            rad += .01;
 
         } while (rad<Math.PI*2);
 
