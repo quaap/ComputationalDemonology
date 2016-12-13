@@ -158,7 +158,7 @@ public class Code extends Drawgorythm  {
     private final RandomList<String[]> groupings =
             new RandomList<>(new String [][]
                 {
-                    {"(",")"}, {"{","}"}, {"[","]"},{"while (e) {","}"},
+                    {"(",")"}, {"{","}"}, {"[","]"},{"do {","}"},
                         {"(",")"}, {"{","}"}, {"[","]"},
                     {"⦃","⦄"}, {"⟦","⟧"}, {"⟨","⟩"},
                     {"⟪","⟫"}, {"⦇", "⦈"}, {"( (",") )"}
