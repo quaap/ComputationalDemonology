@@ -17,6 +17,8 @@ package com.quaap.computationaldemonology;
  *
  */
 
+// Note: you'l notice a lot of magic numbers used throughout this code.  Yeah, that's the point.
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

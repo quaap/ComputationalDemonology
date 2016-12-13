@@ -46,7 +46,7 @@ public class PentaStar extends Ring {
         super.doDraw(canvas,ticks);
 
         if (Math.abs(mMoveZ)>.1) {
-            dmove += (mMoveZ+mMoveY)/5;
+            dmove += (mMoveZ+mMoveY)/15;
             if (dmove>3) dmove = 3;
             if (dmove<-3) dmove = -3;
         }
@@ -60,13 +60,13 @@ public class PentaStar extends Ring {
 
         if (mTouchDX!=0) {
             speed+= Math.signum(mTouchDX)/5;
-            if (speed>60) speed=60;
+            if (speed>3) speed=3;
             if (speed<1) speed=1;
             modspeed = speed;
         }
-        modspeed += (mMoveX + mMoveY + mMoveZ)/20;
-        if (modspeed>5) modspeed=5;
-        if (modspeed<-5) modspeed=-5;
+        modspeed += (mMoveX + mMoveY + mMoveZ)/50;
+        if (modspeed>3) modspeed=3;
+        if (modspeed<-3) modspeed=-3;
 
         rad = 0;
 
@@ -129,6 +129,7 @@ public class PentaStar extends Ring {
             } while (Math.round(x+1) != Math.round(nextX+1));
 
         }
+        modspeed -= modspeed/40.0;
     }
 
 }
