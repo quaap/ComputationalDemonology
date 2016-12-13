@@ -101,4 +101,15 @@ evil vile wicked base corrupt immoral dishonest sinful heinous depraved profane 
     <string name="ftaghu">ftaghu</string>
     <string name="expel">Expel</string>
     <string name="incant">Incant</string>
+
+    <string name="name_link"><![CDATA[This program was written by <a href=\'http://quaap.com/D/programming-index?from=compdemon\'>Tom Kliethermes</a>]]></string>
+    <string name="oss">Computational Demonology is open-source software. The sourcecode and license can be found at the following link:</string>
+    <string name="oss_link">https://github.com/quaap/ComputationalDemonology</string>
+
+    <string name="protection_desc">Protection:\nPerforms the Rosencraft toroidal sequence. Purpose: slow the advance of ectastic entities into the local reality gradient.</string>
+    <string name="summon_desc">Summon:\nRuns the level-7 imaginary prime series. Purpose: attract (hopefully benevolent) mesonic-energy entities.</string>
+    <string name="cast_desc">Cast:\nPerforms a randomized nth-cardinality. Purpose: potentially disturb any nearby JKR energy fields enough to change the outcome of future events.</string>
+    <string name="ftaghu_desc">Ftaghu:\nPerforms a linear integration over the quintic reciprocal convergence set. Purpose: attempt to tune Planck constant enough to allow crucial observation and measurement of The Old Ones.</string>
+    <string name="expel_desc">Expel:\nCalculates full set of Golberg entirion matrices. Purpose: force back any local boundry anomolies.</string>
+    <string name="battery_warn">Warning:\nThese calculations use a lot of power, so watch your battery!</string>
 </resources>

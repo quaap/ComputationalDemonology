@@ -142,9 +142,12 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
     private int mMethod = 0;
     public void startDraw(int which) {
         mMethod = which;
-        Drawgorythm d0 = new Code(getContext(), which);
-        d0.setPaints(mLinePaint, mBgColor);
-        drawers.add(d0);
+
+        if (mMethod!=CLOUD) {
+            Drawgorythm d0 = new Code(getContext(), mMethod);
+            d0.setPaints(mLinePaint, mBgColor);
+            drawers.add(d0);
+        }
 
         Drawgorythm d = null;
 
