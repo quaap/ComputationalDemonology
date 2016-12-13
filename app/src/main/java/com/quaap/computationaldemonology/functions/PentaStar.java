@@ -25,9 +25,9 @@ public class PentaStar extends Ring {
 
     private double rad2 = rad;
 
-    private double trails = 2;
+    private double trails = 3;
 
-    private double speed = 1;
+    private double speed = 1.5;
 
     private double modspeed = speed;
 
@@ -66,7 +66,7 @@ public class PentaStar extends Ring {
         }
         modspeed += (mMoveX + mMoveY + mMoveZ)/50;
         if (modspeed>3) modspeed=3;
-        if (modspeed<-3) modspeed=-3;
+        if (modspeed<.3) modspeed=.3;
 
         rad = 0;
 
@@ -129,7 +129,7 @@ public class PentaStar extends Ring {
             } while (Math.round(x+1) != Math.round(nextX+1));
 
         }
-        modspeed -= modspeed/40.0;
+        modspeed = modspeed - modspeed/100.0;
     }
 
 }

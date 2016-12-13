@@ -84,7 +84,6 @@ public class Code extends Drawgorythm  {
             hists.add("  ");
         }
         hists.add("  ");
-        hists.add("  ");
         hists.add("BEGIN ");
         makeText();
         //
