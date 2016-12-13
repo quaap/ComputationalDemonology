@@ -6,8 +6,6 @@ import android.graphics.Paint;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Message;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -168,6 +166,7 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
     }
 
 
+    private AsyncTask<Void,Void,Void> audioloader;
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         Log.d("GraphicDmn", "surfaceCreated");
@@ -179,7 +178,7 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
 
         final Context context = getContext();
 
-        AsyncTask<Void,Void,Void> med = new AsyncTask<Void, Void, Void>() {
+        audioloader = new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
                 mplayers = new MediaPlayer[soundRes.length];
@@ -191,7 +190,7 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
                 return null;
             }
         };
-        med.execute();
+        audioloader.execute();
 
 
     }
@@ -235,6 +234,11 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         Log.d("GraphicDmn", "surfaceDestroyed");
+
+        if (audioloader!=null) {
+            audioloader.cancel(true);
+        }
+
         mThread.stopRunning();
         try {
             mThread.join();
