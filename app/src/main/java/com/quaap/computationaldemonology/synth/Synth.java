@@ -34,8 +34,8 @@ public abstract class Synth extends Thread {
     protected final int mSnipsPerSample = 5;
     private AudioTrack mAudioTrack;
 
-    private boolean mRun = false;
-    private boolean mPause = false;
+    private volatile boolean mRun = false;
+    private volatile boolean mPause = false;
 
     protected float mVol = 1f;
 

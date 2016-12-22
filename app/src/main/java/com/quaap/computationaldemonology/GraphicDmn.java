@@ -340,8 +340,8 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
         //private final Context mContext;
 
 
-        private boolean mPaused = false;
-        private boolean mRun = false;
+        private volatile boolean mPaused = false;
+        private volatile boolean mRun = false;
 
 
         public GraphicDmnThread(final SurfaceHolder surfaceHolder) {
