@@ -11,6 +11,29 @@
         caution, and think pleasant thoughts. \n\n Note: you can \"tune\" each algorithm by manipulating screen touches.
     </string>
     <string name="action_settings">Settings</string>
+    <string name="page">Page</string>
+    <string name="go_to_controls">Go To Controls</string>
+    <string name="back_to_description">Back To Description</string>
+    <string name="protect">Protect</string>
+    <string name="cast">Cast</string>
+    <string name="summon">Summon</string>
+    <string name="ftaghu">ftaghu</string>
+    <string name="expel">Expel</string>
+    <string name="incant">Incant</string>
+
+    <string name="name_link"><![CDATA[This program was written by <a href=\'http://quaap.com/D/programming-index?from=compdemon\'>Tom Kliethermes</a>]]></string>
+    <string name="oss">Computational Demonology is open-source software. The sourcecode and license can be found at the following link:</string>
+    <string name="oss_link">https://github.com/quaap/ComputationalDemonology</string>
+
+    <string name="protection_desc">Protection:\nPerforms the Rosencraft toroidal sequence. Purpose: slow the advance of ectastic entities into the local reality gradient.</string>
+    <string name="summon_desc">Summon:\nRuns the level-7 imaginary prime series. Purpose: attract (hopefully benevolent) mesonic-energy entities.</string>
+    <string name="cast_desc">Cast:\nPerforms a randomized, nth-cardinality polynomial set. Purpose: potentially disturb any nearby boson-based JKR energy fields enough to change the outcome of future events.</string>
+    <string name="ftaghu_desc">Ftaghu:\nPerforms a linear integration over the quintic reciprocal convergence set. Purpose: attempt to tune Planck constant enough to allow crucial observation and measurement of The Old Ones.</string>
+    <string name="expel_desc">Expel:\nCalculates full set of Golberg entirion matrices. Purpose: force back any local boundry anomolies.</string>
+    <string name="battery_warn">Warning:\nThese calculations use a lot of power, so watch your battery!</string>
+    <string name="copyright">Copyright © 2016 Tom Kliethermes</string>
+
+    <!-- Translation of the items below is entirely optional :) They are used in the generated "code" -->
     <string name="code">CASE CODE GAME INDEX OPERATION INCIDENT SCENARIO SEQUENCE PLAN PROJECT</string>
     <string name="nouns">BLUE RED GREEN BLACK VIOLET WHITE MAUVE CODEX PENAL BOVINE EQUUS FELINE CANINE
     NIGHTMARE salt scar wound bone
@@ -19,26 +42,45 @@ wool chrysalis  its soft brown color coalesce  unite fuse
 crepuscular  dim  crystalline desultory  half-hearted  meandering diaphanous  gauzy
 dulcet  sweet ebullient  enthusiastic effervescent  bubbly elision  omission enchanted  charmed encompass  surround
 enrapture  delighted ephemeral  fleeting epiphany  revelation epitome  embodiment ethereal  celestial
-unworldly  immaterial etiquette  proper conduct evanescent  fleeting evocative  suggestive exuberant  abundant
-unrestrained  outsize felicity  happiness  pleasantness filament  thread  strand halcyon  care-free idyllic
-contentedly pleasing incorporeal  incandescent  glowing  radiant  brilliant  zealous ineffable
+unworldly  evanescent  fleeting  suggestive exuberant
+unrestrained    happiness  pleasantness filament  thread  strand halcyon  idyllic
+  incorporeal  incandescent  glowing  radiant  brilliant  zealous ineffable
 indescribable  unspeakable inexorable  relentless insouciance  nonchalance iridescent  luster languid  slow  listless
-lassitude  fatigue lilt  cheerful buoyant song movement lithe  flexible  graceful lullaby  soothing song
+lassitude  fatigue song movement lithe  flexible  graceful lullaby  soothing song
 luminescence  dim chemical organic light mellifluous smooth cloudy moisture virtual obstacle murmur
-        sound myriad  great number nebulous  indistinct opulent  ostentatious penumbra  shade
+sound myriad  great number nebulous  indistinct opulent  ostentatious penumbra  shade
 shroud  fringe plethora  abundance quiescent  peaceful quintessential purely representative radiant
-glowing redolent  aromatic  evocative resonant  echoing  evocative resplendent  shining rhapsodic  intensely emotional
+glowing redolent  aromatic  resonant  echoing  resplendent  shining rhapsodic  intensely emotional
 sapphire  bluish purple scintilla  trace serendipitous  chance serene  peaceful somnolent  drowsy  sleep
-inducing sonorous  loud  impressive  imposing spherical  ball-like  globular sublime  exalted  transcendent succulent
+sonorous  loud   imposing spherical  ball-like  globular sublime  exalted  transcendent succulent
  suffuse  flushed  full susurration  whispering symphony  harmonious assemblage talisman  charm
-magical device tessellated  checkered in pattern tranquility  peacefulness vestige  trace zenith  highest point ugly
+magical device tessellated  checkered in pattern tranquility  peacefulness vestige  trace zenith  highest  ugly
 cacophony  confused noise cataclysm  flood  catastrophe  upheaval chafe  irritate  abrade coarse  common  crude
-rough  harsh cynical  distrustful  self-interested decrepit   disgust  aversion  distaste grimace
-expression disgust pain grotesque  distorted  bizarre harangue  rant hirsute  hairy hoarse  harsh  grating leech
+rough  harsh cynical  distrustful  decrepit   disgust  aversion  distaste grimace
+disgust pain grotesque  distorted  bizarre harangue  rant hirsute  hairy hoarse  harsh  grating leech
 parasite  maladroit  clumsy obstreperous  unruly rancid
 repugnant  distasteful repulsive  disgusting shriek  sharp  screeching  shrill  high-pitched  shun  avoid
 ostracize slaughter  butcher  carnage unctuous  smug  ingratiating visceral  crude  anatomically graphic
 unbearable intolerable</string>
+    <string name="lovecraft2">Yog-Sothoth knows the gate. Yog-Sothoth is the gate. Yog-Sothoth is the key and guardian of the gate.
+        Past, present, future, all are one in Yog-Sothoth. He knows where the Old Ones broke through of old, and where They shall break
+through again. He knows where They have trod earth\'s fields, and where They still tread them, and why no one can behold
+Them as They tread. ph\'nglui mglw\'nafh Cthulhu R\'lyeh wgah\'nagl fhtagn. ph\'nglui mglw\'nafh Cthulhu R\'lyeh wgah\'nagl fhtagn.
+That is not dead which can eternal lie, And with strange aeons even death may die. All that the universe has to hold of
+        horror, and even the skies of spring and the flowers of summer must ever afterward be poison to me.
+        The other gods! The other gods! The gods of the outer hells that guard the feeble gods of earth!...
+        Look away... Go back... Do not see! Do not see!"
+    </string>
+    <string name="hwords">destroy kill avenge reap exterminate unmake sweep away kill extirpate wipe
+        pulverise pulverize rase end dilapidate disassemble self-destruct
+break apart eliminate fracture take down break up dismantle take apart undo tear interdict demyelinate
+self-destroy demolish  level pull down destruct uproot extinguish raze root out eradicate
+evil vile wicked base corrupt immoral dishonest sinful heinous depraved profane iniquitous ungodly blood bile
+    </string>
+    <string name="endwords">all is lost,oh god oh god oh god,no more,the end,shall rise,has fallen to,
+        my mind,no one left,death is all,sleep no more,don\'t blink,eternal sleep,he comes,no escape,no rest,
+    the abyss is staring back, the abyss, nothingness encompasses, the angles are not real, my face my face,
+    nothing is left</string>
     <!-- http://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags/ -->
     <string name="htmlparse">You can\'t parse [X]HTML with regex. Because HTML can\'t be parsed by regex. Regex is not a tool that can be used to
 correctly parse HTML. As I have answered in HTML-and-regex questions here so many times before, the use of regex will
@@ -74,45 +116,6 @@ Ghatanothoa Mother Hydra Zoth-Ommog Abhoth Aiueb Gnshal Azathoth Azhorra-Tha The
  Suc\'Naath Tru\'nembra Tulzscha Ubbo-Sathla Uvhash Xa\'ligha Xexanoth Ycnàgnnisssz Yhoundeh Yibb-Tstll Yidhra
  Yog-Sothoth Yomagn\'tho Elder Gods List Bast Kthanid Orryx Oztalun Nodens Shavalyoth Ulthar Vorvadoss Yad-Thaddag
  Yaggdytha </string>
-    <string name="lovecraft2">Yog-Sothoth knows the gate. Yog-Sothoth is the gate. Yog-Sothoth is the key and guardian of the gate.
-        Past, present, future, all are one in Yog-Sothoth. He knows where the Old Ones broke through of old, and where They shall break
-through again. He knows where They have trod earth\'s fields, and where They still tread them, and why no one can behold
-Them as They tread. ph\'nglui mglw\'nafh Cthulhu R\'lyeh wgah\'nagl fhtagn. ph\'nglui mglw\'nafh Cthulhu R\'lyeh wgah\'nagl fhtagn.
-That is not dead which can eternal lie, And with strange aeons even death may die. All that the universe has to hold of
-        horror, and even the skies of spring and the flowers of summer must ever afterward be poison to me.
-        The other gods! The other gods! The gods of the outer hells that guard the feeble gods of earth!...
-        Look away... Go back... Do not see! Do not see!"
-    </string>
-    <string name="hwords">destroy kill avenge reap exterminate unmake sweep away kill extirpate wipe
-        pulverise pulverize rase end dilapidate disassemble self-destruct
-break apart eliminate fracture take down break up dismantle take apart undo tear interdict demyelinate
-self-destroy demolish  level pull down destruct uproot extinguish raze root out eradicate
-evil vile wicked base corrupt immoral dishonest sinful heinous depraved profane iniquitous ungodly blood bile
-    </string>
-    <string name="endwords">all is lost,oh god oh god oh god,no more,the end,shall rise,has fallen to,
-        my mind,no one left,death is all,sleep no more,don\'t blink,eternal sleep,he comes,no escape,no rest,
-    the abyss is staring back, the abyss, nothingness encompasses, the angles are not real, my face my face,
-    nothing is left</string>
-    <string name="page">Page</string>
-    <string name="go_to_controls">Go To Controls</string>
-    <string name="back_to_description">Back To Description</string>
-    <string name="protect">Protect</string>
-    <string name="cast">Cast</string>
-    <string name="summon">Summon</string>
-    <string name="ftaghu">ftaghu</string>
-    <string name="expel">Expel</string>
-    <string name="incant">Incant</string>
 
-    <string name="name_link"><![CDATA[This program was written by <a href=\'http://quaap.com/D/programming-index?from=compdemon\'>Tom Kliethermes</a>]]></string>
-    <string name="oss">Computational Demonology is open-source software. The sourcecode and license can be found at the following link:</string>
-    <string name="oss_link">https://github.com/quaap/ComputationalDemonology</string>
-
-    <string name="protection_desc">Protection:\nPerforms the Rosencraft toroidal sequence. Purpose: slow the advance of ectastic entities into the local reality gradient.</string>
-    <string name="summon_desc">Summon:\nRuns the level-7 imaginary prime series. Purpose: attract (hopefully benevolent) mesonic-energy entities.</string>
-    <string name="cast_desc">Cast:\nPerforms a randomized, nth-cardinality polynomial set. Purpose: potentially disturb any nearby boson-based JKR energy fields enough to change the outcome of future events.</string>
-    <string name="ftaghu_desc">Ftaghu:\nPerforms a linear integration over the quintic reciprocal convergence set. Purpose: attempt to tune Planck constant enough to allow crucial observation and measurement of The Old Ones.</string>
-    <string name="expel_desc">Expel:\nCalculates full set of Golberg entirion matrices. Purpose: force back any local boundry anomolies.</string>
-    <string name="battery_warn">Warning:\nThese calculations use a lot of power, so watch your battery!</string>
-    <string name="copyright">Copyright © 2016 Tom Kliethermes</string>
     <string name="the_laundry">Yes, this is a joke.</string>
 </resources>
