@@ -8,3 +8,7 @@ find useful.
 
 This app is inspired by The Laundry Files, but doesn't implement anything from 
 that (classified) archive.
+
+
+Update 2017-04-05: If you downloaded the app from the Google Play Store from "A-Z Man": That is NOT me. My app contains no ads. That person added them and is not complying with the GPL by not releasing the source.
+
