@@ -25,6 +25,7 @@ import com.quaap.computationaldemonology.synth.AmbilectricSynth;
 import com.quaap.computationaldemonology.synth.Synth;
 import com.quaap.computationaldemonology.util.Rand;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -168,8 +169,32 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
         drawers.add(d2);
     }
 
+    private static class AudioLoader  extends AsyncTask<Void, Void, Void> {
 
-    private AsyncTask<Void,Void,Void> audioloader;
+        WeakReference<GraphicDmn> parent;
+
+        public AudioLoader(GraphicDmn dmn) {
+            parent = new WeakReference<>(dmn);
+        }
+
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            GraphicDmn dmn = parent.get();
+            if (dmn != null) {
+                dmn.mplayers = new MediaPlayer[soundRes.length];
+                for (int r = 0; r < soundRes.length; r++) {
+                    dmn.mplayers[r] = MediaPlayer.create(dmn.getContext(), soundRes[r]);
+                    dmn.mplayers[r].setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    dmn.mplayers[r].setVolume(.3f, .3f);
+                }
+            }
+            return null;
+        }
+    };
+
+
+    private AudioLoader audioloader;
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         Log.d("GraphicDmn", "surfaceCreated");
@@ -181,18 +206,7 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
 
         final Context context = getContext();
 
-        audioloader = new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                mplayers = new MediaPlayer[soundRes.length];
-                for (int r = 0; r< soundRes.length; r++) {
-                    mplayers[r] = MediaPlayer.create(context, soundRes[r]);
-                    mplayers[r].setAudioStreamType(AudioManager.STREAM_MUSIC);
-                    mplayers[r].setVolume(.3f,.3f);
-                }
-                return null;
-            }
-        };
+        audioloader =  new AudioLoader(this);
         audioloader.execute();
 
 
