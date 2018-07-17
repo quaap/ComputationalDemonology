@@ -8,13 +8,4 @@
         <!--<item name="colorAccent">@color/colorAccent</item>-->
     </style>
 
-    <style name="AppTheme.NoActionBar" parent="android:Theme.NoTitleBar.Fullscreen">
-        <!--<item name="windowActionBar">false</item>-->
-        <!--<item name="windowNoTitle">true</item>-->
-    </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="android:Theme.DeviceDefault.Light.DarkActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="android:Theme.DeviceDefault.Light" />
-
 </resources>

@@ -23,10 +23,10 @@ import com.quaap.computationaldemonology.util.Rand;
  */
 
 public class FuzzyRing extends Ring {
-    double size = 1;
-    double speed = 40;
-    double modsize = size;
-    double dsize = .1;
+    private double size = 1;
+    private double speed = 40;
+    private double modsize = size;
+    private double dsize = .1;
 
     public FuzzyRing(Context context) {
         super(context);

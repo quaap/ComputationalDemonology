@@ -6,20 +6,15 @@
         are capable of breaching those borders and bringing \"things\" from other universes into ours. These \"things\"
         are the creatures of myth: the demons, angels, spirits, ghosts, and dark energies of old stories and night terrors.
         Computer scientists and mathematicians working in secret have studied the algorithms and collected the
-        \"beneficial\" formulae together for use in fighting those which are more... disturbing. A select few are
-        presented below.  If you find yourself in certain... situations, they may be able to help. Please use with
+        \"beneficial\" formulae together for use in fighting those which are more… disturbing. A select few are
+        presented below.  If you find yourself in certain… situations, they may be able to help. Please use with
         caution, and think pleasant thoughts. \n\n Note: you can \"tune\" each algorithm by manipulating screen touches.
     </string>
-    <string name="action_settings">Settings</string>
-    <string name="page">Page</string>
-    <string name="go_to_controls">Go To Controls</string>
-    <string name="back_to_description">Back To Description</string>
     <string name="protect">Protect</string>
     <string name="cast">Cast</string>
     <string name="summon">Summon</string>
     <string name="ftaghu">ftaghu</string>
     <string name="expel">Expel</string>
-    <string name="incant">Incant</string>
 
     <string name="name_link"><![CDATA[This program was written by <a href=\'http://quaap.com/D/programming-index?from=compdemon\'>Tom Kliethermes</a>]]></string>
     <string name="oss">Computational Demonology is open-source software. The sourcecode and license can be found at the following link:</string>
@@ -29,9 +24,9 @@
     <string name="summon_desc">Summon:\nRuns the level-7 imaginary prime series. Purpose: attract (hopefully benevolent) mesonic-energy entities.</string>
     <string name="cast_desc">Cast:\nPerforms a randomized, nth-cardinality polynomial set. Purpose: potentially disturb any nearby boson-based JKR energy fields enough to change the outcome of future events.</string>
     <string name="ftaghu_desc">Ftaghu:\nPerforms a linear integration over the quintic reciprocal convergence set. Purpose: attempt to tune Planck constant enough to allow crucial observation and measurement of The Old Ones.</string>
-    <string name="expel_desc">Expel:\nCalculates full set of Golberg entirion matrices. Purpose: force back any local boundry anomolies.</string>
+    <string name="expel_desc">Expel:\nCalculates full set of Golberg entirion matrices. Purpose: force back any local boundary anomalies.</string>
     <string name="battery_warn">Warning:\nThese calculations use a lot of power, so watch your battery!</string>
-    <string name="copyright">Copyright © 2016 Tom Kliethermes</string>
+    <string name="copyright">Copyright © 2016–2018 Tom Kliethermes</string>
 
     <!-- Translation of the items below is entirely optional :) They are used in the generated "code" -->
     <string name="code">CASE CODE GAME INDEX OPERATION INCIDENT SCENARIO SEQUENCE PLAN PROJECT</string>
@@ -68,8 +63,8 @@ through again. He knows where They have trod earth\'s fields, and where They sti
 Them as They tread. ph\'nglui mglw\'nafh Cthulhu R\'lyeh wgah\'nagl fhtagn. ph\'nglui mglw\'nafh Cthulhu R\'lyeh wgah\'nagl fhtagn.
 That is not dead which can eternal lie, And with strange aeons even death may die. All that the universe has to hold of
         horror, and even the skies of spring and the flowers of summer must ever afterward be poison to me.
-        The other gods! The other gods! The gods of the outer hells that guard the feeble gods of earth!...
-        Look away... Go back... Do not see! Do not see!"
+        The other gods! The other gods! The gods of the outer hells that guard the feeble gods of earth!…
+        Look away… Go back… Do not see! Do not see!"
     </string>
     <string name="hwords">destroy kill avenge reap exterminate unmake sweep away kill extirpate wipe
         pulverise pulverize rase end dilapidate disassemble self-destruct
@@ -95,7 +90,7 @@ into the realm of the living. HTML and regex go together like love, marriage, an
 &lt;center&gt; cannot hold it is too late. The force of regex and HTML together in the same conceptual space will
 destroy your mind like so much watery putty. If you parse HTML with regex you are giving in to Them and their
 blasphemous ways which doom us all to inhuman toil for the One whose Name cannot be expressed in the Basic Multilingual
-Plane, he comes. HTML-plus-regexp will liquify the n​erves of the sentient whilst you observe, your psyche withering in
+Plane, he comes. HTML-plus-regexp will liquefy the n​erves of the sentient whilst you observe, your psyche withering in
 the onslaught of horror. Rege̿̔̉x-based HTML parsers are the cancer that is killing StackOverflow it is too late it is
 too late we cannot be saved the trangession of a chi͡ld ensures regex will consume all living tissue (except for HTML
 which it cannot, as previously prophesied) dear lord help us how can anyone survive this scourge using regex to parse

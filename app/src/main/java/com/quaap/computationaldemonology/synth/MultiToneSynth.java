@@ -23,13 +23,13 @@ public class MultiToneSynth extends Synth {
     private float [] mHzs;
     private final Object mHzsSync = new Object();
 
-    protected int [] lastPos;
+    int [] lastPos;
 
-    public MultiToneSynth(float ... hzs) {
+    MultiToneSynth(float... hzs) {
         setHz(hzs);
     }
 
-    public void setHz(float [] hzs) {
+    void setHz(float[] hzs) {
         synchronized(mHzsSync) {
             mHzs = hzs;
             lastPos = new int[hzs.length];
@@ -49,7 +49,7 @@ public class MultiToneSynth extends Synth {
     }
 
 
-    protected int addData(short[] data, float hz, int trackNum, int numTacks) {
+    int addData(short[] data, float hz, int trackNum, int numTacks) {
         float period = sampleRate / hz;
         for (int i = 0; i < data.length; i++) {
             double val = Math.sin((lastPos[trackNum]++) / period * 2 * Math.PI);
@@ -59,7 +59,7 @@ public class MultiToneSynth extends Synth {
     }
 
 
-    protected int getData(short[] data) {
+    protected void getData(short[] data) {
 
         if (lastPos[0]>Integer.MAX_VALUE-sampleRate*10) {
             Arrays.fill(lastPos,0);
@@ -75,7 +75,6 @@ public class MultiToneSynth extends Synth {
             }
         }
 
-        return length;
     }
 
 

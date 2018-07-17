@@ -57,12 +57,12 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
 
     private final Paint mBgColor;
 
-    final List<Drawgorythm> drawers = new ArrayList<>();
+    private final List<Drawgorythm> drawers = new ArrayList<>();
 
 
-    MediaPlayer[] mplayers;
+    private MediaPlayer[] mplayers;
 
-    final Random rand = new Random();
+    private final Random rand = new Random();
 
     private Synth synth;
     private long iterations = 0;
@@ -102,7 +102,7 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
     public static final int EXPEL = 3;
     public static final int CAST = 4;
     public static final int WORMS = 5;
-    public static final int CLOUD = 6;
+    private static final int CLOUD = 6;
     public static final int METHODS = 7;
 
     private static final int [] soundRes = {
@@ -358,7 +358,7 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
         private volatile boolean mRun = false;
 
 
-        public GraphicDmnThread(final SurfaceHolder surfaceHolder) {
+        GraphicDmnThread(final SurfaceHolder surfaceHolder) {
             // get handles to some important objects
             mSurfaceHolder = surfaceHolder;
         }
@@ -404,22 +404,22 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
         }
 
 
-        public void pauseRunning() {
+        void pauseRunning() {
             mPaused = true;
         }
 
-        public void unpauseRunning() {
+        void unpauseRunning() {
             mPaused = false;
         }
 
 
 
-        public void stopRunning() {
+        void stopRunning() {
             Log.d("GraphicDmnThread", "stopRunning");
             mRun = false;
         }
 
-        public boolean isRunning() {
+        boolean isRunning() {
             return mRun;
         }
     }

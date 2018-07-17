@@ -19,12 +19,11 @@ import com.quaap.computationaldemonology.util.Rand;
  *
  */
 public class StaticSynth extends Synth {
-    protected int getData(short[] data) {
+    protected void getData(short[] data) {
 
         for (int i = 0; i < data.length; i++) {
             data[i] = (short) (Rand.getDoubleNeg1To1() * Short.MAX_VALUE );
         }
-        return data.length;
     }
 
 }

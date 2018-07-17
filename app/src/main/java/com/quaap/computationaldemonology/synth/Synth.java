@@ -29,17 +29,17 @@ import java.util.List;
 public abstract class Synth extends Thread {
 
 
-    protected final List<Filter> filters = new ArrayList<>();
-    protected final int sampleRate = 16000;
-    protected final int mSnipsPerSample = 5;
+    private final List<Filter> filters = new ArrayList<>();
+    final int sampleRate = 16000;
+    final int mSnipsPerSample = 5;
     private AudioTrack mAudioTrack;
 
     private volatile boolean mRun = false;
     private volatile boolean mPause = false;
 
-    protected float mVol = 1f;
+    private float mVol = 1f;
 
-    public Synth() {
+    Synth() {
         int bufferSize = AudioTrack.getMinBufferSize(sampleRate, AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_16BIT);
         mAudioTrack = new AudioTrack(AudioManager.STREAM_MUSIC, sampleRate, AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_16BIT, bufferSize, AudioTrack.MODE_STREAM);
 
@@ -69,7 +69,7 @@ public abstract class Synth extends Thread {
         }
     }
 
-    public float getMaxVol() {
+    private float getMaxVol() {
         return AudioTrack.getMaxVolume();
     }
 
@@ -112,7 +112,7 @@ public abstract class Synth extends Thread {
         filters.add(filter);
     }
 
-    public void close() {
+    private void close() {
         if (mAudioTrack!=null) {
             try {
                 mAudioTrack.pause();
@@ -126,7 +126,7 @@ public abstract class Synth extends Thread {
     }
 
 
-    protected abstract int getData(short[] data);
+    protected abstract void getData(short[] data);
 
 
     private void write(short[] buffer) {

@@ -36,14 +36,14 @@ public class GraphicDemonActivity extends Activity implements SensorEventListene
     }
 
 
-    protected void pause() {
+    private void pause() {
         GraphicDmn dmnview = (GraphicDmn) findViewById(R.id.dmnview);
         dmnview.pause();
         mSensorManager.unregisterListener(this);
 
     }
 
-    protected void unpause() {
+    private void unpause() {
         if (mAccelerometer!=null) {
             mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
         }

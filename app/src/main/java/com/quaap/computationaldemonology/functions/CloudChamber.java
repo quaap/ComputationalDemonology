@@ -27,7 +27,7 @@ import com.quaap.computationaldemonology.util.Rand;
 
 public class CloudChamber extends Drawgorythm {
 
-    int num = -1;
+    private int num = -1;
     private double [] sparkX;
     private double [] sparkY;
     private double [] sparkOldX;
@@ -36,8 +36,8 @@ public class CloudChamber extends Drawgorythm {
     private double [] sparkDY;
     private Paint  [] fgs;
     private final String words;
-    long totalticks = 0;
-    int startchar;
+    private long totalticks = 0;
+    private int startchar;
     private Paint mTextPaint;
 
 

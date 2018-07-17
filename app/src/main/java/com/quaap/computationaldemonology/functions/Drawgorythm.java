@@ -26,34 +26,34 @@ import com.quaap.computationaldemonology.util.Rand;
 
 public abstract class Drawgorythm {
 
-    protected final Context mContext;
-    protected Paint [] mForeground;
+    private final Context mContext;
+    Paint [] mForeground;
 
-    protected Paint mBackground;
+    Paint mBackground;
 
-    protected int mCenterX;
-    protected int mCenterY;
+    int mCenterX;
+    int mCenterY;
 
-    protected int mWidth;
-    protected int mHeight;
+    int mWidth;
+    int mHeight;
 
-    protected float mTouchX;
-    protected float mTouchY;
-    protected float mTouchDX;
-    protected float mTouchDY;
+    float mTouchX;
+    float mTouchY;
+    float mTouchDX;
+    float mTouchDY;
 
-    protected float mMoveX;
-    protected float mMoveY;
-    protected float mMoveZ;
+    float mMoveX;
+    float mMoveY;
+    float mMoveZ;
 
-    protected boolean done=false;
+    private boolean done=false;
 
-    protected boolean toptouched = false;
-    protected boolean bottomtouched = false;
-    protected boolean lefttouched = false;
-    protected boolean righttouched = false;
+    private boolean toptouched = false;
+    private boolean bottomtouched = false;
+    private boolean lefttouched = false;
+    private boolean righttouched = false;
 
-    public Drawgorythm(Context context) {
+    Drawgorythm(Context context) {
         mContext = context;
     }
 
@@ -72,11 +72,11 @@ public abstract class Drawgorythm {
         mBackground = background;
     }
 
-    protected Paint getRandomForeground() {
+    Paint getRandomForeground() {
         return Rand.rand(mForeground);
     }
 
-    protected static int getRVal(int base) {
+    private static int getRVal(int base) {
         return getVal(base, (int)((Rand.getDoubleNeg1To1()/2)*64));
     }
 
@@ -84,7 +84,7 @@ public abstract class Drawgorythm {
         return getVal(base, (int)((Rand.getDoubleNeg1To1()/2)*16));
     }
 
-    protected static int getVal(int base, int diff) {
+    private static int getVal(int base, int diff) {
         int value=base+diff;
         if (value>255) value=255;
         if (value<0) value=0;

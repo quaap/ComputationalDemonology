@@ -26,8 +26,8 @@ public class Mandelbrot extends Drawgorythm {
         super(context);
     }
 
-    long totalticks=0;
-    final int max = 1000;
+    private long totalticks=0;
+    private final int max = 1000;
     @Override
     public void doDraw(Canvas canvas, long ticks) {
         int width = mWidth, height = mHeight;

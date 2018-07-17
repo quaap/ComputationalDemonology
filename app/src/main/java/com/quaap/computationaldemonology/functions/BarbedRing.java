@@ -24,10 +24,10 @@ import com.quaap.computationaldemonology.util.Rand;
 
 public class BarbedRing extends Ring {
 
-    double size = 2;
-    double speed = 40;
-    double modsize = size;
-    double dsize = .1;
+    private double size = 2;
+    private double speed = 40;
+    private double modsize = size;
+    private double dsize = .1;
 
     public BarbedRing(Context context) {
         super(context);

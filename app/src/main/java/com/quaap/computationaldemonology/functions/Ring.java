@@ -22,14 +22,14 @@ import android.graphics.Canvas;
 
 public abstract class Ring extends Drawgorythm {
 
-    double rMax = 1;
+    private double rMax = 1;
     double r;
     double rad = 0;
 
-    long started;
+    private long started;
 
 
-    public Ring(Context context) {
+    Ring(Context context) {
         super(context);
     }
 

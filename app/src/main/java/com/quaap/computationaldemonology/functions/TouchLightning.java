@@ -25,11 +25,11 @@ import com.quaap.computationaldemonology.util.Rand;
 
 public class TouchLightning extends Drawgorythm {
 
-    Paint fcircle;
+    private Paint fcircle;
     //Paint fsparks;
-    final float radius = 50;
-    double r = 0;
-    double rstart = Math.PI/2;
+    private final float radius = 50;
+    private double r = 0;
+    private double rstart = Math.PI/2;
 
     public TouchLightning(Context context) {
         super(context);

@@ -90,7 +90,7 @@ public class Rand {
      * Get a random integer between 1 and sides, inclusive
      * @return  a random integer in the specified range
      */
-    public static int diceRoll(int sides) {
+    private static int diceRoll(int sides) {
         return current().nextInt(sides) + 1;
     }
 
@@ -168,7 +168,7 @@ public class Rand {
         return members.get(getInt(members.size()));
     }
 
-    public static String getSubstr(final String str, int length) {
+    private static String getSubstr(final String str, int length) {
         int strlen = str.length();
         length = Math.min(strlen, length);
         int rnd = getInt(strlen-length);
@@ -208,7 +208,7 @@ public class Rand {
     public static class RandomList<T> extends ArrayList<T> implements GetRandom<T> {
 
 
-        public RandomList(Collection<T> members) {
+        RandomList(Collection<T> members) {
             this.addAll(members);
         }
 
@@ -258,7 +258,7 @@ public class Rand {
             return allChars;
         }
 
-        public static String convert(int charpoint) {
+        static String convert(int charpoint) {
             return new String(Character.toChars(charpoint));
         }
 

@@ -39,7 +39,7 @@ public class PentaStar extends Ring {
     }
 
 
-    protected void incRad() {
+    void incRad() {
         rad += Math.PI * 4.0 / 5.0;
     }
     public void doDraw(final Canvas canvas, final long ticks) {

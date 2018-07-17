@@ -17,7 +17,7 @@ package com.quaap.computationaldemonology.synth;
  *
  */
 
-public class Notes {
+class Notes {
 
     public static final float C0=16.35f;
     public static final float Cs0=17.32f;
@@ -173,7 +173,7 @@ public class Notes {
     public static final float Bb8=7458.62f;
     public static final float B8=7902.13f;
 
-    public static final float[] NOTES = new float[88];
+    private static final float[] NOTES = new float[88];
 
     static {
         for (int n=0; n<NOTES.length; n++) {

@@ -34,29 +34,29 @@ import com.quaap.computationaldemonology.util.Rand.*;
  */
 
 public class Code extends Drawgorythm  {
-    final String hp;
+    private final String hp;
 
-    final String [] codes;
-    final String [] nouns;
-    final String [] lc;
-    final String lc2;
-    final String [] endwords;
-    final String [] hwords;
-
-
+    private final String [] codes;
+    private final String [] nouns;
+    private final String [] lc;
+    private final String lc2;
+    private final String [] endwords;
+    private final String [] hwords;
 
 
-    long tickspast = 0;
 
-    final int numlines = 11;
-    final List<String> hists = new LinkedList<>();
-    final Paint [] mTextPaint = new Paint[numlines];
-    final int [] theight = new int[numlines];
-    int theighttot = 0;
-    Bitmap textarea;
-    Canvas textareaCanvas;
 
-    final int mMethod;
+    private long tickspast = 0;
+
+    private final int numlines = 11;
+    private final List<String> hists = new LinkedList<>();
+    private final Paint [] mTextPaint = new Paint[numlines];
+    private final int [] theight = new int[numlines];
+    private int theighttot = 0;
+    private Bitmap textarea;
+    private Canvas textareaCanvas;
+
+    private final int mMethod;
 
     public Code(Context context, int method) {
         super(context);
@@ -97,7 +97,7 @@ public class Code extends Drawgorythm  {
         textareaCanvas = new Canvas(textarea);
     }
 
-    int partial = 0;
+    private int partial = 0;
     @Override
     public void doDraw(Canvas canvas, long ticks) {
 
@@ -165,9 +165,9 @@ public class Code extends Drawgorythm  {
 
 
 
-    final int STACKMAX = 5;
+    private final int STACKMAX = 5;
 
-    public void makeText() {
+    private void makeText() {
         if (hists.size() > numlines * 3) {
             hists.remove(0);
             return;

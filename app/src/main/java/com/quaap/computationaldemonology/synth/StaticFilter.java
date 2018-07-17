@@ -22,12 +22,11 @@ import com.quaap.computationaldemonology.util.Rand;
 
 public class StaticFilter implements Filter {
     @Override
-    public int filter(short[] data, int length) {
+    public void filter(short[] data, int length) {
 
         for (int i = 0; i < length; i++) {
             data[i] = (short) ( data[i]/1.5 +  data[i]*(Rand.getDoubleNeg1To1()/2)/4 );
         }
 
-        return length;
     }
 }

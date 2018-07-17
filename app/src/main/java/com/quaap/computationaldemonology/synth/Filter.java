@@ -17,6 +17,6 @@ package com.quaap.computationaldemonology.synth;
  *
  */
 
-public interface Filter {
-    int filter(final short[] data, int length);
+interface Filter {
+    void filter(final short[] data, int length);
 }

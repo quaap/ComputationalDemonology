@@ -29,9 +29,9 @@ import java.util.Random;
 
 public class Worms extends Drawgorythm {
 
-    final int num = 23;
-    final int segments = 11;
-    final List<Worm> worms = new ArrayList<>();
+    private final int num = 23;
+    private final int segments = 11;
+    private final List<Worm> worms = new ArrayList<>();
 
 
     public Worms(Context context) {
@@ -85,7 +85,7 @@ public class Worms extends Drawgorythm {
         final Random r = new Random();
         final float maxseglen;
 
-        public Worm(int segments) {
+        Worm(int segments) {
 
             color = new Paint(getRandomForeground());
             color.setStrokeWidth(15);
@@ -117,7 +117,7 @@ public class Worms extends Drawgorythm {
             }
         }
 
-        public void draw(Canvas canvas) {
+        void draw(Canvas canvas) {
 
             for (int i=1; i<points.length; i++) {
                 PointF w0 = points[i-1];

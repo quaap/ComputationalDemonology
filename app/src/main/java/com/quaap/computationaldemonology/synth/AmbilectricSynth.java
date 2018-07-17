@@ -21,11 +21,11 @@ import com.quaap.computationaldemonology.util.Rand;
 
 public class AmbilectricSynth extends Synth {
 
-    final int window = 100;
-    long total = 0;
+    private final int window = 100;
+    private long total = 0;
 
     @Override
-    protected int getData(short[] data) {
+    protected void getData(short[] data) {
 
 
         int doclick = (int)(Math.random()*data.length * mSnipsPerSample - data.length*(mSnipsPerSample-1));
@@ -57,6 +57,5 @@ public class AmbilectricSynth extends Synth {
 
         }
 
-        return data.length;
     }
 }
