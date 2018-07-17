@@ -1,16 +1,16 @@
 package com.quaap.computationaldemonology;
 
+import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 
-public class GraphicDemonActivity extends AppCompatActivity implements SensorEventListener {
+public class GraphicDemonActivity extends Activity implements SensorEventListener {
 
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;

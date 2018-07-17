@@ -19,8 +19,8 @@ package com.quaap.computationaldemonology;
 
 // Note: you'l notice a lot of magic numbers used throughout this code.  Yeah, that's the point.
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -31,7 +31,7 @@ import android.widget.TextView;
 
 import com.quaap.computationaldemonology.synth.Synth;
 
-public class MainActivity extends AppCompatActivity implements Button.OnClickListener {
+public class MainActivity extends Activity implements Button.OnClickListener {
 
     Synth s;
     @Override
