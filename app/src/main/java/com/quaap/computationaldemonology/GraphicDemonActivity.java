@@ -14,6 +14,7 @@ public class GraphicDemonActivity extends Activity implements SensorEventListene
 
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
+    private Sensor mRotation;
 
 
     @Override
@@ -26,27 +27,32 @@ public class GraphicDemonActivity extends Activity implements SensorEventListene
         int which = getIntent().getIntExtra(GraphicDmn.GO, 7);
         dmnview.startDraw(which);
 
-        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-
         //unpause();
-
-
 
     }
 
 
     private void pause() {
+        mSensorManager.unregisterListener(this);
         GraphicDmn dmnview = (GraphicDmn) findViewById(R.id.dmnview);
         dmnview.pause();
-        mSensorManager.unregisterListener(this);
 
     }
 
     private void unpause() {
+
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mRotation = mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
+
         if (mAccelerometer!=null) {
-            mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+            mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
         }
+
+        if (mRotation!=null) {
+            mSensorManager.registerListener(this, mRotation, SensorManager.SENSOR_DELAY_GAME);
+        }
+
         GraphicDmn dmnview = (GraphicDmn) findViewById(R.id.dmnview);
         dmnview.unpause();
 
@@ -69,26 +75,57 @@ public class GraphicDemonActivity extends Activity implements SensorEventListene
         unpause();
     }
 
+
+    private static final int FROM_RADS_TO_DEGS = -57;
+
+    private void update(float[] vectors) {
+        float[] rotationMatrix = new float[9];
+        SensorManager.getRotationMatrixFromVector(rotationMatrix, vectors);
+        float[] adjustedRotationMatrix = new float[9];
+        SensorManager.remapCoordinateSystem(rotationMatrix, SensorManager.AXIS_X, SensorManager.AXIS_Z, adjustedRotationMatrix);
+        float[] orientation = new float[3];
+        SensorManager.getOrientation(adjustedRotationMatrix, orientation);
+
+
+        float yaw = orientation[0];
+        float pitch = orientation[1];
+        float roll = orientation[2];
+//        t1.setText("Pitch: " + pitch);
+//        t2.setText("Roll: " + roll);
+//        t3.setText("Yaw: " + yaw);
+    }
+
+
     private float mLastX=Float.MAX_VALUE, mLastY, mLastZ;
 
     private float minAcc = 0.1f;
     @Override
-    public void onSensorChanged(SensorEvent event) {
-        float x = event.values[0];
-        float y = event.values[1];
-        float z = event.values[2];
-        if (mLastX==Float.MAX_VALUE) {
-            mLastX = x;
-            mLastY = y;
-            mLastZ = z;
-        } else {
-           // if (Math.abs(mLastX - x)>minAcc || Math.abs(mLastY - y)>minAcc || Math.abs(mLastZ - z)>minAcc ) {
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        if (sensorEvent.sensor == mAccelerometer) {
+            float x = sensorEvent.values[0];
+            float y = sensorEvent.values[1];
+            float z = sensorEvent.values[2];
+            if (mLastX == Float.MAX_VALUE) {
+                mLastX = x;
+                mLastY = y;
+                mLastZ = z;
+            } else {
+                // if (Math.abs(mLastX - x)>minAcc || Math.abs(mLastY - y)>minAcc || Math.abs(mLastZ - z)>minAcc ) {
                 GraphicDmn dmnview = (GraphicDmn) findViewById(R.id.dmnview);
                 dmnview.deviceMoved(mLastX - x, mLastY - y, mLastZ - z);
                 mLastX = x;
                 mLastY = y;
                 mLastZ = z;
-          //  }
+                //  }
+            }
+        } else if (sensorEvent.sensor == mRotation) {
+            if (sensorEvent.values.length > 4) {
+                float[] truncatedRotationVector = new float[4];
+                System.arraycopy(sensorEvent.values, 0, truncatedRotationVector, 0, 4);
+                update(truncatedRotationVector);
+            } else {
+                update(sensorEvent.values);
+            }
         }
     }
 

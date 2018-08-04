@@ -95,6 +95,15 @@ public class Rand {
     }
 
     /**
+     * Get a random double between -1 (inclusive) and 1 (exclusive)
+     *
+     * @return a random double in the specified range
+     */
+    public static float getFloatNeg1To1() {
+        return (current().nextFloat() - .5f)*2;
+    }
+
+    /**
      * Get a random double between 0 (inclusive) and 1 (exclusive)
      *
      * @return a random double in the specified range

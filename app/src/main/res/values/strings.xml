@@ -113,4 +113,6 @@ Ghatanothoa Mother Hydra Zoth-Ommog Abhoth Aiueb Gnshal Azathoth Azhorra-Tha The
  Yaggdytha </string>
 
     <string name="the_laundry">Yes, this is a joke.</string>
+    <string name="awaken">Awaken</string>
+    <string name="awaken_desc">Calculate the first 800,000,000 or so immoral primes in an attempt to awaken Eckelmann field entities.</string>
 </resources>

@@ -100,6 +100,9 @@ public abstract class Drawgorythm {
         done = false;
     }
 
+    public void stopping() {
+
+    }
 
     public abstract void doDraw(final Canvas canvas, final long ticks);
 

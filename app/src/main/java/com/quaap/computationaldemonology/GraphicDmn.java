@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -13,12 +14,12 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.quaap.computationaldemonology.functions.BarbedRing;
-import com.quaap.computationaldemonology.functions.CloudChamber;
 import com.quaap.computationaldemonology.functions.Code;
 import com.quaap.computationaldemonology.functions.Drawgorythm;
 import com.quaap.computationaldemonology.functions.FuzzyRing;
 import com.quaap.computationaldemonology.functions.PentaRing;
 import com.quaap.computationaldemonology.functions.PentaStar;
+import com.quaap.computationaldemonology.functions.Awaken;
 import com.quaap.computationaldemonology.functions.TouchLightning;
 import com.quaap.computationaldemonology.functions.Worms;
 import com.quaap.computationaldemonology.synth.AmbilectricSynth;
@@ -102,8 +103,8 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
     public static final int EXPEL = 3;
     public static final int CAST = 4;
     public static final int WORMS = 5;
-    private static final int CLOUD = 6;
-    public static final int METHODS = 7;
+    public static final int CLOUD = 6;
+    public static final int AWAKEN = 7;
 
     private static final int [] soundRes = {
             R.raw.ahohow,
@@ -144,11 +145,11 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
     public void startDraw(int which) {
         mMethod = which;
 
-        if (mMethod!=CLOUD) {
+        //if (mMethod!=CLOUD) {
             Drawgorythm d0 = new Code(getContext(), mMethod);
             d0.setPaints(mLinePaint, mBgColor);
             drawers.add(d0);
-        }
+       // }
 
         Drawgorythm d = null;
 
@@ -158,7 +159,8 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
             case CAST: d = new PentaRing(getContext()); break;
             case SUMMON: d = new PentaStar(getContext()); break;
             case WORMS: d = new Worms(getContext()); break;
-            case CLOUD: d = new CloudChamber(getContext()); break;
+            case CLOUD: d = new Awaken(getContext()); break;
+            case AWAKEN: d = new Awaken(getContext()); break;
             default:
                 throw new IllegalArgumentException("No such drawgorithm " + which);
         }
@@ -185,7 +187,11 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
                 dmn.mplayers = new MediaPlayer[soundRes.length];
                 for (int r = 0; r < soundRes.length; r++) {
                     dmn.mplayers[r] = MediaPlayer.create(dmn.getContext(), soundRes[r]);
-                    dmn.mplayers[r].setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    if (Build.VERSION.SDK_INT>=26) {
+                       // dmn.mplayers[r].setAudioAttributes(new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME).build());
+                    } else {
+                        dmn.mplayers[r].setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    }
                     dmn.mplayers[r].setVolume(.3f, .3f);
                 }
             }
@@ -251,6 +257,10 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         Log.d("GraphicDmn", "surfaceDestroyed");
+
+        for(Drawgorythm d: drawers) {
+            d.stopping();
+        }
 
         if (audioloader!=null) {
             audioloader.cancel(true);

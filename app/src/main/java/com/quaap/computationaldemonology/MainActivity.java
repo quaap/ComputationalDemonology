@@ -43,15 +43,17 @@ public class MainActivity extends Activity implements Button.OnClickListener {
         Button expel = (Button)findViewById(R.id.button_expel);
         Button protect = (Button)findViewById(R.id.button_protect);
         Button cast = (Button)findViewById(R.id.button_cast);
-       // Button cloud = (Button)findViewById(R.id.button_cloud);
+        Button cloud = (Button)findViewById(R.id.button_cloud);
         Button worms = (Button)findViewById(R.id.button_worms);
+        Button awaken = (Button)findViewById(R.id.button_awaken);
 
         protect.setOnClickListener(this);
         cast.setOnClickListener(this);
         summon.setOnClickListener(this);
         expel.setOnClickListener(this);
         worms.setOnClickListener(this);
-        //cloud.setOnClickListener(this);
+        cloud.setOnClickListener(this);
+        awaken.setOnClickListener(this);
 
         TextView txtnamelink = (TextView)findViewById(R.id.name_link);
         txtnamelink.setMovementMethod(LinkMovementMethod.getInstance());
@@ -72,10 +74,12 @@ public class MainActivity extends Activity implements Button.OnClickListener {
                 intent.putExtra(GraphicDmn.GO, GraphicDmn.PROTECTION); break;
             case R.id.button_cast:
                 intent.putExtra(GraphicDmn.GO, GraphicDmn.CAST); break;
-           // case R.id.button_cloud:
-           //     intent.putExtra(GraphicDmn.GO, GraphicDmn.CLOUD); break;
+            case R.id.button_cloud:
+                intent.putExtra(GraphicDmn.GO, GraphicDmn.CLOUD); break;
             case R.id.button_worms:
                 intent.putExtra(GraphicDmn.GO, GraphicDmn.WORMS); break;
+            case R.id.button_awaken:
+                intent.putExtra(GraphicDmn.GO, GraphicDmn.AWAKEN); break;
         }
         startActivity(intent);
     }

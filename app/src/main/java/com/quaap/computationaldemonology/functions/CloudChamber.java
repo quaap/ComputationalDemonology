@@ -84,8 +84,8 @@ public class CloudChamber extends Drawgorythm {
         sparkY[i] = (Rand.getDoubleNeg1To1()/2) * mCenterY + mCenterY;
         sparkOldX[i] = sparkX[i];
         sparkOldY[i] = sparkY[i];
-        sparkDX[i] = Rand.getDoubleNeg1To1()/2;
-        sparkDY[i] = Rand.getDoubleNeg1To1()/2;
+        sparkDX[i] = Rand.getDoubleNeg1To1();
+        sparkDY[i] = Rand.getDoubleNeg1To1();
 
         fgs[i] = getRandomForeground();
 
