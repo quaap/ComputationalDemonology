@@ -26,13 +26,13 @@ public class Awaken extends Drawgorythm {
 
     private float alpha = 3;
     private float scale = .0001f;
-    private float scalev = .000001f;
+    private float scalev = .000008f;
     private Rect dstrect;
     private Rect srcrect;
     private Rect gradrect;
     private Bitmap img;
     private Bitmap img2;
-    private Bitmap gradient;
+    private Bitmap [] gradient;
     private Paint alphatweak;
     private Paint white = new Paint();
 
@@ -46,21 +46,24 @@ public class Awaken extends Drawgorythm {
     private List<RectF> poss = new ArrayList<>();
     private List<RectF> dVs = new ArrayList<>();
     private int num;
-    private Canvas c;
+    //private Canvas c;
 
     public Awaken(Context context) {
         super(context);
 
         //img = context.getResources().getDrawable(R.drawable.rift);
         dstrect = new Rect();
-
-        gradient = BitmapFactory.decodeResource(context.getResources(),R.drawable.gradient);
-        gradrect = new Rect(0,0,gradient.getWidth(),gradient.getHeight());
+        gradient = new Bitmap[4];
+        gradient[0] = BitmapFactory.decodeResource(context.getResources(),R.drawable.gradient2);
+        gradient[1] = BitmapFactory.decodeResource(context.getResources(),R.drawable.gradient3);
+        gradient[2] = BitmapFactory.decodeResource(context.getResources(),R.drawable.gradient4);
+        gradient[3] = BitmapFactory.decodeResource(context.getResources(),R.drawable.gradient5);
+        gradrect = new Rect(0,0,gradient[0].getWidth(),gradient[0].getHeight());
 
         alphatweak = new Paint();
         alphatweak.setColor(Color.WHITE);
         white.setColor(Color.WHITE);
-        num = Rand.getInt(7,15);
+        num = Rand.getInt(3,9);
 
     }
 
@@ -82,10 +85,10 @@ public class Awaken extends Drawgorythm {
             dVs.add(new RectF(Rand.getFloatNeg1To1(), Rand.getFloatNeg1To1(), 0,0));
 
         }
-        img = Bitmap.createBitmap(mWidth, mHeight, gradient.getConfig());
-        img2 = Bitmap.createBitmap(mWidth, mHeight, gradient.getConfig());
-        c = new Canvas();
-        c.setBitmap(img2);
+        img = Bitmap.createBitmap(mWidth, mHeight, gradient[0].getConfig());
+        img2 = Bitmap.createBitmap(mWidth, mHeight, gradient[0].getConfig());
+        //c = new Canvas();
+        //c.setBitmap(img2);
         //img = gradient;
         srcrect = new Rect(0, 0, img.getWidth(), img.getHeight());
 
@@ -108,14 +111,14 @@ public class Awaken extends Drawgorythm {
 
     private class UpdaterThread extends Thread {
         boolean done=false;
-        int sleep = 50;
+        int sleep = 1000;
 
         @Override
         public void run() {
 
             while(!done) {
 
-                c.drawColor(Color.TRANSPARENT, PorterDuff.Mode.SRC);
+                //c.drawColor(Color.TRANSPARENT, PorterDuff.Mode.SRC);
                 for (int i = 0; i < num; i++) {
                     RectF d =  poss.get(i);
                     RectF dV = dVs.get(i);
@@ -130,7 +133,7 @@ public class Awaken extends Drawgorythm {
 
                     m.setRectToRect(new RectF(gradrect), d, Matrix.ScaleToFit.CENTER);
 
-                    c.drawBitmap(gradient, m, white);
+                    //c.drawBitmap(gradient[i%gradient.length], m, white);
 
                     if (mTouchDY>0 && i%2==0 || mTouchDY<0 && i%2!=0) {
                         //draws += .001*dY;
@@ -140,10 +143,10 @@ public class Awaken extends Drawgorythm {
                     }
 
                     if (scale>.004) {
-                        scalev = -.00001f; // + Math.sin(draws/5)/1000;
+                        scalev = -.00008f; // + Math.sin(draws/5)/1000;
                     }
                     else if (scale<-.002) {
-                        scalev = .000001f;
+                        scalev = .000008f;
                     }
                     scale += scalev;
 
@@ -156,6 +159,7 @@ public class Awaken extends Drawgorythm {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                done = true;
 
             }
         }
@@ -163,17 +167,18 @@ public class Awaken extends Drawgorythm {
 
 
     Matrix r = new Matrix();
+    int count = 0;
     @Override
     public void doDraw(Canvas canvas, long ticks) {
 
         int sign = 1;
         if (alpha > 250) {
             sign = -1;
-            alpha = 250;
+            //alpha = 250;
         }
         if (alpha<5) {
             sign = 1;
-            alpha = 5;
+            //alpha = 5;
         }
 
         alpha += .01 * sign + Math.sin(draws/2);
@@ -182,12 +187,45 @@ public class Awaken extends Drawgorythm {
 
         alphatweak.setAlpha((int)alpha);
 
-        r.reset();
-        r.postRotate(-mRoll, mCenterX, mCenterY+mCenterY/2);
+        for (int i = 0; i < num; i++) {
+            RectF d =  poss.get(i);
+            RectF dV = dVs.get(i);
 
-        synchronized (imgsync) {
-            canvas.drawBitmap(img, r, alphatweak);
+            if (d.left<=10)  dV.left = -dV.left;
+            if (d.top<=10)  dV.top = -dV.top;
+            if (d.right>=mWidth-10)  dV.left = -dV.left;
+            if (d.bottom>=mHeight*3/4)  dV.top = -dV.top;
+
+            d.set(d.left+dV.left - d.left*scale, d.top+dV.top - d.top*scale,
+                    d.right+dV.left+ d.left*scale, d.bottom+dV.top  + d.top*scale);
+
+            m.setRectToRect(new RectF(gradrect), d, Matrix.ScaleToFit.CENTER);
+
+            canvas.drawBitmap(gradient[i%gradient.length], m, alphatweak);
+
+            if (mTouchDY>0 && i%2==0 || mTouchDY<0 && i%2!=0) {
+                //draws += .001*dY;
+                dV.left = Math.signum(mTouchX - d.left) * Math.abs(dV.left)  * (float)Rand.getDouble(.5,1.5);
+                dV.top = Math.signum(mTouchY - d.top) *  Math.abs(dV.top) * (float)Rand.getDouble(.5,1.5);
+                Log.d("Awake", "" + scale);
+            }
+
+            if (scale>.004) {
+                scalev = -.00008f; // + Math.sin(draws/5)/1000;
+            }
+            else if (scale<-.002) {
+                scalev = .000008f;
+            }
+            scale += scalev;
+
         }
+
+//        r.reset();
+//        r.postRotate(-mRoll, mCenterX, mCenterY+mCenterY/2);
+//
+//        synchronized (imgsync) {
+//            canvas.drawBitmap(img, r, alphatweak);
+//        }
 
     }
 }

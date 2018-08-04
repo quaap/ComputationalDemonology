@@ -17,16 +17,17 @@ public class GraphicDemonActivity extends Activity implements SensorEventListene
     private Sensor mAccelerometer;
     private Sensor mRotation;
 
+    private GraphicDmn mDmnview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graphic_demon);
 
-        GraphicDmn dmnview = (GraphicDmn) findViewById(R.id.dmnview);
+        mDmnview = (GraphicDmn) findViewById(R.id.dmnview);
 
         int which = getIntent().getIntExtra(GraphicDmn.GO, 7);
-        dmnview.startDraw(which);
+        mDmnview.startDraw(which);
 
         //unpause();
 
@@ -35,8 +36,8 @@ public class GraphicDemonActivity extends Activity implements SensorEventListene
 
     private void pause() {
         mSensorManager.unregisterListener(this);
-        GraphicDmn dmnview = (GraphicDmn) findViewById(R.id.dmnview);
-        dmnview.pause();
+
+        mDmnview.pause();
 
     }
 
@@ -54,8 +55,7 @@ public class GraphicDemonActivity extends Activity implements SensorEventListene
             mSensorManager.registerListener(this, mRotation, SensorManager.SENSOR_DELAY_NORMAL);
         }
 
-        GraphicDmn dmnview = (GraphicDmn) findViewById(R.id.dmnview);
-        dmnview.unpause();
+        mDmnview.unpause();
 
     }
 
@@ -79,6 +79,11 @@ public class GraphicDemonActivity extends Activity implements SensorEventListene
 
     private static final int FROM_RADS_TO_DEGS = -57;
 
+
+    float mYaw;
+    float mPitch;
+    float mRoll;
+
     private void update(float[] vectors) {
         float[] rotationMatrix = new float[9];
         SensorManager.getRotationMatrixFromVector(rotationMatrix, vectors);
@@ -93,8 +98,13 @@ public class GraphicDemonActivity extends Activity implements SensorEventListene
         float pitch = orientation[1]*fac;
         float roll = orientation[2]*fac;
 
-        GraphicDmn dmnview = (GraphicDmn) findViewById(R.id.dmnview);
-        dmnview.deviceRotated(yaw, pitch, roll);
+        if (yaw!=mYaw || pitch!=mPitch || roll!=mRoll) {
+            mYaw = yaw;
+            mPitch = pitch;
+            mRoll = roll;
+
+            mDmnview.deviceRotated(yaw, pitch, roll);
+        }
 
 //        Log.d("dmn","Pitch: " + pitch);
 //        Log.d("dmn","Roll: " + roll);
