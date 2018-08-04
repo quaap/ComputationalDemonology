@@ -46,6 +46,11 @@ public abstract class Drawgorythm {
     float mMoveY;
     float mMoveZ;
 
+
+    float mYaw;
+    float mPitch;
+    float mRoll;
+
     private boolean done=false;
 
     private boolean toptouched = false;
@@ -132,6 +137,13 @@ public abstract class Drawgorythm {
         mMoveX = x;
         mMoveY = y;
         mMoveZ = z;
+        //System.out.println(String.format("%f %f %f", x, y, z));
+    }
+
+    public void deviceRotated(float yaw, float pitch, float roll) {
+        mYaw = yaw;
+        mPitch = pitch;
+        mRoll = roll;
         //System.out.println(String.format("%f %f %f", x, y, z));
     }
 }

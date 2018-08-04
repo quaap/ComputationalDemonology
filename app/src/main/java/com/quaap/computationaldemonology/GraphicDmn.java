@@ -315,6 +315,14 @@ public class GraphicDmn extends SurfaceView implements  SurfaceHolder.Callback, 
         }
     }
 
+
+    public void deviceRotated(float yaw, float pitch, float roll) {
+        for (Drawgorythm d: drawers) {
+            d.deviceRotated(yaw, pitch, roll);
+        }
+    }
+
+
     private final float TOUCH_SCALE_FACTOR = 180.0f / 320;
     private float mPreviousX;
     private float mPreviousY;

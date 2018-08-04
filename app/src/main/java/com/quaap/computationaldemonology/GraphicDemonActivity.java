@@ -8,6 +8,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
 import android.os.Bundle;
+import android.util.Log;
 
 
 public class GraphicDemonActivity extends Activity implements SensorEventListener {
@@ -50,7 +51,7 @@ public class GraphicDemonActivity extends Activity implements SensorEventListene
         }
 
         if (mRotation!=null) {
-            mSensorManager.registerListener(this, mRotation, SensorManager.SENSOR_DELAY_GAME);
+            mSensorManager.registerListener(this, mRotation, SensorManager.SENSOR_DELAY_NORMAL);
         }
 
         GraphicDmn dmnview = (GraphicDmn) findViewById(R.id.dmnview);
@@ -87,12 +88,17 @@ public class GraphicDemonActivity extends Activity implements SensorEventListene
         SensorManager.getOrientation(adjustedRotationMatrix, orientation);
 
 
-        float yaw = orientation[0];
-        float pitch = orientation[1];
-        float roll = orientation[2];
-//        t1.setText("Pitch: " + pitch);
-//        t2.setText("Roll: " + roll);
-//        t3.setText("Yaw: " + yaw);
+        float fac = (float)(180/Math.PI);
+        float yaw = orientation[0]*fac;
+        float pitch = orientation[1]*fac;
+        float roll = orientation[2]*fac;
+
+        GraphicDmn dmnview = (GraphicDmn) findViewById(R.id.dmnview);
+        dmnview.deviceRotated(yaw, pitch, roll);
+
+//        Log.d("dmn","Pitch: " + pitch);
+//        Log.d("dmn","Roll: " + roll);
+//        Log.d("dmn","Yaw: " + yaw);
     }
 
 

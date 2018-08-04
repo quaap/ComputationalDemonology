@@ -13,6 +13,7 @@ import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 
 import com.quaap.computationaldemonology.R;
@@ -25,6 +26,7 @@ public class Awaken extends Drawgorythm {
 
     private float alpha = 3;
     private float scale = .0001f;
+    private float scalev = .000001f;
     private Rect dstrect;
     private Rect srcrect;
     private Rect gradrect;
@@ -110,7 +112,7 @@ public class Awaken extends Drawgorythm {
 
         @Override
         public void run() {
-            int topcenter = mHeight/3;
+
             while(!done) {
 
                 c.drawColor(Color.TRANSPARENT, PorterDuff.Mode.SRC);
@@ -130,7 +132,21 @@ public class Awaken extends Drawgorythm {
 
                     c.drawBitmap(gradient, m, white);
 
-                    scale += .0000001; // + Math.sin(draws/5)/1000;
+                    if (mTouchDY>0 && i%2==0 || mTouchDY<0 && i%2!=0) {
+                        //draws += .001*dY;
+                        dV.left = Math.signum(mTouchX - d.left) * Math.abs(dV.left)  * (float)Rand.getDouble(.5,1.5);
+                        dV.top = Math.signum(mTouchY - d.top) *  Math.abs(dV.top) * (float)Rand.getDouble(.5,1.5);
+                        Log.d("Awake", "" + scale);
+                    }
+
+                    if (scale>.004) {
+                        scalev = -.00001f; // + Math.sin(draws/5)/1000;
+                    }
+                    else if (scale<-.002) {
+                        scalev = .000001f;
+                    }
+                    scale += scalev;
+
                 }
                 synchronized (imgsync) {
                     img = img2.copy(Bitmap.Config.ARGB_8888, false);
@@ -146,17 +162,31 @@ public class Awaken extends Drawgorythm {
     }
 
 
+    Matrix r = new Matrix();
     @Override
     public void doDraw(Canvas canvas, long ticks) {
 
-        if (alpha < 254) alpha += .01 + Math.sin(draws/2);
+        int sign = 1;
+        if (alpha > 250) {
+            sign = -1;
+            alpha = 250;
+        }
+        if (alpha<5) {
+            sign = 1;
+            alpha = 5;
+        }
+
+        alpha += .01 * sign + Math.sin(draws/2);
 
         draws+=.1;
 
         alphatweak.setAlpha((int)alpha);
 
+        r.reset();
+        r.postRotate(-mRoll, mCenterX, mCenterY+mCenterY/2);
+
         synchronized (imgsync) {
-            canvas.drawBitmap(img, 0,0, alphatweak);
+            canvas.drawBitmap(img, r, alphatweak);
         }
 
     }
