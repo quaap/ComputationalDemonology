@@ -136,6 +136,7 @@
         android:layout_marginTop="@dimen/activity_vertical_margin" />
 
         <TextView
+            android:visibility="gone"
             android:text="@string/awaken_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -147,6 +148,7 @@
 
 
         <Button
+            android:visibility="gone"
             android:text="@string/awaken"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
